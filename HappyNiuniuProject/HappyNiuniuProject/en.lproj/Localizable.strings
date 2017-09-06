@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  HappyNiuniuProject
+
+  Created by kuangbiao on 2017/9/5.
+  Copyright © 2017年 kuangbiao. All rights reserved.
+*/
+"MemberLogin"           = "Member   login";
+"NewUserSignUp"         = "New user ?  sign up here";
+"UserName"              = "Username：";
+"UserNamePlaceholder"   = "Enter username";
+"login"                 = "login";
+"Password"              = "Password：";
+"PasswordPlaceholder"   = "Enter Password";
+"forgetPwdLbl"          = "Forget password? Click here!";
+
+
+"email"                 = "Email：";
+"confirmPassword"       = "Confirm Password：";
+"confirmPwdPlaceholder" = "Enter Confirm Password";
+"signUp"                = "sign up";
+"registerSuggestion"    = "Register and play for fun Get 10,000 Free chips on success registration";
+
+"balance"               = "balance";
+"gamesLobby"            = "Games Lobby";
+"welcome"               = "Welcome";
+"room"                  = "room";
+
+"notice" = "notice_en";
+"playrule" = "playrule_en";
+"set" = "set_en";

@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  HappyNiuniuProject
+
+  Created by kuangbiao on 2017/9/5.
+  Copyright © 2017年 kuangbiao. All rights reserved.
+*/
+"MemberLogin"           = "用户登录";
+"NewUserSignUp"         = "新用户 ? 这里注册";
+"UserName"              = "用户名：";
+"UserNamePlaceholder"   = "请输入用户名";
+"login"                 = "登录";
+"Password"              = "密码：";
+"PasswordPlaceholder"   = "请输入密码";
+"forgetPwdLbl"          = "忘记密码? 点击这里!";
+
+
+"email"                 = "邮箱：";
+"confirmPassword"       = "确认入密码：";
+"confirmPwdPlaceholder" = "请再次输入密码";
+"signUp"                = "注册";
+"registerSuggestion"    = "注册和玩乐获得10,000免费筹码成功注册";
+
+
+"balance"               = "金额";
+"gamesLobby"            = "游戏大厅";
+"welcome"               = "欢迎";
+"room"                  = "房间";
+
+"notice" = "notice_zh";
+"playrule" = "playrule_zh";
+"set" = "set_zh";
