@@ -9,8 +9,8 @@
 #import "MZSettingController.h"
 #import "NSBundle+MZLanguage.h"
 #import "MZGameLobbyController.h"
-
-@interface MZSettingController ()
+#import "MZBuyChips.h"
+@interface MZSettingController ()<MZBuyChipsDelegate>
 
 @end
 
@@ -41,11 +41,19 @@
 - (IBAction)changeChinaLanguageClick:(id)sender {
     
     // 设置中文
-    [MZlocalizableContoller setUserlanguage:RDCHINESE];
-    MZGameLobbyController *gameVC = [[MZGameLobbyController alloc] initWithNibName:@"MZGameLobbyController" bundle:nil];
-    [UIApplication sharedApplication].keyWindow.rootViewController = gameVC;
-//    [self dismissViewControllerAnimated:YES completion:nil];
+//    [MZlocalizableContoller setUserlanguage:RDCHINESE];
+//    MZGameLobbyController *gameVC = [[MZGameLobbyController alloc] initWithNibName:@"MZGameLobbyController" bundle:nil];
+//    [UIApplication sharedApplication].keyWindow.rootViewController = gameVC;
+////    [self dismissViewControllerAnimated:YES completion:nil];
     
+    MZBuyChips *forgetView = [[MZBuyChips alloc] initWithFrame:self.view.frame withMax:100 withMin:0];
+    forgetView.delegate = self;
+    [self.view addSubview:forgetView];
+    
+}
+- (void)buyChipsWithMoney:(float)money{
+
+    NSLog(@"money-------------%f",money);
 }
 
 
@@ -53,7 +61,8 @@
     // 设置英文
     [MZlocalizableContoller setUserlanguage:RDENGLISH];
     MZGameLobbyController *gameVC = [[MZGameLobbyController alloc] initWithNibName:@"MZGameLobbyController" bundle:nil];
-    [UIApplication sharedApplication].keyWindow.rootViewController = gameVC;
+    UINavigationController *gameNav = [[UINavigationController alloc] initWithRootViewController:gameVC];
+    [UIApplication sharedApplication].keyWindow.rootViewController = gameNav;
 //    [self dismissViewControllerAnimated:YES completion:nil];
 }
 

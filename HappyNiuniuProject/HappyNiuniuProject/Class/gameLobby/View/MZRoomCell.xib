@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,32 +19,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="142" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="grade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpo-Z1-HX1">
-                        <rect key="frame" x="48" y="7.5" width="44.5" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gameRoomBlueBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="zvj-rU-4dU">
+                        <rect key="frame" x="5" y="3" width="132" height="55"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="zvj-rU-4dU" secondAttribute="height" multiplier="196:82" id="DB9-jX-YeF"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Law" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpo-Z1-HX1">
+                        <rect key="frame" x="61.5" y="15.5" width="19.5" height="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="1" green="0.97647058823529409" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="1" green="0.97647058823529409" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="interval" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYf-hD-sil">
-                        <rect key="frame" x="43" y="31.5" width="56" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYf-hD-sil">
+                        <rect key="frame" x="53.5" y="29.5" width="35.5" height="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="1" green="0.97647058823529409" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="1" green="0.97647058823529409" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="zYf-hD-sil" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="VzV-dB-kXY"/>
-                    <constraint firstItem="bpo-Z1-HX1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-12" id="akJ-eb-khq"/>
-                    <constraint firstItem="zYf-hD-sil" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="12" id="drV-VK-tlK"/>
-                    <constraint firstItem="bpo-Z1-HX1" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="uny-Qm-wJX"/>
+                    <constraint firstItem="zvj-rU-4dU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="K4L-or-yxZ"/>
+                    <constraint firstAttribute="trailing" secondItem="zvj-rU-4dU" secondAttribute="trailing" constant="5" id="yuu-7c-QL1"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="zYf-hD-sil" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" constant="6" id="4I3-og-C1L"/>
+                <constraint firstItem="zYf-hD-sil" firstAttribute="centerX" secondItem="KGk-i7-Jjw" secondAttribute="centerX" id="76q-ab-TcV"/>
+                <constraint firstItem="bpo-Z1-HX1" firstAttribute="centerX" secondItem="KGk-i7-Jjw" secondAttribute="centerX" id="Ul0-XB-m2X"/>
+                <constraint firstItem="bpo-Z1-HX1" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" constant="-8" id="b2O-Fp-VBz"/>
+                <constraint firstItem="zvj-rU-4dU" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" id="qRO-Sp-dgm"/>
+            </constraints>
             <connections>
+                <outlet property="bacImageView" destination="zvj-rU-4dU" id="hgo-kd-uBc"/>
                 <outlet property="gradeLabel" destination="bpo-Z1-HX1" id="rrM-pc-ILS"/>
                 <outlet property="intervalLabel" destination="zYf-hD-sil" id="IRo-vQ-skS"/>
             </connections>
             <point key="canvasLocation" x="-55" y="82"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="gameRoomBlueBtn.png" width="98" height="41"/>
+    </resources>
 </document>

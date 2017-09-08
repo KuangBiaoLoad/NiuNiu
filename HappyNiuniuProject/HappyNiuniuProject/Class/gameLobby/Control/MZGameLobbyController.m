@@ -57,16 +57,16 @@
     [self.noticeBtn setBackgroundImage:[UIImage imageNamed:RDLocalizedString(@"notice")] forState:UIControlStateNormal];
     [self.setBtn setBackgroundImage:[UIImage imageNamed:RDLocalizedString(@"set")] forState:UIControlStateNormal];
     //顶部bac的高度 kscreenwidth*7/142
-    CGFloat  topHeight = kSCREEN_Width * 7 / 142.0;
+    CGFloat  topheight = kSCREEN_Width * 7 / 142.0;
     //顶部bac的高度kscreenwidth * 57.5/320
     CGFloat  boomHeight = KSCREEN_HEIGHT * 57.5/320;
     //scrollerView左边距离 kscreenwidth * 113/568
-    CGFloat kleftScale = 31 * (KSCREEN_HEIGHT - topHeight)/59.0 * 0.68;
+    CGFloat kleftScale = 31 * (KSCREEN_HEIGHT - topheight)/59.0 * 0.68;
     //距离top高度
     CGFloat kdistopHeight = KSCREEN_HEIGHT * 35 /320.0;
     
-    CGFloat lobbyHeight = KSCREEN_HEIGHT - topHeight - kdistopHeight * 2 - boomHeight;
-    _lobbyScrollView = [[MZLobbySView alloc]initWithFrame:CGRectMake(kleftScale, kdistopHeight + topHeight, kSCREEN_Width - kleftScale - 15, lobbyHeight) data:@[@"",@"",@"",@"",@"",@"",@""]];
+    CGFloat lobbyHeight = KSCREEN_HEIGHT - topheight - kdistopHeight * 2 - boomHeight;
+    _lobbyScrollView = [[MZLobbySView alloc]initWithFrame:CGRectMake(kleftScale, kdistopHeight + topheight, kSCREEN_Width - kleftScale - 15, lobbyHeight) data:@[@"",@"",@"",@"",@"",@"",@""]];
     _lobbyScrollView.delegate = self;
     [self.view addSubview:_lobbyScrollView];
     

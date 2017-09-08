@@ -99,6 +99,26 @@
 		E0971FE71F5F7142003A39FC /* playrule_zh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FE11F5F7142003A39FC /* playrule_zh@3x.png */; };
 		E0971FE81F5F7142003A39FC /* set_zh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FE21F5F7142003A39FC /* set_zh@2x.png */; };
 		E0971FE91F5F7142003A39FC /* set_zh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FE31F5F7142003A39FC /* set_zh@3x.png */; };
+		E0971FEC1F5F8EAE003A39FC /* MZBuyChips.m in Sources */ = {isa = PBXBuildFile; fileRef = E0971FEB1F5F8EAE003A39FC /* MZBuyChips.m */; };
+		E097200C1F613945003A39FC /* gameRoomBlueBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FF81F613945003A39FC /* gameRoomBlueBtn@2x.png */; };
+		E097200D1F613945003A39FC /* gameRoomBlueBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FF91F613945003A39FC /* gameRoomBlueBtn@3x.png */; };
+		E097200E1F613945003A39FC /* gameRoomBoomImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FFA1F613945003A39FC /* gameRoomBoomImage@2x.png */; };
+		E097200F1F613945003A39FC /* gameRoomBoomImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FFB1F613945003A39FC /* gameRoomBoomImage@3x.png */; };
+		E09720101F613945003A39FC /* gameRoomPurleBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FFC1F613945003A39FC /* gameRoomPurleBtn@2x.png */; };
+		E09720111F613945003A39FC /* gameRoomPurleBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FFD1F613945003A39FC /* gameRoomPurleBtn@3x.png */; };
+		E09720121F613945003A39FC /* gameRoomYellowBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FFE1F613945003A39FC /* gameRoomYellowBtn@2x.png */; };
+		E09720131F613945003A39FC /* gameRoomYellowBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0971FFF1F613945003A39FC /* gameRoomYellowBtn@3x.png */; };
+		E09720141F613945003A39FC /* roomChooseFrameBac@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E09720001F613945003A39FC /* roomChooseFrameBac@2x.png */; };
+		E09720151F613945003A39FC /* roomChooseFrameBac@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E09720011F613945003A39FC /* roomChooseFrameBac@3x.png */; };
+		E09720161F613945003A39FC /* roomInput@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E09720021F613945003A39FC /* roomInput@2x.png */; };
+		E09720171F613945003A39FC /* roomInput@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E09720031F613945003A39FC /* roomInput@3x.png */; };
+		E097201A1F613945003A39FC /* roomSelectEffect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E09720061F613945003A39FC /* roomSelectEffect@2x.png */; };
+		E097201B1F613945003A39FC /* roomSelectEffect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E09720071F613945003A39FC /* roomSelectEffect@3x.png */; };
+		E097201C1F613945003A39FC /* roomSuspendBtnBac@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E09720081F613945003A39FC /* roomSuspendBtnBac@2x.png */; };
+		E097201D1F613945003A39FC /* roomSuspendBtnBac@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E09720091F613945003A39FC /* roomSuspendBtnBac@3x.png */; };
+		E09720471F6180B3003A39FC /* MZGameRoomLeftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E09720461F6180B3003A39FC /* MZGameRoomLeftModel.m */; };
+		E09720491F61875C003A39FC /* roomTrabecula@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E09720481F61875C003A39FC /* roomTrabecula@2x.png */; };
+		E097204B1F618870003A39FC /* roomTrabecula@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E097204A1F618870003A39FC /* roomTrabecula@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -242,6 +262,28 @@
 		E0971FE11F5F7142003A39FC /* playrule_zh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playrule_zh@3x.png"; sourceTree = "<group>"; };
 		E0971FE21F5F7142003A39FC /* set_zh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "set_zh@2x.png"; sourceTree = "<group>"; };
 		E0971FE31F5F7142003A39FC /* set_zh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "set_zh@3x.png"; sourceTree = "<group>"; };
+		E0971FEA1F5F8EAE003A39FC /* MZBuyChips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZBuyChips.h; sourceTree = "<group>"; };
+		E0971FEB1F5F8EAE003A39FC /* MZBuyChips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZBuyChips.m; sourceTree = "<group>"; };
+		E0971FF81F613945003A39FC /* gameRoomBlueBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameRoomBlueBtn@2x.png"; sourceTree = "<group>"; };
+		E0971FF91F613945003A39FC /* gameRoomBlueBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameRoomBlueBtn@3x.png"; sourceTree = "<group>"; };
+		E0971FFA1F613945003A39FC /* gameRoomBoomImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameRoomBoomImage@2x.png"; sourceTree = "<group>"; };
+		E0971FFB1F613945003A39FC /* gameRoomBoomImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameRoomBoomImage@3x.png"; sourceTree = "<group>"; };
+		E0971FFC1F613945003A39FC /* gameRoomPurleBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameRoomPurleBtn@2x.png"; sourceTree = "<group>"; };
+		E0971FFD1F613945003A39FC /* gameRoomPurleBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameRoomPurleBtn@3x.png"; sourceTree = "<group>"; };
+		E0971FFE1F613945003A39FC /* gameRoomYellowBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameRoomYellowBtn@2x.png"; sourceTree = "<group>"; };
+		E0971FFF1F613945003A39FC /* gameRoomYellowBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameRoomYellowBtn@3x.png"; sourceTree = "<group>"; };
+		E09720001F613945003A39FC /* roomChooseFrameBac@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomChooseFrameBac@2x.png"; sourceTree = "<group>"; };
+		E09720011F613945003A39FC /* roomChooseFrameBac@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomChooseFrameBac@3x.png"; sourceTree = "<group>"; };
+		E09720021F613945003A39FC /* roomInput@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomInput@2x.png"; sourceTree = "<group>"; };
+		E09720031F613945003A39FC /* roomInput@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomInput@3x.png"; sourceTree = "<group>"; };
+		E09720061F613945003A39FC /* roomSelectEffect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomSelectEffect@2x.png"; sourceTree = "<group>"; };
+		E09720071F613945003A39FC /* roomSelectEffect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomSelectEffect@3x.png"; sourceTree = "<group>"; };
+		E09720081F613945003A39FC /* roomSuspendBtnBac@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomSuspendBtnBac@2x.png"; sourceTree = "<group>"; };
+		E09720091F613945003A39FC /* roomSuspendBtnBac@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomSuspendBtnBac@3x.png"; sourceTree = "<group>"; };
+		E09720451F6180B3003A39FC /* MZGameRoomLeftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZGameRoomLeftModel.h; sourceTree = "<group>"; };
+		E09720461F6180B3003A39FC /* MZGameRoomLeftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZGameRoomLeftModel.m; sourceTree = "<group>"; };
+		E09720481F61875C003A39FC /* roomTrabecula@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomTrabecula@2x.png"; sourceTree = "<group>"; };
+		E097204A1F618870003A39FC /* roomTrabecula@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roomTrabecula@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +380,8 @@
 			children = (
 				E011D2101F50344C007CD5AB /* MZRoomListModel.h */,
 				E011D2111F50344C007CD5AB /* MZRoomListModel.m */,
+				E09720451F6180B3003A39FC /* MZGameRoomLeftModel.h */,
+				E09720461F6180B3003A39FC /* MZGameRoomLeftModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,6 +416,8 @@
 				E011D2331F546526007CD5AB /* MZSpreadView.m */,
 				E07E20681F58147200C1E618 /* MZcalculateNiuView.h */,
 				E07E20691F58147200C1E618 /* MZcalculateNiuView.m */,
+				E0971FEA1F5F8EAE003A39FC /* MZBuyChips.h */,
+				E0971FEB1F5F8EAE003A39FC /* MZBuyChips.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -397,6 +443,7 @@
 		E02F5CE51F5C2340009CA9FA /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E0971FF71F613945003A39FC /* gameroom */,
 				E0971FB81F5F7062003A39FC /* chinese */,
 				E0971FBF1F5F7062003A39FC /* english */,
 				E0971F4A1F5E3DD7003A39FC /* loggy */,
@@ -680,6 +727,31 @@
 			path = english;
 			sourceTree = "<group>";
 		};
+		E0971FF71F613945003A39FC /* gameroom */ = {
+			isa = PBXGroup;
+			children = (
+				E0971FF81F613945003A39FC /* gameRoomBlueBtn@2x.png */,
+				E0971FF91F613945003A39FC /* gameRoomBlueBtn@3x.png */,
+				E0971FFA1F613945003A39FC /* gameRoomBoomImage@2x.png */,
+				E0971FFB1F613945003A39FC /* gameRoomBoomImage@3x.png */,
+				E0971FFC1F613945003A39FC /* gameRoomPurleBtn@2x.png */,
+				E0971FFD1F613945003A39FC /* gameRoomPurleBtn@3x.png */,
+				E0971FFE1F613945003A39FC /* gameRoomYellowBtn@2x.png */,
+				E0971FFF1F613945003A39FC /* gameRoomYellowBtn@3x.png */,
+				E09720001F613945003A39FC /* roomChooseFrameBac@2x.png */,
+				E09720011F613945003A39FC /* roomChooseFrameBac@3x.png */,
+				E09720021F613945003A39FC /* roomInput@2x.png */,
+				E09720031F613945003A39FC /* roomInput@3x.png */,
+				E09720061F613945003A39FC /* roomSelectEffect@2x.png */,
+				E09720071F613945003A39FC /* roomSelectEffect@3x.png */,
+				E09720081F613945003A39FC /* roomSuspendBtnBac@2x.png */,
+				E09720091F613945003A39FC /* roomSuspendBtnBac@3x.png */,
+				E09720481F61875C003A39FC /* roomTrabecula@2x.png */,
+				E097204A1F618870003A39FC /* roomTrabecula@3x.png */,
+			);
+			path = gameroom;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -744,9 +816,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E09720111F613945003A39FC /* gameRoomPurleBtn@3x.png in Resources */,
+				E09720141F613945003A39FC /* roomChooseFrameBac@2x.png in Resources */,
 				E0971FD91F5F7135003A39FC /* notice_en@3x.png in Resources */,
+				E09720161F613945003A39FC /* roomInput@2x.png in Resources */,
 				E06996601F4E62DF00CE9019 /* LaunchScreen.storyboard in Resources */,
+				E097200E1F613945003A39FC /* gameRoomBoomImage@2x.png in Resources */,
 				E069965D1F4E62DF00CE9019 /* Assets.xcassets in Resources */,
+				E09720171F613945003A39FC /* roomInput@3x.png in Resources */,
 				E0971FE61F5F7142003A39FC /* playrule_zh@2x.png in Resources */,
 				E0971F2D1F5CFE41003A39FC /* background@3x.png in Resources */,
 				E0971F751F5E5006003A39FC /* topBac@2x.png in Resources */,
@@ -755,6 +832,7 @@
 				E0971F741F5E5006003A39FC /* photoCell@3x.png in Resources */,
 				E0971F411F5D0F29003A39FC /* LightEffect.png in Resources */,
 				E02F5D121F5C3F77009CA9FA /* MZLoginController.xib in Resources */,
+				E09720121F613945003A39FC /* gameRoomYellowBtn@2x.png in Resources */,
 				E0971F8B1F5E8014003A39FC /* Localizable.strings in Resources */,
 				E0971F2F1F5CFE41003A39FC /* input@3x.png in Resources */,
 				E0971FDA1F5F7135003A39FC /* playrule_en@2x.png in Resources */,
@@ -766,12 +844,17 @@
 				E0971F711F5E5006003A39FC /* loggyBac@2x.png in Resources */,
 				E0971F3D1F5D0F21003A39FC /* loginBtn@3x.png in Resources */,
 				E0971F3F1F5D0F21003A39FC /* logo@3x.png in Resources */,
+				E09720151F613945003A39FC /* roomChooseFrameBac@3x.png in Resources */,
 				E0971FE71F5F7142003A39FC /* playrule_zh@3x.png in Resources */,
+				E097201C1F613945003A39FC /* roomSuspendBtnBac@2x.png in Resources */,
 				E0971FDD1F5F7135003A39FC /* set_en@3x.png in Resources */,
 				E0971F6F1F5E5006003A39FC /* gold@2x.png in Resources */,
 				E0971F3E1F5D0F21003A39FC /* logo@2x.png in Resources */,
 				E0971F761F5E5006003A39FC /* topBac@3x.png in Resources */,
+				E097200D1F613945003A39FC /* gameRoomBlueBtn@3x.png in Resources */,
 				E0971FA91F5EAAD0003A39FC /* InfoPlist.strings in Resources */,
+				E097201A1F613945003A39FC /* roomSelectEffect@2x.png in Resources */,
+				E097204B1F618870003A39FC /* roomTrabecula@3x.png in Resources */,
 				E07E205A1F56A72900C1E618 /* MZEnterGameRoomController.xib in Resources */,
 				E0971FD81F5F7135003A39FC /* notice_en@2x.png in Resources */,
 				E0971F591F5E3DD7003A39FC /* room@2x.png in Resources */,
@@ -784,16 +867,23 @@
 				E0971F5D1F5E3DD7003A39FC /* UserHeadImage@2x.png in Resources */,
 				E0971F5A1F5E3DD7003A39FC /* room@3x.png in Resources */,
 				E0971FE41F5F7142003A39FC /* notice_zh@2x.png in Resources */,
+				E097201B1F613945003A39FC /* roomSelectEffect@3x.png in Resources */,
 				E0971F3C1F5D0F21003A39FC /* loginBtn@2x.png in Resources */,
 				E0971F6D1F5E5006003A39FC /* boomBac@2x.png in Resources */,
 				E0971FE91F5F7142003A39FC /* set_zh@3x.png in Resources */,
 				E0971FB41F5ED232003A39FC /* MZSettingController.xib in Resources */,
 				E07E205E1F56A72900C1E618 /* MZRoomListController.xib in Resources */,
+				E09720491F61875C003A39FC /* roomTrabecula@2x.png in Resources */,
+				E09720101F613945003A39FC /* gameRoomPurleBtn@2x.png in Resources */,
+				E097201D1F613945003A39FC /* roomSuspendBtnBac@3x.png in Resources */,
 				E0971F6B1F5E5006003A39FC /* beautyGirl@2x.png in Resources */,
 				E011D2171F5034C1007CD5AB /* MZRoomListCell.xib in Resources */,
+				E097200C1F613945003A39FC /* gameRoomBlueBtn@2x.png in Resources */,
+				E09720131F613945003A39FC /* gameRoomYellowBtn@3x.png in Resources */,
 				E0971F2C1F5CFE41003A39FC /* background@2x.png in Resources */,
 				E02F5CDE1F5BB86A009CA9FA /* MZRegisterController.xib in Resources */,
 				E0971F2E1F5CFE41003A39FC /* input@2x.png in Resources */,
+				E097200F1F613945003A39FC /* gameRoomBoomImage@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,9 +950,11 @@
 				E0971FAF1F5ED0F8003A39FC /* NSBundle+MZLanguage.m in Sources */,
 				E0971FB71F5EDC72003A39FC /* MZlocalizableContoller.m in Sources */,
 				E011D20F1F500F9E007CD5AB /* UIImage+Color.m in Sources */,
+				E0971FEC1F5F8EAE003A39FC /* MZBuyChips.m in Sources */,
 				E07E205D1F56A72900C1E618 /* MZRoomListController.m in Sources */,
 				E011D1DB1F4F187C007CD5AB /* MZBaseController.m in Sources */,
 				E011D2161F5034C1007CD5AB /* MZRoomListCell.m in Sources */,
+				E09720471F6180B3003A39FC /* MZGameRoomLeftModel.m in Sources */,
 				E07E20591F56A72900C1E618 /* MZEnterGameRoomController.m in Sources */,
 				E011D1DF1F4FAD1A007CD5AB /* MZRegisterController.m in Sources */,
 				E0971FB31F5ED232003A39FC /* MZSettingController.m in Sources */,
@@ -1037,7 +1129,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = YD2NR56P4A;
-				GCC_PREFIX_HEADER = "/Users/kuangbiao0125/kuangbiao/私人项目/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/kuangbiao0125/kuangbiao/serect project/NiuNiu/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch";
 				INFOPLIST_FILE = HappyNiuniuProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1054,7 +1146,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = YD2NR56P4A;
-				GCC_PREFIX_HEADER = "/Users/kuangbiao0125/kuangbiao/私人项目/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/kuangbiao0125/kuangbiao/serect project/NiuNiu/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch";
 				INFOPLIST_FILE = HappyNiuniuProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

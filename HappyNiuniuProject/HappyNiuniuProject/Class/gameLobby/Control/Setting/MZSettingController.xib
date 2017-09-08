@@ -33,7 +33,7 @@
                     <rect key="frame" x="309" y="80" width="46" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="中文">
-                        <color key="titleColor" red="0.92150461669999995" green="0.38914818449999999" blue="0.26249310209999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="titleColor" red="0.5490196078431373" green="0.23529411764705882" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </state>
                     <connections>
                         <action selector="changeChinaLanguageClick:" destination="-1" eventType="touchUpInside" id="OZC-aZ-fZa"/>

@@ -36,4 +36,7 @@
 #define COLOR_BG [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1.0]
 
 #define GDLocalizedString(key) [[MZlocalizableContoller bundle] localizedStringForKey:(key) value:@"" table:nil]
+
+#define topHeight (kSCREEN_Width * 56 / 1136.0)
+
 #endif /* Header_h */

@@ -24,11 +24,12 @@
 }
 
 - (void)loadView{
-    self.view = [[UIView alloc]initWithFrame:CGRectMake(kSCREEN_Width * 0.25, 0, kSCREEN_Width * 0.75, KSCREEN_HEIGHT)];
+    self.view = [[UIView alloc]initWithFrame:CGRectMake(kSCREEN_Width * 0.19, topHeight, kSCREEN_Width * 0.81, KSCREEN_HEIGHT - topHeight)];
     
 }
 
 - (void)initView{
+    self.view.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.roomListTableView];
     [self.roomListTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -67,7 +68,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 44;
+    return 30.0 /568 * kSCREEN_Width;
 }
 
 #pragma mark - MZEnterGameRoomControllerDelagate
@@ -85,6 +86,7 @@
         _roomListTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _roomListTableView.delegate = self;
         _roomListTableView.dataSource = self;
+        _roomListTableView.backgroundColor = [UIColor clearColor];
         [_roomListTableView registerNib:[UINib nibWithNibName:@"MZRoomListCell" bundle:nil] forCellReuseIdentifier:@"MZRoomListCell"];
         _roomListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         //            _roomListTableView.backgroundColor = [UIColor purpleColor];
