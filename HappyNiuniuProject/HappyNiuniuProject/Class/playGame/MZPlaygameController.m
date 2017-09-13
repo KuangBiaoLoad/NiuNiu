@@ -377,6 +377,7 @@
         [self.view addSubview:spreadView];
         overlapView.showNiuImageView.hidden = YES;
         if(i==0){
+            userView.bankHeaderImageStr = @"check_bankerHeadImage";
             [userView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.offset(7.5);
                 make.centerY.equalTo(self.view).offset(0);

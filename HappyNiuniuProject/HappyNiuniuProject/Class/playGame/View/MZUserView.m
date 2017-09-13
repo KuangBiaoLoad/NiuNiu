@@ -12,9 +12,9 @@
 
 @property (nonatomic, strong) UILabel *userLabel;
 @property (nonatomic, strong) UILabel *goldLabel;
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIButton *imageView;
 @property (nonatomic, strong) UIImageView *bacImageView;
-@property (nonatomic, strong) UIButton *userBacImageView;
+@property (nonatomic, strong) UIImageView *userBacImageView;
 @property (nonatomic, strong) UIImageView *goldBacImageView;
 @property (nonatomic, strong) UIImageView *goldImageView;
 @end
@@ -60,7 +60,7 @@
     [self addSubview:self.goldImageView];
     [self addSubview:self.userLabel];
     [self addSubview:self.goldLabel];
-    self.imageView.image = [UIImage imageNamed:imageStr];
+    [self.imageView setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal] ;
     self.userLabel.text = userStr;
     self.goldLabel.text = goldStr;
     [self.bacImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -161,10 +161,13 @@
 - (void)setUserDict:(NSDictionary *)userDict{
 
     _userDict = userDict;
-    
-    self.imageView.image = [UIImage imageNamed:[userDict objectForKey:@"image"]];
+    [_imageView setImage:[UIImage imageNamed:[userDict objectForKey:@"image"]] forState:UIControlStateNormal];
     self.userLabel.text = [userDict objectForKey:@"user"];
     self.goldLabel.text = [userDict objectForKey:@"gold"];
+}
+
+- (void)setBankHeaderImageStr:(NSString *)bankHeaderImageStr{
+     [_imageView setBackgroundImage:[UIImage imageNamed:bankHeaderImageStr] forState:UIControlStateNormal];
 }
 - (void)createUserCoradius:(CGFloat)coradiusStr{
       self.imageView.layer.cornerRadius = (coradiusStr - 10)/2.0;
@@ -194,9 +197,9 @@
     }
     return _goldLabel;
 }
-- (UIImageView *)imageView{
+- (UIButton *)imageView{
     if(!_imageView){
-        _imageView = [[UIImageView alloc] init];
+        _imageView = [UIButton buttonWithType:UIButtonTypeCustom];
 //        _imageView.image = [UIImage imageNamed:@"check_bankerHeadImage"];
     }
     return _imageView;
@@ -211,12 +214,11 @@
     return _bacImageView;
 }
 
-- (UIButton *)userBacImageView{
+- (UIImageView *)userBacImageView{
 
     if(!_userBacImageView){
-        _userBacImageView = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_userBacImageView setBackgroundImage:[UIImage imageNamed:@"photoCell"] forState:UIControlStateNormal];
-//        _userBacImageView.image = [UIImage imageNamed:@"photoCell"];
+        _userBacImageView = [[UIImageView alloc] init];
+        _userBacImageView.image = [UIImage imageNamed:@"photoCell"];
     }
     return _userBacImageView;
 }

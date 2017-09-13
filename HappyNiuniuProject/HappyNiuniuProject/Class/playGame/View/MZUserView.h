@@ -21,6 +21,6 @@ typedef enum : NSUInteger {
 - (void)createUserCoradius:(CGFloat)coradiusStr;
 
 @property (nonatomic, strong) NSDictionary *userDict;   //user字典
-
+@property (nonatomic, copy) NSString *bankHeaderImageStr;//庄家背景光环
 
 @end
