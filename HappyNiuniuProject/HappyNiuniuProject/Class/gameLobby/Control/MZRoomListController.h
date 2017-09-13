@@ -15,7 +15,9 @@
 @end
 
 @interface MZRoomListController : MZBaseController<MZEnterGameRoomControllerDelagate>
-
+@property (nonatomic, strong) UITableView *roomListTableView;
 @property (nonatomic, weak) id<MZRoomListControllerDelegate>delegate;
-@property (nonatomic, strong) NSArray  *dataArray;
+
+@property (nonatomic, strong) NSMutableArray *dataSource;
+
 @end

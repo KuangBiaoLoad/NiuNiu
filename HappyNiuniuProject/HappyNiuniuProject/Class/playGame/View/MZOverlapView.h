@@ -11,7 +11,7 @@
 @interface MZOverlapView : UIView
 
 @property (nonatomic, strong) NSArray *overlapImageArray;  //闲家牌数组
-
+@property (nonatomic, strong)UIImageView *showNiuImageView;
 /*
     width:image的宽度
     scaleWidth:间距

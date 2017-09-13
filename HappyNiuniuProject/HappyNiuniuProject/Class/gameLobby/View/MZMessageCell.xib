@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MZMessageCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loggyAlertBaseboard.png" translatesAutoresizingMaskIntoConstraints="NO" id="dWj-Q3-NEr">
+                        <rect key="frame" x="10" y="3" width="300" height="37.5"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label欧爱上大地阿什顿很大还是得哈的会丢阿合适的话爱山东海化大会丢货ID上帝啊哈的天还是得阿萨德撒谎第爱USDhi啊撒谎第爱的挨打沙嗲岁的黄安徽丢失安徽省第啊实打实大 " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GoB-Uw-7eK">
+                        <rect key="frame" x="20" y="5" width="280" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.48627450980392156" green="0.34509803921568627" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.71764705882352942" green="0.62352941176470589" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GoB-Uw-7eK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="6gK-O6-YUG"/>
+                    <constraint firstAttribute="bottom" secondItem="GoB-Uw-7eK" secondAttribute="bottom" constant="5" id="82s-6h-smw"/>
+                    <constraint firstItem="dWj-Q3-NEr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="bkM-Wn-YB8"/>
+                    <constraint firstItem="GoB-Uw-7eK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="bnO-aa-sE2"/>
+                    <constraint firstAttribute="trailing" secondItem="GoB-Uw-7eK" secondAttribute="trailing" constant="20" id="hN8-a9-P88"/>
+                    <constraint firstAttribute="trailing" secondItem="dWj-Q3-NEr" secondAttribute="trailing" constant="10" id="l96-es-Lgc"/>
+                    <constraint firstItem="dWj-Q3-NEr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="yba-qY-pKo"/>
+                    <constraint firstAttribute="bottom" secondItem="dWj-Q3-NEr" secondAttribute="bottom" constant="3" id="yge-p8-GmM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="contentLabel" destination="GoB-Uw-7eK" id="Xbr-uy-weg"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="loggyAlertBaseboard.png" width="308" height="28"/>
+    </resources>
+</document>

@@ -17,6 +17,7 @@
 #import "UIImage+Color.h"
 #import "KDCheckTxt.h"
 #import "MZlocalizableContoller.h"
+#import "Common.h"
 #define ScreenScale ([[UIScreen mainScreen] scale])
 #define iPhone4     ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 #define iPhone5     ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -38,5 +39,10 @@
 #define GDLocalizedString(key) [[MZlocalizableContoller bundle] localizedStringForKey:(key) value:@"" table:nil]
 
 #define topHeight (kSCREEN_Width * 56 / 1136.0)
+#define kmultihogviewScaleWidth  12
+//设备id
+#define identifierForVendor  [[UIDevice currentDevice].identifierForVendor UUIDString]
 
+
+#define MBSIDicHeader [NSDictionary dictionaryWithObjectsAndKeys:[Common getCurrentTimes],@"timeStamp",identifierForVendor,@"machineId",[Common deviceIPAdress],@"ip",@"ios",@"deviceType",nil]
 #endif /* Header_h */

@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "MZRoomListModel.h"
+
+@protocol MZRoomListCellDelegate <NSObject>
+
+
+
+@end
+
 @interface MZRoomListCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) MZRoomListModel *model;
 
 @end

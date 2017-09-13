@@ -39,9 +39,10 @@
     
 }
 - (void)initView{
-    
-    self.backgroundColor = [UIColor lightGrayColor];
     mutableArray = [[NSMutableArray alloc] init];
+    self.showNiuImageView = [[UIImageView alloc] init];
+    self.showNiuImageView.tag = 1000;
+    self.showNiuImageView.image = [UIImage imageNamed:@"check_noteNiu"];
 }
 
 - (void)spreadWidth:(CGFloat)width withScaleWidth:(CGFloat)scaleWidth{
@@ -50,8 +51,7 @@
     
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag = 100+i;
-        btn.backgroundColor = [UIColor blueColor];
-        [btn addTarget: self action:@selector(btnClickAction:) forControlEvents:UIControlEventTouchUpInside];
+        [btn setBackgroundImage: [UIImage imageNamed:@"backCard"] forState:UIControlStateNormal];
         [self addSubview:btn];
         
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,19 +61,13 @@
             make.bottom.equalTo(self.mas_bottom);
         }];
     }
-}
-
-- (void)btnClickAction:(UIButton *)sender{
-    
-    [mutableArray addObject:_spreadArray[sender.tag - 100]];
-    [mutableArray addObject:_spreadArray[sender.tag - 100]];
-    [mutableArray addObject:_spreadArray[sender.tag - 100]];
-    
-    if( [_deleagte respondsToSelector:@selector(didSelectedWithArr:)]){
-    
-        [_deleagte didSelectedWithArr:mutableArray];
-    }
-    
+    [self addSubview:self.showNiuImageView];
+    [self.showNiuImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.mas_bottom).offset(5);
+        make.right.equalTo(self.mas_right).offset(-10);
+        make.height.equalTo(self.mas_height);
+        
+    }];
 }
 
 
@@ -84,6 +78,22 @@
         UIButton *btnImage = (UIButton *)[self viewWithTag:100+i];
         [btnImage setBackgroundImage:[UIImage imageNamed:spreadArray[i]] forState:UIControlStateNormal];
     }
+}
+- (void)setUpdateImageWdith:(CGFloat)updateImageWdith{
+    _updateImageWdith = updateImageWdith;
+    for(int i=0;i<5;i++){
+    
+        UIButton *btn = (UIButton *)[self viewWithTag:100+i];
+        [btn mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.offset(updateImageWdith);
+            make.left.offset((updateImageWdith + 2)*i);
+        }];
+    }
+    UIImageView *niuImage = (UIImageView *)[self viewWithTag:1000];
+    [niuImage mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(updateImageWdith * 3.5 + 4);
+        
+    }];
 }
 
 @end

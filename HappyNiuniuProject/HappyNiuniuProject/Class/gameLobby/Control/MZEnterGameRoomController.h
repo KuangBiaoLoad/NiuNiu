@@ -13,7 +13,7 @@
 @optional
 //- (void)didTableView:(UITableView *)tableView clickedAtIndexPath:(NSIndexPath*)indexPath;
 
-- (void)didDataArray:(NSArray *)dataArray clickedAtIndexPath:(NSIndexPath*)indexPath;
+- (void)didDataArray:(NSArray *)dataArray clickIndexPathRow:(NSInteger)indexpathRow andStatusDict:(NSDictionary *)statusDict;
 
 @end
 @interface MZEnterGameRoomController : MZBaseController<MZEnterGameRoomControllerDelagate>

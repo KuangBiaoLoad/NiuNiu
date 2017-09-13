@@ -8,7 +8,9 @@
 
 #import "Common.h"
 #import "commoncrypto/commondigest.h"
-
+#import <ifaddrs.h>
+#import <arpa/inet.h>
+#import <net/if.h>
 @implementation Common
 
 static NSString *SERVER_ADDR_STRING = @"https://api-qr.yfbpay.cn/qr/";
@@ -202,6 +204,55 @@ static NSMutableDictionary *allData;
     return publishString;
 }
 
+//获取当前时间（毫秒计）
++(NSString*)getCurrentTimes{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    [formatter setDateFormat:@"YYYYMMddHHmmssSSS"];
+    
+    //现在时间,你可以输出来看下是什么格式
+    
+    NSDate *datenow = [NSDate date];
+    
+    //----------将nsdate按formatter格式转成nsstring
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    
+    NSLog(@"currentTimeString =  %@",currentTimeString);
+    
+    return currentTimeString;
+    
+}
+
+//获取当前时间戳  （以毫秒为单位）
+
++(NSString *)getNowTimeTimestamp3{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss SSS"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    //设置时区,这个对于时间的处理有时很重要
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    
+    [formatter setTimeZone:timeZone];
+    
+    NSDate *datenow = [NSDate date];//现在时间,你可以输出来看下是什么格式
+    
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]*1000];
+    
+    return timeSp;
+    
+}
+
 + (NSString *)getSystemCurrentTime{
     NSDate * senddate=[NSDate date];
     NSCalendar * cal=[NSCalendar currentCalendar];
@@ -220,5 +271,59 @@ static NSMutableDictionary *allData;
     CGSize labelsize = [str boundingRectWithSize:size options: NSStringDrawingTruncatesLastVisibleLine |NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
     return labelsize;
 }
+#pragma mark - 保存和读取UUID
++(void)saveUUIDToKeyChain{
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithAccount:@"Identfier" service:@"AppName" accessGroup:nil];
+    NSString *string = [keychainItem objectForKey: (__bridge id)kSecAttrGeneric];
+    if([string isEqualToString:@""] || !string){
+        [keychainItem setObject:[self getUUIDString] forKey:(__bridge id)kSecAttrGeneric];
+    }
+}
+
++(NSString *)readUUIDFromKeyChain{
+    KeychainItemWrapper *keychainItemm = [[KeychainItemWrapper alloc] initWithAccount:@"Identfier" service:@"AppName" accessGroup:nil];
+    NSString *UUID = [keychainItemm objectForKey: (__bridge id)kSecAttrGeneric];
+    return UUID;
+}
+
++ (NSString *)getUUIDString
+{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    CFStringRef strRef = CFUUIDCreateString(kCFAllocatorDefault , uuidRef);
+    NSString *uuidString = [(__bridge NSString*)strRef stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    CFRelease(strRef);
+    CFRelease(uuidRef);
+    return uuidString;
+}
+
++ (NSString *)deviceIPAdress {
+    NSString *address = @"an error occurred when obtaining ip address";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    
+    success = getifaddrs(&interfaces);
+    
+    if (success == 0) { // 0 表示获取成功
+        
+        temp_addr = interfaces;
+        while (temp_addr != NULL) {
+            if( temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if ([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    
+    freeifaddrs(interfaces);
+    return address;
+}
+
+
 
 @end

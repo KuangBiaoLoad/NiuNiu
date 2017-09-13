@@ -9,8 +9,8 @@
 #import "LGSocketServe.h"
 
 //自己设定
-#define HOST @"192.168.4.10"
-#define PORT 33333
+#define HOST @"183.239.131.218"
+#define PORT 9920
 
 //设置连接超时
 #define TIME_OUT 20
@@ -157,7 +157,7 @@ static LGSocketServe *socketServe = nil;
 -(void)checkLongConnectByServe{
 
     // 向服务器发送固定可是的消息，来检测长连接
-    NSString *longConnect = @"connect is here";
+    NSString *longConnect = @"HeartBeat";
     NSData   *data  = [longConnect dataUsingEncoding:NSUTF8StringEncoding];
     [self.socket writeData:data withTimeout:1 tag:0];
 }

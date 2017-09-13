@@ -11,8 +11,6 @@
 
 @interface MZRoomListController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic, strong) UITableView *roomListTableView;
-
 
 @end
 
@@ -47,14 +45,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     MZRoomListCell *cell = (MZRoomListCell *)[tableView dequeueReusableCellWithIdentifier:@"MZRoomListCell"];
-    cell.model = self.dataArray[indexPath.row];
-    
+    cell.model = self.dataSource[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -72,9 +70,37 @@
 }
 
 #pragma mark - MZEnterGameRoomControllerDelagate
-- (void)didDataArray:(NSArray *)dataArray clickedAtIndexPath:(NSIndexPath *)indexPath{
+- (void)didDataArray:(NSArray *)dataArray clickIndexPathRow:(NSInteger)indexpathRow andStatusDict:(NSDictionary *)statusDict{
     
-    self.dataArray = dataArray;
+    [self.dataSource removeAllObjects];
+//    self.dataSource = dataArray.mutableCopy;//    OPEN = 没有玩家， Waiting = 只有一个玩家， RUNNING = 游戏进行但没做满，  FULL = 坐满
+    
+    if([[statusDict objectForKey:@"status1"] isEqualToString:@"false"] && [[statusDict objectForKey:@"status2"] isEqualToString:@"false"] && [[statusDict objectForKey:@"status3"] isEqualToString:@"false"] && [[statusDict objectForKey:@"status4"] isEqualToString:@"false"]){
+        self.dataSource = dataArray.mutableCopy;
+    }
+    for(MZRoomListModel *model in dataArray.reverseObjectEnumerator){
+    
+        if([[statusDict objectForKey:@"status1"] isEqualToString:@"true"]){
+            if([model.game_totalplayer isEqualToString:@"0"]){
+                [self.dataSource addObject:model];
+            }
+        }
+        if([[statusDict objectForKey:@"status2"] isEqualToString:@"true"]){
+            if([model.game_totalplayer isEqualToString:@"1"]){
+                [self.dataSource addObject:model];
+            }
+        }
+        if([[statusDict objectForKey:@"status3"] isEqualToString:@"true"]){
+            if([model.game_totalplayer intValue] >1 && [model.game_totalplayer intValue] < 6){
+                [self.dataSource addObject:model];
+            }
+        }
+        if([[statusDict objectForKey:@"status4"] isEqualToString:@"true"]){
+            if([model.game_totalplayer isEqualToString:@"6"]){
+                [self.dataSource addObject:model];
+            }
+        }
+    }
     [self.roomListTableView reloadData];
 }
 
@@ -93,6 +119,15 @@
         _roomListTableView.showsVerticalScrollIndicator = NO;
     }
     return _roomListTableView;
+}
+
+
+- (NSMutableArray *)dataSource{
+
+    if(!_dataSource){
+        _dataSource = [[NSMutableArray alloc] init];
+    }
+    return  _dataSource;
 }
 
 @end

@@ -44,13 +44,13 @@
 
 - (void)setModel:(MZRoomListModel *)model{
     _model = model;
-    self.titleLabel.text = [NSString stringWithFormat:@"%@-%@",model.status,model.limit];
     
-//    BUYIN 1234/5222 Bet LIMIT 1234     	BANKER 1234  Player《zanting》open
-  
-    
+    self.buyinLimeiLabel.text = [NSString stringWithFormat:@"%@/%@",_model.game_minbuyin,_model.game_maxbuyin];
+    self.betMoneyLabel.text = [NSString stringWithFormat:@"%@",_model.game_minbet];
+    self.bankerMoneyLabel.text = [NSString stringWithFormat:@"%@",_model.game_bankerbid];
+    self.statusLabel.text = [NSString stringWithFormat:@"%@",_model.game_betsecond];
+//    OPEN = 没有玩家， Waiting = 只有一个玩家， RUNNING = 游戏进行但没做满，  FULL = 坐满
 }
-
 
 - (void)setTitleFontWithSize:(CGFloat)fontSize{
     self.buyinLabel.font = [UIFont systemFontOfSize:fontSize];
@@ -61,6 +61,9 @@
     self.betMoneyLabel.font = [UIFont systemFontOfSize:fontSize];
     self.bankerMoneyLabel.font = [UIFont systemFontOfSize:fontSize];
     self.statusLabel.font = [UIFont systemFontOfSize:fontSize];
+    
+}
+- (IBAction)statusClickAction:(id)sender {
     
 }
 @end

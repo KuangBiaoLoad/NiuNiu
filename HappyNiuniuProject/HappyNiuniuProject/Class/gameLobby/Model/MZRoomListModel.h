@@ -10,7 +10,15 @@
 
 @interface MZRoomListModel : NSObject
 
-@property (nonatomic, copy) NSString *status;
-@property (nonatomic, copy) NSString *limit;
-
+@property (nonatomic, copy) NSString *game_id;
+@property (nonatomic, copy) NSString *gametype_id;
+@property (nonatomic, copy) NSString *gamecat_id;
+@property (nonatomic, copy) NSString *game_minbuyin;
+@property (nonatomic, copy) NSString *game_maxbuyin;
+@property (nonatomic, copy) NSString *game_betsecond;
+@property (nonatomic, copy) NSString *game_initiatesecond;
+@property (nonatomic, copy) NSString *game_minbet;
+@property (nonatomic, copy) NSString *game_maxbetpctg;
+@property (nonatomic, copy) NSString *game_bankerbid;
+@property (nonatomic, copy) NSString *game_totalplayer;
 @end

@@ -12,7 +12,7 @@
 typedef enum : NSUInteger {
     normalType,
     prepareType,
-    hogType,
+    bottomPourType,
     multipleType,
 } ButtonType;
 @protocol MZMultipleHogDelegate <NSObject>
@@ -26,6 +26,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) ButtonType btnType;
 
+@property (nonatomic, strong) NSString *imageStr;
 
 
 - (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray andType:(ButtonType)type;

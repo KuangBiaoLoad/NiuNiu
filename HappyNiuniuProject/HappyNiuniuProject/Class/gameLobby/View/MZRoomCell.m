@@ -17,8 +17,8 @@
 //    self.intervalLabel.textColor =[UIColor grayColor];
 //    self.intervalLabel.highlightedTextColor = [UIColor redColor];
     if(iPhone5){
-        self.gradeLabel.font = [UIFont systemFontOfSize:11];
-        self.intervalLabel.font = [UIFont systemFontOfSize:11];
+        self.gradeLabel.font = [UIFont systemFontOfSize:10];
+        self.intervalLabel.font = [UIFont systemFontOfSize:10];
     }else if (iPhone6){
         self.gradeLabel.font = [UIFont systemFontOfSize:12];
         self.intervalLabel.font = [UIFont systemFontOfSize:12];
@@ -40,8 +40,15 @@
 - (void)setModel:(MZGameRoomLeftModel *)model{
 
     _model = model;
-    self.intervalLabel.text = _model.intervalStr;
-    self.gradeLabel.text = _model.gradeStr;
+    
+    if([[MZlocalizableContoller userLanguage] isEqualToString:RDCHINESE]){
+        self.gradeLabel.text = _model.gamecat_desccn1;
+        self.intervalLabel.text = _model.gamecat_desccn2;
+    }else{
+        self.gradeLabel.text = _model.gamecat_descen1;
+        self.intervalLabel.text = _model.gamecat_descen2;
+    }
+    
     self.intervalLabel.shadowColor = [UIColor colorWithHexString:_model.offsetColorHexStr];
     self.gradeLabel.shadowColor = [UIColor colorWithHexString:_model.offsetColorHexStr];
     self.bacImageView.image = [UIImage imageNamed:_model.imageStr];

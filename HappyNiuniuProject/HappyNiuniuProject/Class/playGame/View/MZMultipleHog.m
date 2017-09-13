@@ -26,21 +26,19 @@
 }
 
 - (void)initView{
-    
-    CGFloat widthScale = 20;
-    CGFloat width = 60;
+    CGFloat width = (self.frame.size.width - (multihogArray.count - 1)*kmultihogviewScaleWidth)/multihogArray.count;
         for(int i=0; i<multihogArray.count; i++){
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             //        btn .frame = CGRectMake((width +widthScale)*i, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
             [btn setTitle:multihogArray[i] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            btn.backgroundColor = [UIColor greenColor];
+            [btn setBackgroundImage:[UIImage imageNamed:@"check_boomPourImage"] forState:UIControlStateNormal];
             btn.titleLabel.font = [UIFont systemFontOfSize:13];
             btn.tag = i+1;
             [btn addTarget:self action:@selector(btnClickAction:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:btn];
             [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.offset((width +widthScale)*i);
+                make.left.offset((width +kmultihogviewScaleWidth)*i);
                 make.width.offset(width);
                 make.centerY.equalTo(self.mas_centerY).offset(0);
             }];
@@ -54,6 +52,14 @@
     }
 }
 
+- (void)setImageStr:(NSString *)imageStr{
 
+    _imageStr = imageStr;
+    for(int i=0; i<multihogArray.count; i++){
+    
+        UIButton *btn = (UIButton *)[self viewWithTag:i+1];
+        [btn setBackgroundImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal];
+    }
+}
 
 @end

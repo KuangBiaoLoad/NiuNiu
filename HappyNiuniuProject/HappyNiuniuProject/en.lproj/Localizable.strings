@@ -29,3 +29,14 @@
 "notice" = "notice_en";
 "playrule" = "playrule_en";
 "set" = "set_en";
+
+"newpwd"            = "New Password";
+"oldpwd"            = "Old Password";
+"oldpwdPlaceholder" = "Enter Old Password";
+"newpwdPalceholder" = "Enter New Password";
+"change"            = "change";
+
+"on"                = "ON";
+"off"               = "OFF";
+"chn"               = "CHN";
+"en"                = "EN";

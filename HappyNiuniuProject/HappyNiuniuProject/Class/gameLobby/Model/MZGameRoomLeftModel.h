@@ -10,8 +10,14 @@
 
 @interface MZGameRoomLeftModel : NSObject
 
-@property (nonatomic, strong) NSString *gradeStr;
-@property (nonatomic, strong) NSString *intervalStr;
-@property (nonatomic, strong) NSString *imageStr;
-@property (nonatomic, strong) NSString *offsetColorHexStr;
+@property (nonatomic, copy) NSString *gametype_id;
+@property (nonatomic, copy) NSString *gamecat_id;
+@property (nonatomic, copy) NSString *gamecat_descen1;
+@property (nonatomic, copy) NSString *gamecat_descen2;
+@property (nonatomic, copy) NSString *gamecat_desccn1;
+@property (nonatomic, copy) NSString *gamecat_desccn2;
+@property (nonatomic, copy) NSString *imageStr;
+@property (nonatomic, copy) NSString *offsetColorHexStr;
+
+
 @end

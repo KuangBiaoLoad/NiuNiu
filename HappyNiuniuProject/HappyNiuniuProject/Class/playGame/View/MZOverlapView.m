@@ -36,8 +36,8 @@
     
 }
 - (void)initView{
-    
-    self.backgroundColor = [UIColor lightGrayColor];
+    self.showNiuImageView = [[UIImageView alloc] init];
+    self.showNiuImageView.image = [UIImage imageNamed:@"check_niu4"];
 }
 
 - (void)overlapWidth:(CGFloat)width withScaleWidth:(CGFloat)scaleWidth{
@@ -45,8 +45,7 @@
     for(int i = 0; i<5; i++){
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.tag = 10+i;
-        imageView.image = [UIImage imageNamed:@""];
-        imageView.backgroundColor = [UIColor colorWithRed:arc4random()%256/255.0 green:arc4random()%256/255.0 blue:arc4random()%256/255.0 alpha:1.0];
+        imageView.image = [UIImage imageNamed:@"backCard"];
         [self addSubview:imageView];
         
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -56,6 +55,13 @@
             make.bottom.equalTo(self.mas_bottom);
         }];
     }
+    [self addSubview:self.showNiuImageView];
+    [self.showNiuImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.mas_bottom).offset(5);
+        make.right.equalTo(self.mas_right).offset(5);
+        make.height.equalTo(self.mas_height);
+        
+    }];
 }
 
 - (void)setOverlapImageArray:(NSArray *)overlapImageArray{
@@ -69,5 +75,6 @@
     }
    
 }
+
 
 @end

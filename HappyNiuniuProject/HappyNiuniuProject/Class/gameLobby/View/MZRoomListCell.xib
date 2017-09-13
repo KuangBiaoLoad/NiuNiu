@@ -88,6 +88,9 @@
                         <state key="normal" backgroundImage="roomSuspendBtnBac.png">
                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="statusClickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IIT-0A-LBa"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="1234/5222" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="o6B-hU-IZm">
                         <rect key="frame" x="45.5" y="7" width="53.5" height="16"/>

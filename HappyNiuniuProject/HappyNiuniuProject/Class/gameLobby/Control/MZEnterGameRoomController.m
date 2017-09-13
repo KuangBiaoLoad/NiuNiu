@@ -12,7 +12,10 @@
 #import "MZRoomListModel.h"
 #import "MZPlaygameController.h"
 #import "MZGameRoomLeftModel.h"
-@interface MZEnterGameRoomController ()<UITableViewDataSource,UITableViewDelegate,MZRoomListControllerDelegate>
+#import "MZGCDSocketManager.h"
+#import "KDJSON.h"
+#import "MZLoginModel.h"
+@interface MZEnterGameRoomController ()<UITableViewDataSource,UITableViewDelegate,MZRoomListControllerDelegate,MZGCDSocketManagerDelegate>
 
 @property (nonatomic,strong) UITableView *categoriesTableView;
 @property (nonatomic,strong) MZRoomListController *roomListController;
@@ -24,6 +27,8 @@
 @property (nonatomic, strong) UILabel *userLabel;
 @property (nonatomic, strong) UILabel *balanceLabel;
 
+@property (nonatomic, strong) NSMutableDictionary *statusDict;   //状态字典
+
 @end
 
 @implementation MZEnterGameRoomController
@@ -31,7 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self loadData];
     [self initView];
 }
 
@@ -39,35 +43,32 @@
     
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    [MZGCDSocketManager shareInstance].delegate = self;
+    [self requestWithCircledGame];
+    [self requestWithGameCategary];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    [self deleteMessage];
 }
 
-//加载数据
-- (void)loadData{
-    
-    for (int i=0;i<5;i++){
-        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        for(int j=0;j<5;j++){
-            MZRoomListModel *model = [[MZRoomListModel alloc] init];
-            model.status = [NSString stringWithFormat:@"status%d",i];
-            model.limit = [NSString stringWithFormat:@"limit%d",j];
-            [tempArray addObject:model];
-        }
-        [self.dataArray addObject:tempArray];
-    }
+
+- (void)deleteMessage{
+    [self.dataArray removeAllObjects];
+    [self.leftDataArray removeAllObjects];
 }
 
 - (void)initView{
-
+    MZLoginModel *loginModel = [Common getData:@"loginModel"];
     UIImageView *bacImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_Width, KSCREEN_HEIGHT)];
     bacImageView.image = [UIImage imageNamed:@"gameRoomBoomImage"];
     [self.view addSubview:bacImageView];
     [self.view addSubview:self.topView];
+    self.userLabel.text = [NSString stringWithFormat:@"%@ %@",RDLocalizedString(@"welcome"),loginModel.acc_name];
+    self.balanceLabel.text = [NSString stringWithFormat:@"%@ %@",RDLocalizedString(@"balance"),loginModel.acc_bal];
     self.selectRow = 0;
     [self.view addSubview:self.categoriesTableView];
     [self.categoriesTableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -76,7 +77,6 @@
         make.bottom.equalTo(self.view);
         make.width.mas_equalTo(self.view).multipliedBy(0.19);
     }];
-    self.roomListController.dataArray = self.dataArray[0];
     [self addChildViewController:self.roomListController];
     [self.view addSubview:self.roomListController.view];
 }
@@ -111,8 +111,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     self.selectRow = indexPath.row;
-    if ([self.delegate respondsToSelector:@selector(didDataArray:clickedAtIndexPath:)]) {
-        [self.delegate didDataArray:self.dataArray[indexPath.row] clickedAtIndexPath:indexPath];
+//    NSLog(@"-------,%ld  -------%@",indexPath.row,self.dataArray[indexPath.row]);
+    if ([self.delegate respondsToSelector:@selector(didDataArray:clickIndexPathRow:andStatusDict:)]) {
+        NSArray *tmp;
+        if(self.dataArray.count > 0){
+            tmp = [[NSArray alloc] initWithArray:self.dataArray[indexPath.row]];
+        }else{
+            tmp = @[];
+        }
+        
+        [self.delegate didDataArray:tmp?:@[] clickIndexPathRow:indexPath.row andStatusDict:self.statusDict];
     }
 }
 
@@ -157,11 +165,22 @@
     return footerView;
 }
 
-
+//左侧按钮点击事件
 - (void)btnClickAction:(UIButton *)sender{
 
-    
     sender.selected = !sender.selected;
+    [self.statusDict setObject:sender.selected?@"true":@"false" forKey:[NSString stringWithFormat:@"status%ld",sender.tag]];
+    if ([self.delegate respondsToSelector:@selector(didDataArray:clickIndexPathRow:andStatusDict:)]) {
+        NSArray *tmp;
+        if(self.dataArray.count > 0){
+            tmp = [[NSArray alloc] initWithArray:self.dataArray[self.selectRow]];
+        }else{
+        
+            tmp = @[];
+        }
+        
+        [self.delegate didDataArray:tmp clickIndexPathRow:self.selectRow andStatusDict:self.statusDict];
+    }
 }
 
 #pragma mark - MZRoomListControllerDelegate
@@ -169,19 +188,89 @@
 - (void)didSelectIndexPath:(NSInteger)row{
     NSLog(@"下标为------%ld-------%ld",self.selectRow,row);
     MZPlaygameController *playgameVC = [[MZPlaygameController alloc] init];
+    playgameVC.roomListModel = self.dataArray[self.selectRow][row];
     [self.navigationController pushViewController:playgameVC animated:YES];
 }
 
 #pragma mark - 限红请求
 - (void)requestWithCircledGame{
-  
+    MZLoginModel *loginModel = [Common getData:@"loginModel"];
+    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"12",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":[Common getData:@"acc_name"],@"acc_type":loginModel.acc_type,@"gametype_id":@"1"},@"data", nil];
+    [tempDict addEntriesFromDictionary:MBSIDicHeader];
+    NSString *sendMessage = [KDJSON JSONStringOfObject:tempDict];
+    //发送消息 @"hello world"只是举个列子，具体根据服务端的消息格式
+    [[MZGCDSocketManager shareInstance] connect:^(BOOL connectBlock) {
+        if(connectBlock == YES){
+            [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
+        }
+    }];
+    
 }
 
 #pragma mark - 限红分类桌台请求
 - (void)requestWithGameCategary{
-  
+    MZLoginModel *loginModel = [Common getData:@"loginModel"];
+    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"13",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":[Common getData:@"acc_name"],@"acc_type":loginModel.acc_type,@"gametype_id":@"1",@"gamecat_id":@"2"},@"data", nil];
+    [tempDict addEntriesFromDictionary:MBSIDicHeader];
+    NSString *sendMessage = [KDJSON JSONStringOfObject:tempDict];
+    //发送消息 @"hello world"只是举个列子，具体根据服务端的消息格式
+    [[MZGCDSocketManager shareInstance] connect:^(BOOL connectBlock) {
+        if(connectBlock == YES){
+            [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
+        }
+    }];
 }
 
+#pragma mark - MZGCDSocketManagerDelegate
+- (void)requestDataWithDict:(id)dict{
+    NSArray *imageArray = @[@"gameRoomBlueBtn",@"gameRoomPurleBtn",@"gameRoomYellowBtn"];
+    NSArray *offsetColorArray = @[@"2a8b9a",@"8c3c96",@"b9651a"];
+    NSDictionary *dictData =  [KDJSON objectParseJSONString:dict];
+    NSLog(@"%@",dictData);
+    if([[dictData objectForKey:@"status"] isEqualToString:@"1"]){
+        switch ([[dictData objectForKey:@"command"] longValue]) {
+            case 12:{
+                NSLog(@"12------------12");
+                NSArray *dataArray1 = [dictData objectForKey:@"data"];
+                for(int i=0;i<dataArray1.count; i++){
+                  MZGameRoomLeftModel *model = [MZGameRoomLeftModel yy_modelWithDictionary:dataArray1[i]];
+                    model.imageStr = imageArray[i];
+                    model.offsetColorHexStr = offsetColorArray[i];
+                    [self.leftDataArray addObject:model];
+                }
+                [self.categoriesTableView reloadData];
+                
+            }
+                break;
+            case 13:{{
+                NSLog(@"13------------13");
+                for (int i=0;i<3;i++){
+                    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+                    NSArray *dataArray1 = [dictData objectForKey:@"data"];
+                    for(int j=0;j<dataArray1.count;j++){
+                        MZRoomListModel *model = [MZRoomListModel yy_modelWithDictionary:dataArray1[j]];
+                        [tempArray addObject:model];
+                    }
+                    [self.dataArray addObject:tempArray];
+                }
+                self.roomListController.dataSource = [[NSMutableArray alloc] initWithArray:self.dataArray[0]];
+                [self.roomListController.roomListTableView reloadData];
+            }
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
+}
+
+- (void)backBtnClickAction:(UIButton *)sender{
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - 懒加载
 - (UITableView *)categoriesTableView{
@@ -234,13 +323,25 @@
         [_topView addSubview:topBacImageView];
         [_topView addSubview:self.userLabel];
         [_topView addSubview:self.balanceLabel];
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGFloat kbackWidth = 31.5/568.0 *kSCREEN_Width;
+//        backBtn.frame = CGRectMake(9, 4, kbackWidth, 31.5/51.5 *kbackWidth);
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"check_backLoggy"] forState:UIControlStateNormal];
+        [backBtn addTarget:self action:@selector(backBtnClickAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_topView addSubview:backBtn];
+        [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.offset(kbackWidth);
+            make.height.offset(topHeight);
+            make.left.offset(9);
+            make.centerY.equalTo(_topView.mas_centerY).offset(-2);
+        }];
         [self.userLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.offset(15);
-            make.centerY.equalTo(_topView.mas_centerY).offset(0);
+            make.left.equalTo(backBtn.mas_right).offset(5);
+            make.centerY.equalTo(_topView.mas_centerY).offset(-2);
         }];
         [self.balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.offset(-15);
-            make.centerY.equalTo(_topView.mas_centerY).offset(0);
+            make.centerY.equalTo(_topView.mas_centerY).offset(-2);
         }];
     }
     return _topView;
@@ -274,23 +375,16 @@
 
     if(!_leftDataArray){
         _leftDataArray = [[NSMutableArray alloc] init];
-//        gameRoomBlueBtn@2x  gameRoomPurleBtn@2x   gameRoomYellowBtn@2x
-        NSArray *gradeArray = @[@"Law",@"Medium",@"High"];
-        NSArray *interArray = @[@"10-500",@"1000-5000",@"5001-20000"];
-        NSArray *imageArray = @[@"gameRoomBlueBtn",@"gameRoomPurleBtn",@"gameRoomYellowBtn"];
-        NSArray *offsetColorArray = @[@"2a8b9a",@"8c3c96",@"b9651a"];
-        for(int i=0;i<3;i++){
-        
-            MZGameRoomLeftModel *model = [[MZGameRoomLeftModel alloc] init];
-            model.gradeStr = gradeArray[i];
-            model.intervalStr = interArray[i];
-            model.imageStr = imageArray[i];
-            model.offsetColorHexStr = offsetColorArray[i];
-            [_leftDataArray addObject:model];
-        }
     }
     return _leftDataArray;
 }
 
+- (NSMutableDictionary *)statusDict{
+
+    if(!_statusDict){
+        _statusDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"false",@"status1",@"false",@"status2", @"false",@"status3",@"false",@"status4",nil];
+    }
+    return _statusDict;
+}
 
 @end

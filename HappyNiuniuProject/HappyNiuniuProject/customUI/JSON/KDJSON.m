@@ -30,7 +30,7 @@
     if ([NSJSONSerialization isValidJSONObject:object])
     {
         NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:&error];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
         if (!error) {
             return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         }else{

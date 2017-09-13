@@ -8,17 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol MZSpreadViewDelegate <NSObject>
-
-- (void)didSelectedWithArr:(NSArray *)imagArr;
-
-@end
-
 @interface MZSpreadView : UIView
-
-@property (nonatomic, assign)id<MZSpreadViewDelegate>deleagte;
 @property (nonatomic, strong) NSArray *spreadArray;             //图片数组
-
+@property (nonatomic, strong)UIImageView *showNiuImageView;
+@property (nonatomic, assign) CGFloat updateImageWdith;
 /*
     width:image的宽度 
     scaleWidth:image之间的间距

@@ -30,3 +30,14 @@
 "notice" = "notice_zh";
 "playrule" = "playrule_zh";
 "set" = "set_zh";
+
+"newpwd"            = "新密码";
+"oldpwd"            = "旧密码";
+"oldpwdPlaceholder" = "请输入旧密码";
+"newpwdPalceholder" = "请输入新密码";
+"change"            = "修改";
+
+"on"                = "开";
+"off"               = "关";
+"chn"               = "中文";
+"en"                = "英文";

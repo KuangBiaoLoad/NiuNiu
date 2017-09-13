@@ -13,7 +13,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MZGameLobbyController">
             <connections>
+                <outlet property="balanceBtn" destination="4mZ-O7-dQ5" id="5WF-pR-3X4"/>
                 <outlet property="balanceLabel" destination="4QM-xM-I6q" id="75s-yu-diq"/>
+                <outlet property="headImageBtn" destination="ckd-ue-utc" id="u8q-WZ-n6R"/>
+                <outlet property="nicknameBtn" destination="Qsk-Rw-4RX" id="uf5-Bg-oV4"/>
                 <outlet property="noticeBtn" destination="KtR-cv-wbl" id="Eha-W6-T7f"/>
                 <outlet property="playLoggyLabel" destination="9x6-1Y-ecz" id="mob-Dx-zVI"/>
                 <outlet property="playruleBtn" destination="hNo-tj-miw" id="Wla-3G-efh"/>
@@ -64,7 +67,7 @@
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="goldRechargeClickAction:" destination="-1" eventType="touchUpInside" id="adE-o0-L17"/>
+                                <action selector="messageeClickAction:" destination="-1" eventType="touchUpInside" id="w9p-Mf-a3O"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9H-vo-v0C">

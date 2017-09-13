@@ -18,6 +18,7 @@ enum{
 
 @protocol LGSocketServeDelegate <NSObject>
 
+//回调需要添加一个类型(鉴定是哪个请求返回的)
 - (void)requestDataReturn:(id)dict;
 
 @end

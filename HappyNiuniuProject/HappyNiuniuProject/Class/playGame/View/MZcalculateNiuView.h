@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MZSpreadView.h"
 
-@interface MZcalculateNiuView : UIView<MZSpreadViewDelegate>
+@interface MZcalculateNiuView : UIView
 
 @end

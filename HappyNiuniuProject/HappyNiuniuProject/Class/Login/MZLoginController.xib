@@ -62,9 +62,6 @@
                         <color key="titleColor" red="1" green="0.88627450980392153" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" red="1" green="0.88627450980392153" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <connections>
-                        <action selector="registerButtonClickAction:" destination="-1" eventType="touchUpInside" id="hdM-3w-ty8"/>
-                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8PI-r9-pCm">
                     <rect key="frame" x="147.5" y="194.5" width="89" height="18"/>
@@ -96,7 +93,7 @@
                         <constraint firstAttribute="width" secondItem="Few-WO-68G" secondAttribute="height" multiplier="37:8" id="bxu-9R-Qwh"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Enter username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZCQ-sN-DqV" customClass="MZTextField">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="kb@eeepay.cn" placeholder="Enter username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZCQ-sN-DqV" customClass="MZTextField">
                     <rect key="frame" x="266.5" y="184.5" width="144" height="37"/>
                     <color key="textColor" red="1" green="0.94901960784313721" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -113,11 +110,11 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input.png" translatesAutoresizingMaskIntoConstraints="NO" id="L2X-g0-QAd">
                     <rect key="frame" x="246.5" y="229" width="174" height="38"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKP-Sf-GxT" customClass="MZTextField">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="1234567" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKP-Sf-GxT" customClass="MZTextField">
                     <rect key="frame" x="266.5" y="228.5" width="144" height="38.5"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                             <color key="value" red="1" green="0.94901960784313721" blue="0.78823529411764703" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -139,14 +136,22 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8T-Be-qvc">
-                    <rect key="frame" x="257" y="330" width="153" height="9.5"/>
+                    <rect key="frame" x="257" y="325" width="153" height="19"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="U8T-Be-qvc" secondAttribute="height" multiplier="16:1" id="MUU-jZ-m6J"/>
+                        <constraint firstAttribute="width" secondItem="U8T-Be-qvc" secondAttribute="height" multiplier="8:1" id="MUU-jZ-m6J"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                     <state key="normal" title="Forget password? Click here!"/>
                     <connections>
                         <action selector="forgetPwdButtonClickAction:" destination="-1" eventType="touchUpInside" id="4iC-as-DLa"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADj-dG-Ybi">
+                    <rect key="frame" x="606" y="179.5" width="41" height="28"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="registerButtonClickAction:" destination="-1" eventType="touchUpInside" id="0Zt-Jj-KXN"/>
                     </connections>
                 </button>
             </subviews>
@@ -159,9 +164,10 @@
                 <constraint firstItem="Dok-1v-bTf" firstAttribute="centerX" secondItem="noj-d7-8SF" secondAttribute="centerX" id="A3g-Bt-Dy2"/>
                 <constraint firstItem="L2X-g0-QAd" firstAttribute="centerX" secondItem="noj-d7-8SF" secondAttribute="centerX" id="GkV-Li-8yw"/>
                 <constraint firstAttribute="bottom" secondItem="Zqy-l2-NsS" secondAttribute="bottom" id="IHf-Kq-2HG"/>
-                <constraint firstItem="U8T-Be-qvc" firstAttribute="top" secondItem="bgQ-Yc-2eW" secondAttribute="bottom" constant="10" id="JDP-cG-g1i"/>
+                <constraint firstItem="U8T-Be-qvc" firstAttribute="top" secondItem="bgQ-Yc-2eW" secondAttribute="bottom" constant="5" id="JDP-cG-g1i"/>
                 <constraint firstItem="bgQ-Yc-2eW" firstAttribute="width" secondItem="noj-d7-8SF" secondAttribute="width" multiplier="85:568" id="KlN-Wf-sYC"/>
                 <constraint firstAttribute="trailing" secondItem="e7P-9X-FHg" secondAttribute="trailing" constant="20" id="M3E-Ji-OBS"/>
+                <constraint firstItem="ADj-dG-Ybi" firstAttribute="top" secondItem="e7P-9X-FHg" secondAttribute="bottom" constant="5" id="Nx1-Rb-CId"/>
                 <constraint firstItem="ZCQ-sN-DqV" firstAttribute="leading" secondItem="Few-WO-68G" secondAttribute="leading" constant="20" id="QGT-He-mUM"/>
                 <constraint firstItem="Few-WO-68G" firstAttribute="centerY" secondItem="8PI-r9-pCm" secondAttribute="centerY" id="Ra2-0I-NIj"/>
                 <constraint firstItem="e7P-9X-FHg" firstAttribute="top" secondItem="Dok-1v-bTf" secondAttribute="bottom" constant="9" id="Syh-Nt-2c0"/>
@@ -170,6 +176,7 @@
                 <constraint firstItem="bgQ-Yc-2eW" firstAttribute="centerX" secondItem="noj-d7-8SF" secondAttribute="centerX" id="YQl-K5-uA8"/>
                 <constraint firstItem="ZCQ-sN-DqV" firstAttribute="trailing" secondItem="Few-WO-68G" secondAttribute="trailing" constant="-10" id="ZE6-sr-n2h"/>
                 <constraint firstItem="Zqy-l2-NsS" firstAttribute="top" secondItem="noj-d7-8SF" secondAttribute="top" id="ZZg-Pt-z5D"/>
+                <constraint firstItem="ADj-dG-Ybi" firstAttribute="trailing" secondItem="e7P-9X-FHg" secondAttribute="trailing" id="ara-s6-YaX"/>
                 <constraint firstItem="bgQ-Yc-2eW" firstAttribute="top" secondItem="L2X-g0-QAd" secondAttribute="bottom" constant="12" id="bqv-rJ-dwK"/>
                 <constraint firstItem="Dok-1v-bTf" firstAttribute="top" secondItem="noj-d7-8SF" secondAttribute="top" constant="10" id="cR7-iH-AM1"/>
                 <constraint firstItem="L2X-g0-QAd" firstAttribute="width" secondItem="Few-WO-68G" secondAttribute="width" id="cps-XO-Acm"/>

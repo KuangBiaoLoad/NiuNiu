@@ -36,6 +36,8 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];//隐藏工具条
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;//点击背景收回键盘
+    
+    [Common saveUUIDToKeyChain];
     return YES;
 }
 
