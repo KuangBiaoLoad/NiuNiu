@@ -30,10 +30,10 @@
             <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loggyBac.png" translatesAutoresizingMaskIntoConstraints="NO" id="K0a-xH-UFF">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loggyBac" translatesAutoresizingMaskIntoConstraints="NO" id="K0a-xH-UFF">
                     <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beautyGirl.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y2a-Ca-rpz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beautyGirl" translatesAutoresizingMaskIntoConstraints="NO" id="Y2a-Ca-rpz">
                     <rect key="frame" x="0.0" y="33" width="180" height="342"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Y2a-Ca-rpz" secondAttribute="height" multiplier="31:59" id="skh-3O-RhT"/>
@@ -42,7 +42,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pB7-Zn-vee">
                     <rect key="frame" x="0.0" y="307.5" width="667" height="67.5"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boomBac.png" translatesAutoresizingMaskIntoConstraints="NO" id="1AZ-ds-Ktb">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boomBac" translatesAutoresizingMaskIntoConstraints="NO" id="1AZ-ds-Ktb">
                             <rect key="frame" x="0.0" y="0.0" width="665" height="67.5"/>
                         </imageView>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckd-ue-utc">
@@ -51,7 +51,7 @@
                                 <constraint firstAttribute="width" secondItem="ckd-ue-utc" secondAttribute="height" id="g3m-xm-ZHo"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" backgroundImage="UserHeadImage.png">
+                            <state key="normal" backgroundImage="UserHeadImage">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -99,7 +99,7 @@
                                 <constraint firstAttribute="height" constant="15" id="CFj-TN-ys8"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                            <state key="normal" title="IP：12345678909" backgroundImage="photoCell.png"/>
+                            <state key="normal" title="IP：12345678909" backgroundImage="photoCell"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mZ-O7-dQ5">
                             <rect key="frame" x="85" y="36.5" width="71" height="15"/>
@@ -107,9 +107,9 @@
                                 <constraint firstAttribute="height" constant="15" id="DZk-YI-HMI"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                            <state key="normal" title="123456" backgroundImage="photoCell.png"/>
+                            <state key="normal" title="123456" backgroundImage="photoCell"/>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gold.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q8a-kP-tSY">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gold" translatesAutoresizingMaskIntoConstraints="NO" id="Q8a-kP-tSY">
                             <rect key="frame" x="84" y="33.5" width="21" height="22"/>
                         </imageView>
                     </subviews>
@@ -141,7 +141,7 @@
                         <constraint firstItem="KtR-cv-wbl" firstAttribute="centerY" secondItem="pB7-Zn-vee" secondAttribute="centerY" id="tWl-7d-Zml"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topBac.png" translatesAutoresizingMaskIntoConstraints="NO" id="r3C-yo-xD1">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topBac" translatesAutoresizingMaskIntoConstraints="NO" id="r3C-yo-xD1">
                     <rect key="frame" x="0.0" y="0.0" width="667" height="33"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="r3C-yo-xD1" secondAttribute="height" multiplier="1136:56" id="3tm-sv-Ru6"/>
@@ -200,15 +200,15 @@
         </view>
     </objects>
     <resources>
-        <image name="UserHeadImage.png" width="50" height="50"/>
-        <image name="beautyGirl.png" width="155" height="295"/>
-        <image name="boomBac.png" width="566" height="57"/>
-        <image name="gold.png" width="21" height="22"/>
-        <image name="loggyBac.png" width="568" height="320"/>
+        <image name="UserHeadImage" width="50" height="50"/>
+        <image name="beautyGirl" width="155" height="295"/>
+        <image name="boomBac" width="566" height="57"/>
+        <image name="gold" width="21" height="22"/>
+        <image name="loggyBac" width="568" height="320"/>
         <image name="notice_en.png" width="39" height="42"/>
-        <image name="photoCell.png" width="71" height="12"/>
+        <image name="photoCell" width="71" height="12"/>
         <image name="playrule_en.png" width="39" height="42"/>
         <image name="set_en.png" width="39" height="41"/>
-        <image name="topBac.png" width="568" height="28"/>
+        <image name="topBac" width="568" height="28"/>
     </resources>
 </document>

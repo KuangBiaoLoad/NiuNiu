@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="454" height="31.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomTrabecula.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fr2-x8-JFD">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomTrabecula" translatesAutoresizingMaskIntoConstraints="NO" id="Fr2-x8-JFD">
                         <rect key="frame" x="0.0" y="0.0" width="452" height="29.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BUYIN" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="NWz-Rk-Y2u">
@@ -39,25 +39,25 @@
                         <color key="shadowColor" red="0.37254901960784315" green="0.18823529411764706" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <size key="shadowOffset" width="0.0" height="1"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomInput.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ydt-e1-nIN">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomInput" translatesAutoresizingMaskIntoConstraints="NO" id="Ydt-e1-nIN">
                         <rect key="frame" x="41.5" y="7" width="57.5" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Ydt-e1-nIN" secondAttribute="height" multiplier="7:2" id="SgD-6B-IZv"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomInput.png" translatesAutoresizingMaskIntoConstraints="NO" id="zk0-xu-8Tm">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomInput" translatesAutoresizingMaskIntoConstraints="NO" id="zk0-xu-8Tm">
                         <rect key="frame" x="161" y="7" width="57" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="zk0-xu-8Tm" secondAttribute="height" multiplier="7:2" id="o1h-OL-fC0"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomInput.png" translatesAutoresizingMaskIntoConstraints="NO" id="JSx-zT-8Pe">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomInput" translatesAutoresizingMaskIntoConstraints="NO" id="JSx-zT-8Pe">
                         <rect key="frame" x="268.5" y="6" width="57" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="JSx-zT-8Pe" secondAttribute="height" multiplier="7:2" id="BBh-52-cQc"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomInput.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yq0-cC-p3H">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roomInput" translatesAutoresizingMaskIntoConstraints="NO" id="Yq0-cC-p3H">
                         <rect key="frame" x="387.5" y="7" width="57" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Yq0-cC-p3H" secondAttribute="height" multiplier="7:2" id="FgO-fP-MIb"/>
@@ -186,8 +186,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="roomInput.png" width="56" height="16"/>
+        <image name="roomInput" width="56" height="16"/>
         <image name="roomSuspendBtnBac.png" width="9" height="12"/>
-        <image name="roomTrabecula.png" width="462" height="23"/>
+        <image name="roomTrabecula" width="462" height="23"/>
     </resources>
 </document>

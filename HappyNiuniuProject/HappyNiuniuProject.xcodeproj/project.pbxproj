@@ -1231,7 +1231,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = YD2NR56P4A;
-				GCC_PREFIX_HEADER = "/Users/kuangbiao0125/kuangbiao/serect project/NiuNiu/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = /Users/kuangbiao0125/kuangbiao/serectProject/NiuNiu/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch;
 				INFOPLIST_FILE = HappyNiuniuProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1248,7 +1248,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = YD2NR56P4A;
-				GCC_PREFIX_HEADER = "/Users/kuangbiao0125/kuangbiao/serect project/NiuNiu/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = /Users/kuangbiao0125/kuangbiao/serectProject/NiuNiu/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch;
 				INFOPLIST_FILE = HappyNiuniuProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

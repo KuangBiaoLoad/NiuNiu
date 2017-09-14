@@ -13,7 +13,7 @@
 /**
  *  JSON串 -> dict/ar
  *
- *  @param str JSON串
+ *  @param string JSON串
  *
  */
 + (id)objectParseJSONString:(NSString *)string;

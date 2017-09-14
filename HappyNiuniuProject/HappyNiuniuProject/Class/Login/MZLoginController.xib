@@ -29,10 +29,10 @@
             <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zqy-l2-NsS">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Zqy-l2-NsS">
                     <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dok-1v-bTf">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Dok-1v-bTf">
                     <rect key="frame" x="211" y="10" width="245" height="135.5"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Dok-1v-bTf" secondAttribute="height" multiplier="223:123" id="GHR-JF-5ix"/>
@@ -87,7 +87,7 @@
                     <color key="shadowColor" red="1" green="0.96470588239999999" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <size key="shadowOffset" width="0.0" height="0.5"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input.png" translatesAutoresizingMaskIntoConstraints="NO" id="Few-WO-68G">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input" translatesAutoresizingMaskIntoConstraints="NO" id="Few-WO-68G">
                     <rect key="frame" x="246.5" y="184.5" width="174" height="37.5"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Few-WO-68G" secondAttribute="height" multiplier="37:8" id="bxu-9R-Qwh"/>
@@ -107,7 +107,7 @@
                         <outlet property="delegate" destination="-1" id="4Pq-CL-HGJ"/>
                     </connections>
                 </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input.png" translatesAutoresizingMaskIntoConstraints="NO" id="L2X-g0-QAd">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input" translatesAutoresizingMaskIntoConstraints="NO" id="L2X-g0-QAd">
                     <rect key="frame" x="246.5" y="229" width="174" height="38"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="1234567" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKP-Sf-GxT" customClass="MZTextField">
@@ -130,7 +130,7 @@
                         <constraint firstAttribute="width" secondItem="bgQ-Yc-2eW" secondAttribute="height" multiplier="17:7" id="zc7-6q-eap"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" title="Login" backgroundImage="loginBtn.png"/>
+                    <state key="normal" title="Login" backgroundImage="loginBtn"/>
                     <connections>
                         <action selector="loginButtonClickAction:" destination="-1" eventType="touchUpInside" id="2NN-KL-yWj"/>
                     </connections>
@@ -200,9 +200,9 @@
         </view>
     </objects>
     <resources>
-        <image name="background.png" width="568" height="320"/>
-        <image name="input.png" width="155" height="31"/>
-        <image name="loginBtn.png" width="91" height="35"/>
-        <image name="logo.png" width="223" height="123"/>
+        <image name="background" width="568" height="320"/>
+        <image name="input" width="155" height="31"/>
+        <image name="loginBtn" width="91" height="35"/>
+        <image name="logo" width="223" height="123"/>
     </resources>
 </document>
