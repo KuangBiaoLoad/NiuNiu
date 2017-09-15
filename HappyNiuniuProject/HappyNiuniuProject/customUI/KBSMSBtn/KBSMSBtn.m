@@ -58,6 +58,11 @@
     
 }
 
+- (void)setTotalTime:(int)totalTime{
+
+    _totalTime = totalTime;
+}
+
 
 - (void)enabledSms{
     _totalTime --;

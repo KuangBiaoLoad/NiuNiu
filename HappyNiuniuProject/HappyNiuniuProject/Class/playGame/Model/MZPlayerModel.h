@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MZPlayerModel : NSObject
+@interface MZPlayerModel : NSObject<YYModel>
 
-@property (nonatomic, copy)     NSString *userName;             //用户名
-@property (nonatomic, copy)     NSString *userHeaderImage;      //用户头像
-@property (nonatomic, copy)     NSString *balance;              //余额
-@property (nonatomic, copy)     NSString *integral;             //积分
-@property (nonatomic, copy)     NSString *goldCoin;             //金币
-@property (nonatomic, assign)   bool     banker;                //是否庄家
-@property (nonatomic, assign)   bool     beTheBankerNumber;     //坐庄次数
-@property (nonatomic, assign)   bool     mainUser;              //主用户(即自己)
+@property (nonatomic, copy)    NSString *gametype_id;
+@property (nonatomic, copy)    NSString *gamecat_id;
+@property (nonatomic, copy)    NSString *game_id;
+@property (nonatomic, copy)    NSString *room_status;       //(0:准备中/1:下注倒计时/2：下注倒计时截止,下注未满,进入等待状态/3:开牌倒计时/4:下一盘游戏倒计时)
+@property (nonatomic, copy)    NSString *game_minbuyin;     //最小带入金额
+@property (nonatomic, copy)    NSString *game_maxbuyin;     //最大带入金额
+@property (nonatomic, copy)    NSArray *playerList;
+@property (nonatomic, copy)    NSString *game_betsecond;        //玩家下注倒计时
+@property (nonatomic, copy)    NSString *game_opencardsecond;   //开牌倒计时
+@property (nonatomic, copy)    NSString *game_initiatesecond;
+
 
 @end

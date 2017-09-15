@@ -40,3 +40,16 @@
 "off"               = "OFF";
 "chn"               = "CHN";
 "en"                = "EN";
+
+
+"pwdAndConfirmPwd"        = "Entered passwords differ from the another";
+
+"maximum"                 = "maximum";
+"minimum"                 = "minimum";
+"automaticallyAddMoney"   = "Auto Add Money";
+"youraccountbalance"      = "Your account balance";
+"buyMoneyNotice"          = "Note: Once you sit, you will be charged";
+"buythegame"              = "Buy the game";
+"determine"               = "determine";
+"banker"                  = "banker";
+"antes"                   = "check_bottomPouringen";

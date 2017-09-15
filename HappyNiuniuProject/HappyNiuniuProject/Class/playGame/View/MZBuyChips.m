@@ -16,8 +16,8 @@
 @property (nonatomic, strong) UILabel *showSliderResultLabel;  //显示滑动结果
 @property (nonatomic, strong) UIButton *buyButton;              //购买按钮
 
-@property (nonatomic, assign) float  maxSlide;                  //最大值
-@property (nonatomic, assign) float  minSlide;                  //最小值
+@property (nonatomic, assign) int  maxSlide;                  //最大值
+@property (nonatomic, assign) int  minSlide;                  //最小值
 
 @property (nonatomic, strong) UILabel *minLabel;
 @property (nonatomic, strong) UILabel *maxLabel;
@@ -31,6 +31,9 @@
 @property (nonatomic, strong) UIImageView *bacImageView;
 @property (nonatomic, strong) UIView *goldView;
 @property (nonatomic, strong) UIImageView *goldBacImageView;
+@property (nonatomic, strong) UILabel *addMoneyLabel;
+@property (nonatomic, strong) UIButton *autoAddMoneyBtn;
+
 @end
 @implementation MZBuyChips
 
@@ -69,11 +72,14 @@
     
 }
 
-- (instancetype)initWithFrame:(CGRect)frame withMax:(float)maxMoney withMin:(float)minMoney{
+- (instancetype)initWithFrame:(CGRect)frame withMax:(int)maxMoney withMin:(int)minMoney{
 
     if(self = [super initWithFrame:frame]){
         self.maxSlide = maxMoney;
         self.minSlide = minMoney;
+        self.minMoneyLabel.text = [NSString stringWithFormat:@"$%d",minMoney];
+        self.maxMoneyLabel.text = [NSString stringWithFormat:@"$%d",maxMoney];
+        self.showSliderResultLabel.text = [NSString stringWithFormat:@"$%d",minMoney];
         [self addSubview:self.bacImageView];
 //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenView)];
 //        [self addGestureRecognizer:tap];
@@ -93,6 +99,8 @@
         [self addSubview:self.minMoneyLabel];
         [self addSubview:self.maxMoneyLabel];
         [self addSubview:self.goldView];
+        [self addSubview:self.addMoneyLabel];
+        [self addSubview:self.autoAddMoneyBtn];
         [self.slide mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.mas_centerX);
             make.centerY.equalTo(self.mas_centerY);
@@ -128,11 +136,11 @@
         }];
         [self.minLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.slide.mas_left).offset(0);
-            make.bottom.equalTo(self.slide.mas_top).offset(-20);
+            make.bottom.equalTo(self.slide.mas_top).offset(-22);
         }];
         [self.maxLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.slide.mas_right).offset(0);
-            make.bottom.equalTo(self.slide.mas_top).offset(-20);
+            make.bottom.equalTo(self.slide.mas_top).offset(-22);
         }];
         [self.minMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.minLabel.mas_top).offset(0);
@@ -162,6 +170,15 @@
             make.right.equalTo(self.mas_right).offset(-18);
             make.top.offset(16);
         }];
+        [self.autoAddMoneyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.subtractButton.mas_left).offset(0);
+            make.top.equalTo(self.goldView.mas_bottom).offset(10);
+        }];
+        [self.addMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.autoAddMoneyBtn.mas_right).offset(2);
+            make.centerY.equalTo(self.autoAddMoneyBtn.mas_centerY).offset(0);
+        }];
+        
     }
     return self;
 }
@@ -200,7 +217,7 @@
 }
 
 - (void)caculateSize{
-    self.showSliderResultLabel.text = [NSString stringWithFormat:@"$%.1f", self.slide.value];
+    self.showSliderResultLabel.text = [NSString stringWithFormat:@"$%d", (int)self.slide.value];
     //104 * 106
     
     CGRect rect = self.goldView.frame;
@@ -215,6 +232,12 @@
     if([_delegate respondsToSelector:@selector(buyChipsWithMoney:)]){
         [_delegate buyChipsWithMoney:self.slide.value];
     }
+}
+
+- (void)autoAddMoneyBtnClickAction:(UIButton *)sender{
+
+    sender.selected = !sender.selected;
+    [Common setData:sender.selected?@"T":@"F" key:@"autoAddMoney"];
 }
 
 #pragma  mark - 懒加载
@@ -271,7 +294,6 @@
 
     if(!_showSliderResultLabel){
         _showSliderResultLabel = [[UILabel alloc] init];
-        _showSliderResultLabel.text = @"$10";
         _showSliderResultLabel.textColor = [UIColor whiteColor];
         _showSliderResultLabel.textAlignment = NSTextAlignmentCenter;
         _showSliderResultLabel.font = [UIFont systemFontOfSize:12];
@@ -283,7 +305,7 @@
 
     if(!_buyButton){
         _buyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_buyButton setTitle:@"买入游戏" forState:UIControlStateNormal];
+        [_buyButton setTitle:RDLocalizedString(@"buythegame") forState:UIControlStateNormal];
         _buyButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_buyButton setBackgroundImage:[UIImage imageNamed:@"loginBtn"] forState:UIControlStateNormal];
         [_buyButton setTitleColor:[UIColor colorWithHexString:@"FFF9F2"] forState:UIControlStateNormal];
@@ -298,7 +320,9 @@
         _minLabel = [[UILabel alloc] init];
         _minLabel.font = [UIFont systemFontOfSize:9];
         _minLabel.textColor = [UIColor colorWithHexString:@"FFE012"];
-        _minLabel.text = @"最小";
+        _maxLabel.shadowColor = [UIColor colorWithHexString:@"FFE012"];
+        _maxLabel.shadowOffset = CGSizeMake(0, 1);
+        _minLabel.text = RDLocalizedString(@"minimum");
     }
     return _minLabel;
 }
@@ -309,7 +333,9 @@
         _maxLabel = [[UILabel alloc] init];
         _maxLabel.font = [UIFont systemFontOfSize:9];
         _maxLabel.textColor = [UIColor colorWithHexString:@"FFE012"];
-        _maxLabel.text = @"最大";
+        _maxLabel.shadowColor = [UIColor colorWithHexString:@"FFE012"];
+        _maxLabel.shadowOffset = CGSizeMake(0, 1);
+        _maxLabel.text = RDLocalizedString(@"maximum");
     }
     return _maxLabel;
 }
@@ -320,7 +346,7 @@
         _totalLabel = [[UILabel alloc] init];
         _totalLabel.font = [UIFont systemFontOfSize:12];
         _totalLabel.textColor = [UIColor colorWithHexString:@"ffffff"];
-        _totalLabel.text = @"您的账户余额：12，345";
+        _totalLabel.text = RDLocalizedString(@"youraccountbalance");
     }
     return _totalLabel;
 }
@@ -331,7 +357,7 @@
         _suggestLabel = [[UILabel alloc] init];
         _suggestLabel.font = [UIFont systemFontOfSize:9];
         _suggestLabel.textColor = [UIColor colorWithHexString:@"AC936C"];
-        _suggestLabel.text = @"注意：您一但就坐，就会被收取盲注";//172 147 108
+        _suggestLabel.text =RDLocalizedString(@"buyMoneyNotice");//172 147 108
     }
     return _suggestLabel;
 }
@@ -351,7 +377,6 @@
     if(!_minMoneyLabel){
         _minMoneyLabel = [[UILabel alloc] init];
         _minMoneyLabel.font = [UIFont systemFontOfSize:12];
-        _minMoneyLabel.text = @"$ 50";
         _minMoneyLabel.textColor = [UIColor whiteColor];
     }
     return _minMoneyLabel;
@@ -362,8 +387,8 @@
     if(!_maxMoneyLabel){
         _maxMoneyLabel = [[UILabel alloc] init];
         _maxMoneyLabel.font = [UIFont systemFontOfSize:12];
-        _maxMoneyLabel.text = @"$ 2000";
         _maxMoneyLabel.textColor = [UIColor whiteColor];
+        
     }
     return _maxMoneyLabel;
 }
@@ -387,5 +412,26 @@
     return _goldBacImageView;
 }
 
+- (UILabel *)addMoneyLabel{
+
+    if(!_addMoneyLabel){
+        _addMoneyLabel = [[UILabel alloc] init];
+        _addMoneyLabel.textColor = [UIColor whiteColor];
+        _addMoneyLabel.text = RDLocalizedString(@"automaticallyAddMoney");
+        _addMoneyLabel.font = [UIFont systemFontOfSize:12];
+    }
+    return _addMoneyLabel;
+}
+
+- (UIButton *)autoAddMoneyBtn{
+
+    if(!_autoAddMoneyBtn){
+        _autoAddMoneyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_autoAddMoneyBtn setBackgroundImage:[UIImage imageNamed:@"autoFillNor"] forState:UIControlStateNormal];
+        [_autoAddMoneyBtn setBackgroundImage:[UIImage imageNamed:@"autoFillPre"] forState:UIControlStateSelected];
+        [_autoAddMoneyBtn addTarget:self action:@selector(autoAddMoneyBtnClickAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _autoAddMoneyBtn;
+}
 
 @end

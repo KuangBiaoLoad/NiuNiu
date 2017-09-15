@@ -68,6 +68,21 @@
 }
 
 - (IBAction)changeButtonClickAction:(id)sender {
+    if([self.emailTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
+        
+        [KDAlertView alertWithMessage:RDLocalizedString(@"UserNamePlaceholder")];
+        return;
+    }
+    if([self.oldpwdTxtfield.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
+        
+        [KDAlertView alertWithMessage:RDLocalizedString(@"oldpwdPlaceholder")];
+        return;
+    }
+    if([self.newpwdTxtfield.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
+        
+        [KDAlertView alertWithMessage:RDLocalizedString(@"newpwdPalceholder")];
+        return;
+    }
     [self requestWithForgetPassword];
 }
 

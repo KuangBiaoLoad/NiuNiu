@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIImageView *userBacImageView;
 @property (nonatomic, strong) UIImageView *goldBacImageView;
 @property (nonatomic, strong) UIImageView *goldImageView;
+@property (nonatomic, strong) UILabel *bankerLabel;
 @end
 
 @implementation MZUserView
@@ -52,7 +53,7 @@
 }
 
 
-- (void)userDirection:(directionType)type withImageUrl:(NSString *)imageStr withUserNameStr:(NSString *)userStr withGoldStr:(NSString *)goldStr{
+- (void)userDirection:(directionType)type{
     [self addSubview:self.bacImageView];
     [self addSubview:self.imageView];
     [self addSubview:self.userBacImageView];
@@ -60,9 +61,8 @@
     [self addSubview:self.goldImageView];
     [self addSubview:self.userLabel];
     [self addSubview:self.goldLabel];
-    [self.imageView setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal] ;
-    self.userLabel.text = userStr;
-    self.goldLabel.text = goldStr;
+    [self addSubview:self.bankerLabel];
+    self.bankerLabel.hidden = YES;
     [self.bacImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
         make.right.offset(0);
@@ -154,12 +154,26 @@
         default:
             break;
     }
+    [self.bankerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.bacImageView.mas_top).offset(0);
+        make.centerX.equalTo(self.imageView.mas_centerX).offset(0);
+    }];
     
 }
 
+- (void)headImageBtnClickAction:(UIButton *)sender{
+    if([_delegate respondsToSelector:@selector(headImageBtnClick)]){
+        [_delegate headImageBtnClick];
+    }
+    
+}
 
+- (void)setIsbanker:(BOOL)isbanker{
+
+    _isbanker = isbanker;
+    self.bankerLabel.hidden = !isbanker;
+}
 - (void)setUserDict:(NSDictionary *)userDict{
-
     _userDict = userDict;
     [_imageView setImage:[UIImage imageNamed:[userDict objectForKey:@"image"]] forState:UIControlStateNormal];
     self.userLabel.text = [userDict objectForKey:@"user"];
@@ -200,7 +214,9 @@
 - (UIButton *)imageView{
     if(!_imageView){
         _imageView = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _imageView.image = [UIImage imageNamed:@"check_bankerHeadImage"];
+        _imageView.adjustsImageWhenHighlighted = NO;
+        [_imageView addTarget:self action:@selector(headImageBtnClickAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_imageView setImage:[UIImage imageNamed:@"headImageNor"] forState:UIControlStateNormal];
     }
     return _imageView;
 }
@@ -238,6 +254,21 @@
         _goldImageView.image = [UIImage imageNamed:@"gold"];
     }
     return _goldImageView;
+}
+
+- (UILabel *)bankerLabel{
+
+    if(!_bankerLabel){
+    
+        _bankerLabel = [[UILabel alloc] init];
+        _bankerLabel.textColor = [UIColor colorWithHexString:@"FF9711"];
+        _bankerLabel.text = RDLocalizedString(@"banker");
+        _bankerLabel.shadowColor = [UIColor redColor];
+        _bankerLabel.shadowOffset = CGSizeMake(0, 1);
+        _bankerLabel.font = [UIFont systemFontOfSize:12];
+        _bankerLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _bankerLabel;
 }
 
 @end

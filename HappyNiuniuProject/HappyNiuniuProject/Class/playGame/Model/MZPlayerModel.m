@@ -7,7 +7,12 @@
 //
 
 #import "MZPlayerModel.h"
-
+#import "MZPlayerListModel.h"
 @implementation MZPlayerModel
+
++ (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass{
+
+    return @{@"playerList":[MZPlayerListModel class]};
+}
 
 @end

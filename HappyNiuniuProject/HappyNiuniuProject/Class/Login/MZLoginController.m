@@ -10,13 +10,12 @@
 #import "MZRegisterController.h"
 #import "MZGameLobbyController.h"
 #import "MZForgetPasswordController.h"
-#import "MZForgetView.h"
 #import "MZTextField.h"
 #import "KDJSON.h"
 #import "MZGCDSocketManager.h"
 #import "MZLoginModel.h"
 
-@interface MZLoginController ()<MZForgetViewDelegate,UITextFieldDelegate,MZGCDSocketManagerDelegate>
+@interface MZLoginController ()<UITextFieldDelegate,MZGCDSocketManagerDelegate>
 @property (weak, nonatomic) IBOutlet MZTextField *meberTxtField;
 @property (weak, nonatomic) IBOutlet MZTextField *passwordTxtField;
 @property (weak, nonatomic) IBOutlet UILabel *memberLoginLabel;
@@ -74,47 +73,24 @@
 }
 
 - (IBAction)loginButtonClickAction:(id)sender {
+
+    if([self.meberTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
     
-    //    if ([KDCheckTxt checkTxt:self.meberTxtField.text andTxtType:KDCheckTxtTypeMobile errorMsg:^(NSString *error) {}] == NO) {
-    //        return;
-    //    }
-    //    if ([KDCheckTxt checkTxt:self.passwordTxtField.text andTxtType:KDCheckTxtTypePassword errorMsg:^(NSString *error) {}] == NO) {
-    //        return;
-    //    }
+        [KDAlertView alertWithMessage:RDLocalizedString(@"UserNamePlaceholder")];
+        return;
+    }
+    if([self.passwordTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
+        
+        [KDAlertView alertWithMessage:RDLocalizedString(@"PasswordPlaceholder")];
+        return;
+    }
     
     [self requestWithLogin];
 }
 - (IBAction)forgetPwdButtonClickAction:(id)sender {
-//    MZForgetView *forgetView = [[MZForgetView alloc] initWithFrame:self.view.frame];
-//    forgetView.delegate = self;
-//    [self.view addSubview:forgetView];
-        MZForgetPasswordController *forgetVC = [[MZForgetPasswordController alloc] initWithNibName:@"MZForgetPasswordController" bundle:nil];
-        [self.navigationController pushViewController:forgetVC animated:YES];
+    MZForgetPasswordController *forgetVC = [[MZForgetPasswordController alloc] initWithNibName:@"MZForgetPasswordController" bundle:nil];
+    [self.navigationController pushViewController:forgetVC animated:YES];
 }
-
-#pragma mark - 输入框改变的时候UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-//    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容
-//    if (self.meberTxtField == textField){  //判断是否时我们想要限定的那个输入框
-//        if ([toBeString length] > 11) { //如果输入框内容大于11禁止输入
-//            return NO;
-//        }
-//    }
-//    if(self.passwordTxtField == textField){
-//        if([toBeString length] > 20){
-//            return NO;
-//        }
-//    }
-    return YES;
-}
-
-
-
-#pragma mark - MZForgetViewDelegate
-- (void)ForgetPasswordRequestSuccessBlock{
-    NSLog(@"MZForgetViewDelegate ------");
-}
-
 #pragma mark - 登录请求
 - (void)requestWithLogin{
     NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"1",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":[self.meberTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""],@"pwd":[self.passwordTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""]},@"data", nil];
@@ -135,11 +111,16 @@
         
         MZLoginModel *model = [MZLoginModel yy_modelWithDictionary:[dictData objectForKey:@"data"]];
         [Common setData:model key:@"loginModel"];
-        
-        [Common setData:[self.meberTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""] key:@"acc_name"];
-        MZGameLobbyController *lobbyVC = [[MZGameLobbyController alloc] initWithNibName:@"MZGameLobbyController" bundle:nil];
-        UINavigationController *lobbyNav = [[UINavigationController alloc] initWithRootViewController:lobbyVC];
-        [self presentViewController:lobbyNav animated:YES completion:nil];
+
+        if([model.nextchgpwdtime isEqualToString:@"NOW"]){
+            MZForgetPasswordController *forgetVC = [[MZForgetPasswordController alloc] initWithNibName:@"MZForgetPasswordController" bundle:nil];
+            [self.navigationController pushViewController:forgetVC animated:YES];
+        }else{
+            MZGameLobbyController *lobbyVC = [[MZGameLobbyController alloc] initWithNibName:@"MZGameLobbyController" bundle:nil];
+            UINavigationController *lobbyNav = [[UINavigationController alloc] initWithRootViewController:lobbyVC];
+            [self presentViewController:lobbyNav animated:YES completion:nil];
+
+        }
     }
     NSLog(@"%@",dictData);
 }

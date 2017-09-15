@@ -63,7 +63,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KtR-cv-wbl">
                             <rect key="frame" x="548" y="9.5" width="46" height="49"/>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                            <state key="normal" backgroundImage="notice_en.png">
+                            <state key="normal" backgroundImage="notice_en">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -76,7 +76,7 @@
                                 <constraint firstAttribute="width" secondItem="g9H-vo-v0C" secondAttribute="height" multiplier="13:14" id="WMC-Il-52U"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" backgroundImage="set_en.png">
+                            <state key="normal" backgroundImage="set_en">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -86,7 +86,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNo-tj-miw">
                             <rect key="frame" x="493.5" y="9.5" width="46" height="49"/>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                            <state key="normal" backgroundImage="playrule_en.png">
+                            <state key="normal" backgroundImage="playrule_en">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -205,10 +205,10 @@
         <image name="boomBac" width="566" height="57"/>
         <image name="gold" width="21" height="22"/>
         <image name="loggyBac" width="568" height="320"/>
-        <image name="notice_en.png" width="39" height="42"/>
+        <image name="notice_en" width="39" height="42"/>
         <image name="photoCell" width="71" height="12"/>
-        <image name="playrule_en.png" width="39" height="42"/>
-        <image name="set_en.png" width="39" height="41"/>
+        <image name="playrule_en" width="39" height="42"/>
+        <image name="set_en" width="39" height="41"/>
         <image name="topBac" width="568" height="28"/>
     </resources>
 </document>

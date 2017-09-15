@@ -31,7 +31,7 @@
             break;
         case KDCheckTxtTypePassword://password
             content = @"密码";
-            regex = @"[^\u4e00-\u9fa5]+";
+//            regex = @"[^\u4e00-\u9fa5]+";
             minLength = 6;
             maxLength = 20;
             break;
@@ -123,13 +123,13 @@
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
         
-        if ([predicate evaluateWithObject:string] == NO){
+        if ([predicate evaluateWithObject:string] == NO && ![content isEqualToString: @"密码"]){
             
             tmpMsgTxt = [@"请输入正确的" stringByAppendingString:content];
             
-            if ([content isEqualToString: @"密码"]){
-                tmpMsgTxt = [tmpMsgTxt stringByAppendingString:@":6位或以上的数字或字母、特殊字符"];
-            }
+//            if ([content isEqualToString: @"密码"]){
+//                tmpMsgTxt = [tmpMsgTxt stringByAppendingString:@":6位或以上的数字或字母、特殊字符"];
+//            }
             
             
         }else{

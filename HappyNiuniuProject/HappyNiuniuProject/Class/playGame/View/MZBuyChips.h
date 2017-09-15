@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol MZBuyChipsDelegate <NSObject>
 
-- (void)buyChipsWithMoney:(float)money;
+- (void)buyChipsWithMoney:(int)money;
 
 @end
 
@@ -17,7 +17,7 @@
 
 @property (nonatomic, assign)id<MZBuyChipsDelegate>delegate;
 
-- (instancetype)initWithFrame:(CGRect)frame withMax:(float)maxMoney withMin:(float)minMoney;
+- (instancetype)initWithFrame:(CGRect)frame withMax:(int)maxMoney withMin:(int)minMoney;
 - (void)hiddenView;
 
 @end

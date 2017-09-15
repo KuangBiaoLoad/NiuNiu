@@ -76,15 +76,20 @@
 
 - (void)enableTimer{
 
-    _totalTime = 5;
+//    _totalTime = 5;
     _SMSTimer.fireDate = [NSDate distantPast];
 }
 
 - (void)reloadTimer{
     
-    _totalTime = 5;
+//    _totalTime = 5;
     _SMSTimer.fireDate = [NSDate distantFuture];
     
+}
+
+- (void)setTotalTime:(int)totalTime{
+
+    _totalTime = totalTime;
 }
 
 - (void)enabledSms{

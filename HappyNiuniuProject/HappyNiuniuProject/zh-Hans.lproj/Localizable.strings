@@ -41,3 +41,16 @@
 "off"               = "关";
 "chn"               = "中文";
 "en"                = "英文";
+
+
+"pwdAndConfirmPwd"        = "两次输入的密码不一致";
+
+"maximum"                 = "最大";
+"minimum"                 = "最小";
+"automaticallyAddMoney"   = "自动加注";
+"youraccountbalance"      = "您的账户余额";
+"buyMoneyNotice"          = "注意：您一但就坐，就会被收取盲注";
+"buythegame"              = "买入游戏";
+"determine"               = "确定";
+"banker"                  = "庄家";
+"antes"                   = "check_bottomPouringcn";

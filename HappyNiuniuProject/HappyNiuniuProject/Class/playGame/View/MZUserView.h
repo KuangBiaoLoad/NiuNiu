@@ -13,14 +13,22 @@ typedef enum : NSUInteger {
     verticalDirectionType,
 } directionType;
 
+
+@protocol MZUserViewDelegate <NSObject>
+
+- (void)headImageBtnClick;
+
+@end
+
 @interface MZUserView : UIView
 
-- (void)userDirection:(directionType)type withImageUrl:(NSString *)imageStr withUserNameStr:(NSString *)userStr withGoldStr:(NSString *)goldStr;
+- (void)userDirection:(directionType)type;
 
 //图片的圆角半径
 - (void)createUserCoradius:(CGFloat)coradiusStr;
 
 @property (nonatomic, strong) NSDictionary *userDict;   //user字典
 @property (nonatomic, copy) NSString *bankHeaderImageStr;//庄家背景光环
-
+@property (nonatomic, assign) BOOL isbanker;     //是否是庄家
+@property (nonatomic, assign)id<MZUserViewDelegate>delegate;
 @end

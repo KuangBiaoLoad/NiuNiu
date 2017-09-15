@@ -195,7 +195,7 @@
 #pragma mark - 限红请求
 - (void)requestWithCircledGame{
     MZLoginModel *loginModel = [Common getData:@"loginModel"];
-    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"12",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":[Common getData:@"acc_name"],@"acc_type":loginModel.acc_type,@"gametype_id":@"1"},@"data", nil];
+    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"12",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":loginModel.acc_name,@"acc_type":loginModel.acc_type,@"gametype_id":@"1"},@"data", nil];
     [tempDict addEntriesFromDictionary:MBSIDicHeader];
     NSString *sendMessage = [KDJSON JSONStringOfObject:tempDict];
     //发送消息 @"hello world"只是举个列子，具体根据服务端的消息格式
@@ -210,7 +210,7 @@
 #pragma mark - 限红分类桌台请求
 - (void)requestWithGameCategary{
     MZLoginModel *loginModel = [Common getData:@"loginModel"];
-    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"13",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":[Common getData:@"acc_name"],@"acc_type":loginModel.acc_type,@"gametype_id":@"1",@"gamecat_id":@"2"},@"data", nil];
+    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"13",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":loginModel.acc_name,@"acc_type":loginModel.acc_type,@"gametype_id":@"1",@"gamecat_id":@"2"},@"data", nil];
     [tempDict addEntriesFromDictionary:MBSIDicHeader];
     NSString *sendMessage = [KDJSON JSONStringOfObject:tempDict];
     //发送消息 @"hello world"只是举个列子，具体根据服务端的消息格式
