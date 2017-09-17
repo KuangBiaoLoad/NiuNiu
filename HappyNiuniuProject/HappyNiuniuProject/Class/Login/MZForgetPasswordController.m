@@ -70,17 +70,17 @@
 - (IBAction)changeButtonClickAction:(id)sender {
     if([self.emailTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
         
-        [KDAlertView alertWithMessage:RDLocalizedString(@"UserNamePlaceholder")];
+        [self showFailureView:RDLocalizedString(@"UserNamePlaceholder")];
         return;
     }
     if([self.oldpwdTxtfield.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
-        
-        [KDAlertView alertWithMessage:RDLocalizedString(@"oldpwdPlaceholder")];
+    
+        [self showFailureView:RDLocalizedString(@"oldpwdPlaceholder")];
         return;
     }
     if([self.newpwdTxtfield.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
         
-        [KDAlertView alertWithMessage:RDLocalizedString(@"newpwdPalceholder")];
+        [self showFailureView:RDLocalizedString(@"newpwdPalceholder")];
         return;
     }
     [self requestWithForgetPassword];

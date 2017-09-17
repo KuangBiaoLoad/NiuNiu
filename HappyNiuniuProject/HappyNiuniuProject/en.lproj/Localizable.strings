@@ -53,3 +53,7 @@
 "determine"               = "determine";
 "banker"                  = "banker";
 "antes"                   = "check_bottomPouringen";
+"logout"                  = "logout";
+"leave"                   = "leave";
+"gotup"                   = "gotup";
+"waiting"                 = "waiting";

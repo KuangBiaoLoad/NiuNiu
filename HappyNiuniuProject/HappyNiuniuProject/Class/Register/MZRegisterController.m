@@ -75,23 +75,23 @@
 - (IBAction)signUpClickAction:(id)sender {
     if([self.emailTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
         
-        [KDAlertView alertWithMessage:RDLocalizedString(@"UserNamePlaceholder")];
+        [self showFailureView:RDLocalizedString(@"UserNamePlaceholder")];
         return;
     }
     if([self.pwdTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
         
-        [KDAlertView alertWithMessage:RDLocalizedString(@"PasswordPlaceholder")];
+        [self showFailureView:RDLocalizedString(@"PasswordPlaceholder")];
         return;
     }
     if([self.confirmPwdTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
         
-        [KDAlertView alertWithMessage:RDLocalizedString(@"confirmPwdPlaceholder")];
+        [self showFailureView:RDLocalizedString(@"confirmPwdPlaceholder")];
         return;
     }
     
     if(![self.pwdTxtField.text  isEqualToString:self.confirmPwdTxtField.text]){
     
-        [KDAlertView alertWithMessage:RDLocalizedString(@"pwdAndConfirmPwd")];
+        [self showFailureView:RDLocalizedString(@"pwdAndConfirmPwd")];
         return;
     }
     [self requestWithRegister];

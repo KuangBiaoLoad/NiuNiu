@@ -27,8 +27,8 @@ typedef enum : NSUInteger {
 //图片的圆角半径
 - (void)createUserCoradius:(CGFloat)coradiusStr;
 
+@property (nonatomic, assign) BOOL whetherAnyone;        //位置是否有人
 @property (nonatomic, strong) NSDictionary *userDict;   //user字典
-@property (nonatomic, copy) NSString *bankHeaderImageStr;//庄家背景光环
 @property (nonatomic, assign) BOOL isbanker;     //是否是庄家
 @property (nonatomic, assign)id<MZUserViewDelegate>delegate;
 @end

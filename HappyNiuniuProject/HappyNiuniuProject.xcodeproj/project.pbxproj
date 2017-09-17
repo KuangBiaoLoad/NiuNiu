@@ -36,6 +36,7 @@
 		E0473E1F1F6A7C760047BDB2 /* MZPlayerListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0473E1E1F6A7C760047BDB2 /* MZPlayerListModel.m */; };
 		E0473E221F6A8AA90047BDB2 /* MZCardListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0473E211F6A8AA90047BDB2 /* MZCardListModel.m */; };
 		E0473E251F6ACCD30047BDB2 /* MZBettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0473E241F6ACCD30047BDB2 /* MZBettingView.m */; };
+		E0473E281F6C0A810047BDB2 /* MZBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0473E271F6C0A810047BDB2 /* MZBackView.m */; };
 		E06996521F4E62DF00CE9019 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E06996511F4E62DF00CE9019 /* main.m */; };
 		E06996551F4E62DF00CE9019 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E06996541F4E62DF00CE9019 /* AppDelegate.m */; };
 		E069965D1F4E62DF00CE9019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E069965C1F4E62DF00CE9019 /* Assets.xcassets */; };
@@ -142,6 +143,8 @@
 		E0473E211F6A8AA90047BDB2 /* MZCardListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZCardListModel.m; sourceTree = "<group>"; };
 		E0473E231F6ACCD30047BDB2 /* MZBettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZBettingView.h; sourceTree = "<group>"; };
 		E0473E241F6ACCD30047BDB2 /* MZBettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZBettingView.m; sourceTree = "<group>"; };
+		E0473E261F6C0A810047BDB2 /* MZBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZBackView.h; sourceTree = "<group>"; };
+		E0473E271F6C0A810047BDB2 /* MZBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZBackView.m; sourceTree = "<group>"; };
 		E069964D1F4E62DF00CE9019 /* HappyNiuniuProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyNiuniuProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06996511F4E62DF00CE9019 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E06996531F4E62DF00CE9019 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				E0971FEB1F5F8EAE003A39FC /* MZBuyChips.m */,
 				E0473E231F6ACCD30047BDB2 /* MZBettingView.h */,
 				E0473E241F6ACCD30047BDB2 /* MZBettingView.m */,
+				E0473E261F6C0A810047BDB2 /* MZBackView.h */,
+				E0473E271F6C0A810047BDB2 /* MZBackView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -834,6 +839,7 @@
 				E011D1F71F4FEF14007CD5AB /* KDCheckTxt.m in Sources */,
 				E0473E1F1F6A7C760047BDB2 /* MZPlayerListModel.m in Sources */,
 				E09721AB1F64D134003A39FC /* MZNetWorkRequest.m in Sources */,
+				E0473E281F6C0A810047BDB2 /* MZBackView.m in Sources */,
 				E011D2211F506288007CD5AB /* MZCountdownView.m in Sources */,
 				E011D1D61F4F0D0D007CD5AB /* MZLoginController.m in Sources */,
 				E011D20B1F500D19007CD5AB /* MZRoomCell.m in Sources */,

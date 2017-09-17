@@ -48,7 +48,7 @@
     self.buyinLimeiLabel.text = [NSString stringWithFormat:@"%@/%@",_model.game_minbuyin,_model.game_maxbuyin];
     self.betMoneyLabel.text = [NSString stringWithFormat:@"%@",_model.game_minbet];
     self.bankerMoneyLabel.text = [NSString stringWithFormat:@"%@",_model.game_bankerbid];
-    self.statusLabel.text = [NSString stringWithFormat:@"%@",_model.game_betsecond];
+    self.statusLabel.text = [NSString stringWithFormat:@"%@",_model.game_status];
 //    OPEN = 没有玩家， Waiting = 只有一个玩家， RUNNING = 游戏进行但没做满，  FULL = 坐满
 }
 

@@ -17,7 +17,9 @@
 
 @property (nonatomic, assign)id<MZBuyChipsDelegate>delegate;
 
-- (instancetype)initWithFrame:(CGRect)frame withMax:(int)maxMoney withMin:(int)minMoney;
+@property (nonatomic, assign) int totalMoney;
+@property(nonatomic, assign) int maxMoney;
+@property (nonatomic, assign) int minMoney;
 - (void)hiddenView;
 
 @end

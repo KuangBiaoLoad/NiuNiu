@@ -10,4 +10,6 @@
 
 @interface MZBaseController : UIViewController
 
+- (void)showFailureView:(NSString *)message;
+
 @end

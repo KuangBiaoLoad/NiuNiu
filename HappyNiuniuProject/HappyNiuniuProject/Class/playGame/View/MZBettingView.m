@@ -27,17 +27,10 @@
 //419 *215
 @implementation MZBettingView
 
-- (instancetype)initWithFrame:(CGRect)frame withMax:(int)maxMoney withMin:(int)minMoney{
+- (instancetype)initWithFrame:(CGRect)frame{
 
     if(self = [super initWithFrame:frame]){
         self.backgroundColor = [UIColor clearColor];
-        self.maxSlide = maxMoney;
-        self.minSlide = minMoney;
-        self.slide.maximumValue = self.maxSlide;
-        self.slide.minimumValue = self.minSlide;
-        self.minMoneyLabel.text = [NSString stringWithFormat:@"$%d",minMoney];
-        self.maxMoneyLabel.text = [NSString stringWithFormat:@"$%d",maxMoney];
-        self.moneyLabel.text = [NSString stringWithFormat:@"%d",minMoney];
         [self addSubview:self.bacImageView];
         [self addSubview:self.slide];
         [self addSubview:self.minLabel];
@@ -101,6 +94,23 @@
      
     }
     return self;
+}
+
+- (void)setMaxMoney:(int)maxMoney{
+    _maxMoney = maxMoney;
+    self.maxSlide = maxMoney;
+    self.slide.maximumValue = maxMoney;
+    
+    self.maxMoneyLabel.text = [NSString stringWithFormat:@"$%d",maxMoney];
+    
+}
+-(void)setMinMoney:(int)minMoney{
+
+    _minMoney = minMoney;
+    self.minSlide = minMoney;
+    self.slide.minimumValue =minMoney;
+    self.minMoneyLabel.text = [NSString stringWithFormat:@"$%d",minMoney];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%d",minMoney];
 }
 
 - (void)hiddenView{

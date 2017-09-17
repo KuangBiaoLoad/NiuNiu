@@ -54,3 +54,7 @@
 "determine"               = "确定";
 "banker"                  = "庄家";
 "antes"                   = "check_bottomPouringcn";
+"logout"                  = "注销";
+"leave"                   = "离开房间";
+"gotup"                   = "起身";
+"waiting"                 = "等待";

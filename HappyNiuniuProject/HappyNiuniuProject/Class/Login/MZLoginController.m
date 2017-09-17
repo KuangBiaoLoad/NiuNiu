@@ -76,12 +76,12 @@
 
     if([self.meberTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
     
-        [KDAlertView alertWithMessage:RDLocalizedString(@"UserNamePlaceholder")];
+        [self showFailureView:RDLocalizedString(@"UserNamePlaceholder")];
         return;
     }
     if([self.passwordTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
         
-        [KDAlertView alertWithMessage:RDLocalizedString(@"PasswordPlaceholder")];
+         [self showFailureView:RDLocalizedString(@"PasswordPlaceholder")];
         return;
     }
     

@@ -7,7 +7,7 @@
 //
 
 #import "MZSpreadView.h"
-
+#import "MZCardListModel.h"
 @implementation MZSpreadView{
 
     NSMutableArray *mutableArray;
@@ -51,7 +51,8 @@
     
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag = 100+i;
-        [btn setBackgroundImage: [UIImage imageNamed:@"backCard"] forState:UIControlStateNormal];
+        btn.adjustsImageWhenHighlighted = NO;
+        [btn setBackgroundImage: [UIImage imageNamed:@""] forState:UIControlStateNormal];
         [self addSubview:btn];
         
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,10 +76,41 @@
 
     _spreadArray = spreadArray;
     for(int i=0; i<spreadArray.count; i++){
+        MZCardListModel *model = _spreadArray[i];
+        NSString *cardStr = @"";
+        NSString *color = model.color;
+        switch ([color intValue]) {
+            case 1:
+               cardStr = [cardStr stringByAppendingString:@"D"];
+                break;
+            case 2:
+               cardStr = [cardStr stringByAppendingString:@"C"];
+                break;
+            case 3:
+               cardStr = [cardStr stringByAppendingString:@"H"];
+                break;
+            case 4:
+              cardStr =  [cardStr stringByAppendingString:@"S"];
+                break;
+                
+            default:
+                break;
+        }
+      cardStr = [cardStr stringByAppendingString:model.cardNumber];
         UIButton *btnImage = (UIButton *)[self viewWithTag:100+i];
-        [btnImage setBackgroundImage:[UIImage imageNamed:spreadArray[i]] forState:UIControlStateNormal];
+        [btnImage setBackgroundImage:[UIImage imageNamed:cardStr] forState:UIControlStateNormal];
     }
 }
+
+-(void)setCardNorImage:(NSString *)cardNorImage{
+    
+    _cardNorImage = cardNorImage;
+    for(int i=0; i< 5; i++){
+        UIImageView *imageView = (UIImageView *)[self viewWithTag:100+i];
+        imageView.image = [UIImage imageNamed:@"backCard"];
+    }
+}
+
 - (void)setUpdateImageWdith:(CGFloat)updateImageWdith{
     _updateImageWdith = updateImageWdith;
     for(int i=0;i<5;i++){
@@ -94,6 +126,17 @@
         make.left.offset(updateImageWdith * 3.5 + 4);
         
     }];
+}
+
+- (void)setShapeStr:(NSString *)shapeStr{
+    
+    _shapeStr = shapeStr;
+    if([[MZlocalizableContoller userLanguage] isEqualToString:RDCHINESE]){
+        self.showNiuImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"checkcn_niu%@",shapeStr]];
+    }else{
+        self.showNiuImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"checken_niu%@",shapeStr]];
+    }
+    
 }
 
 @end

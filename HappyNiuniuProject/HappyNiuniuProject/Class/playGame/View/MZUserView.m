@@ -86,9 +86,9 @@
                 make.height.offset(20);
             }];
             [self.userLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.userBacImageView.mas_left).offset(5);
+                make.left.equalTo(self.userBacImageView.mas_left).offset(3);
                 make.centerY.equalTo(self.userBacImageView.mas_centerY).offset(0);
-                make.right.equalTo(self.userBacImageView.mas_right).offset(0);
+                make.right.equalTo(self.userBacImageView.mas_right).offset(-2);
             }];
             [self.goldBacImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.imageView.mas_right).offset(0);
@@ -168,10 +168,25 @@
     
 }
 
+- (void)setWhetherAnyone:(BOOL)whetherAnyone{
+
+    if(!whetherAnyone){
+        _imageView.userInteractionEnabled = YES;
+    }else{
+    
+        _imageView.userInteractionEnabled = NO;
+    }
+}
+
 - (void)setIsbanker:(BOOL)isbanker{
 
     _isbanker = isbanker;
     self.bankerLabel.hidden = !isbanker;
+    if(isbanker){
+        [_imageView setBackgroundImage:[UIImage imageNamed:@"check_bankerHeadImage"] forState:UIControlStateNormal];
+    }else{
+        [_imageView setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    }
 }
 - (void)setUserDict:(NSDictionary *)userDict{
     _userDict = userDict;
@@ -180,9 +195,6 @@
     self.goldLabel.text = [userDict objectForKey:@"gold"];
 }
 
-- (void)setBankHeaderImageStr:(NSString *)bankHeaderImageStr{
-     [_imageView setBackgroundImage:[UIImage imageNamed:bankHeaderImageStr] forState:UIControlStateNormal];
-}
 - (void)createUserCoradius:(CGFloat)coradiusStr{
       self.imageView.layer.cornerRadius = (coradiusStr - 10)/2.0;
 }
@@ -215,8 +227,8 @@
     if(!_imageView){
         _imageView = [UIButton buttonWithType:UIButtonTypeCustom];
         _imageView.adjustsImageWhenHighlighted = NO;
-        [_imageView addTarget:self action:@selector(headImageBtnClickAction:) forControlEvents:UIControlEventTouchUpInside];
         [_imageView setImage:[UIImage imageNamed:@"headImageNor"] forState:UIControlStateNormal];
+        [_imageView addTarget:self action:@selector(headImageBtnClickAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _imageView;
 }

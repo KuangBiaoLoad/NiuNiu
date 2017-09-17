@@ -179,7 +179,7 @@
                 //账户余额
                 NSLog(@"什么鬼");
                 MZBalanceModel *model = [MZBalanceModel yy_modelWithDictionary:[dictData objectForKey:@"data"]];
-                self.balanceLabel.text = model.acc_bal;
+                self.balanceLabel.text = [NSString stringWithFormat:@"%@ %@",RDLocalizedString(@"balance"),model.acc_bal];
                 //            [self.balanceLabel layoutIfNeeded];
                 
             }

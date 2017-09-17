@@ -17,19 +17,17 @@ typedef enum : NSUInteger {
 } ButtonType;
 @protocol MZMultipleHogDelegate <NSObject>
 
-- (void)didSelectWithIndexRow:(NSInteger)indexRow andBtnText:(NSString *)btnText andType:(ButtonType)type;
+- (void)didSelectWithBtnText:(NSString *)btnText;
 
 @end
 @interface MZMultipleHog : UIView
 
 @property (nonatomic, assign)id<MZMultipleHogDelegate>delegate;
 
-@property (nonatomic, assign) ButtonType btnType;
-
 @property (nonatomic, strong) NSString *imageStr;
 
 
-- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray andType:(ButtonType)type;
+- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray;
 
 //- (void)hiddenView;
 

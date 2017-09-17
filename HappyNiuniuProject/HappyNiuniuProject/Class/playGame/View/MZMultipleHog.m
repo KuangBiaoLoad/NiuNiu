@@ -14,12 +14,11 @@
 }
 
 
-- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray andType:(ButtonType)type{
+- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray{
 
     if(self = [super initWithFrame:frame]){
         
         multihogArray = titleArray;
-        _btnType = type;
         [self initView];
     }
     return self;
@@ -46,9 +45,9 @@
    
 }
 - (void)btnClickAction:(UIButton *)sender{
-    if([_delegate respondsToSelector:@selector(didSelectWithIndexRow:andBtnText:andType:)]){
+    if([_delegate respondsToSelector:@selector(didSelectWithBtnText:)]){
         
-        [_delegate didSelectWithIndexRow:sender.tag andBtnText:sender.titleLabel.text andType:_btnType];
+        [_delegate didSelectWithBtnText:sender.titleLabel.text];
     }
 }
 

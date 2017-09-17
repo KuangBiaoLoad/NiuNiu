@@ -9,7 +9,8 @@
 #import "MZSettingView.h"
 #import "ZJSwitch.h"
 #import "MZGameLobbyController.h"
-@interface MZSettingView ()
+#import "MZLoginController.h"
+@interface MZSettingView ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIImageView *bacImageView;    //背景图
 @property (nonatomic, strong) UILabel *titleLabel;          //标题
@@ -30,7 +31,8 @@
 @property (nonatomic, strong) ZJSwitch *vibrateSwitch;
 @property (nonatomic, strong) ZJSwitch *languageSwitch;
 
-
+@property (nonatomic, strong) UIScrollView *setScrollView;
+@property (nonatomic, strong) UIButton *logoutBtn;
 @end
 
 @implementation MZSettingView
@@ -50,18 +52,21 @@
     [self addSubview:self.bacImageView];
     [self addSubview:self.titleLabel];
     [self addSubview:self.closeButton];
-    [self addSubview:self.musicBacImageView];
-    [self addSubview:self.soundEffectBacImageView];
-    [self addSubview:self.vibrateBacImageView];
-    [self addSubview:self.languageBacImageView];
-    [self addSubview:self.musicLabel];
-    [self addSubview:self.soundEffectLabel];
-    [self addSubview:self.vibrateLabel];
-    [self addSubview:self.languageLabel];
-    [self addSubview:self.musicSwitch];
-    [self addSubview:self.soundEffectSwitch];
-    [self addSubview:self.vibrateSwitch];
-    [self addSubview:self.languageSwitch];
+    [self addSubview:self.setScrollView];
+    [self.setScrollView addSubview:self.musicBacImageView];
+    [self.setScrollView addSubview:self.soundEffectBacImageView];
+    [self.setScrollView addSubview:self.vibrateBacImageView];
+    [self.setScrollView addSubview:self.languageBacImageView];
+    [self.setScrollView addSubview:self.musicLabel];
+    [self.setScrollView addSubview:self.soundEffectLabel];
+    [self.setScrollView addSubview:self.vibrateLabel];
+    [self.setScrollView addSubview:self.languageLabel];
+    [self.setScrollView addSubview:self.musicSwitch];
+    [self.setScrollView addSubview:self.soundEffectSwitch];
+    [self.setScrollView addSubview:self.vibrateSwitch];
+    [self.setScrollView addSubview:self.languageSwitch];
+    [self.setScrollView addSubview:self.logoutBtn];
+    self.setScrollView.contentSize = CGSizeMake(0, 200 * KSCREEN_HEIGHT / 320.0f);
     [self.bacImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY).offset(-10);
         make.centerX.equalTo(self.mas_centerX).offset(0);
@@ -77,8 +82,15 @@
         make.right.equalTo(self.bacImageView.mas_right).offset(-8);
         make.width.height.offset(21/568.0 *kSCREEN_Width);
     }];
+    [self.setScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(20);
+        make.left.equalTo(self.bacImageView.mas_left).offset(5);
+        make.right.equalTo(self.bacImageView.mas_right).offset(-5);
+        make.bottom.equalTo(self.bacImageView.mas_bottom).offset(-15);
+    }];
+    
     [self.musicBacImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(25);
+        make.top.equalTo(self.setScrollView.mas_bottom).offset(5);
         make.left.equalTo(self.bacImageView.mas_left).offset(15);
         make.right.equalTo(self.bacImageView.mas_right).offset(-15);
         make.height.equalTo(self.musicBacImageView.mas_width).multipliedBy(29/308.0);
@@ -140,6 +152,10 @@
         make.centerY.equalTo(self.languageBacImageView.mas_centerY).offset(0);
         make.width.offset(53);
     }];
+    [self.logoutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.languageBacImageView.mas_bottom).offset(5);
+        make.centerX.equalTo(self.bacImageView.mas_centerX).offset(0);
+    }];
     
 }
 
@@ -181,6 +197,13 @@
 - (void)hiddenView{
     
     [self removeFromSuperview];
+}
+
+- (void)logoutBtnClickAction:(UIButton *)sender{
+    MZLoginController * loginVC = [[MZLoginController alloc] initWithNibName:@"MZLoginController" bundle:nil];
+    UINavigationController * loginNav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [UIApplication sharedApplication].keyWindow.rootViewController = loginNav;
+    
 }
 
 #pragma  mark - 懒加载
@@ -355,6 +378,31 @@
         
     }
     return _languageSwitch;
+}
+
+- (UIScrollView *)setScrollView{
+    
+    if(!_setScrollView){
+        _setScrollView = [[UIScrollView alloc] init];
+        _setScrollView.delegate = self;
+        _setScrollView.backgroundColor = [UIColor clearColor];
+        _setScrollView.showsHorizontalScrollIndicator = NO;
+    }
+    return _setScrollView;
+}
+
+- (UIButton *)logoutBtn{
+
+    if(!_logoutBtn){
+    
+        _logoutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_logoutBtn setTitle:RDLocalizedString(@"logout") forState:UIControlStateNormal];
+        [_logoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _logoutBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_logoutBtn setBackgroundImage:[UIImage imageNamed:@"loginBtn"] forState:UIControlStateNormal];
+        [_logoutBtn addTarget:self action:@selector(logoutBtnClickAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _logoutBtn;
 }
 
 #pragma mark - UIControlEventValueChanged

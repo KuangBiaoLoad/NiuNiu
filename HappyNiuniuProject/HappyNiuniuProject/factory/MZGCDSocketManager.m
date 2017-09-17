@@ -97,13 +97,14 @@
 - (void)sendMessage:(NSString *)message{
     //像服务器发送数据
     message =[NSString stringWithFormat:@"%@<EOF>",message];
+    NSLog(@"message ------ message%@",message);
     NSData *cmdData = [message dataUsingEncoding:NSUTF8StringEncoding];
-//    [gcdSocket writeData:cmdData withTimeout:WRITE_TIME_OUT tag:0];
+    [gcdSocket writeData:cmdData withTimeout:WRITE_TIME_OUT tag:0];
 //    [gcdSocket readDataToLength:2 withTimeout:READ_TIME_OUT tag:0];
-    NSBlockOperation *operation1 = [NSBlockOperation blockOperationWithBlock:^(){
-        [gcdSocket writeData:cmdData withTimeout:WRITE_TIME_OUT tag:0];
-    }];
-    [self.queue addOperation:operation1];
+//    NSBlockOperation *operation1 = [NSBlockOperation blockOperationWithBlock:^(){
+//        [gcdSocket writeData:cmdData withTimeout:WRITE_TIME_OUT tag:0];
+//    }];
+//    [self.queue addOperation:operation1];
 }
 
 static bool firstConnect = true;

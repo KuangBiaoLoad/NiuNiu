@@ -72,23 +72,13 @@
     
 }
 
-- (instancetype)initWithFrame:(CGRect)frame withMax:(int)maxMoney withMin:(int)minMoney{
+- (instancetype)initWithFrame:(CGRect)frame{
 
     if(self = [super initWithFrame:frame]){
-        self.maxSlide = maxMoney;
-        self.minSlide = minMoney;
-        self.minMoneyLabel.text = [NSString stringWithFormat:@"$%d",minMoney];
-        self.maxMoneyLabel.text = [NSString stringWithFormat:@"$%d",maxMoney];
-        self.showSliderResultLabel.text = [NSString stringWithFormat:@"$%d",minMoney];
         [self addSubview:self.bacImageView];
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenView)];
-//        [self addGestureRecognizer:tap];
-//        [tap setDelegate:self];
-        
-        self.slide.maximumValue = self.maxSlide;
-        self.slide.minimumValue = self.minSlide;
         [self addSubview:self.addButton];
         [self addSubview:self.subtractButton];
+        [self addSubview:self.goldView];
         [self addSubview:self.slide];
         [self addSubview:self.buyButton];
         [self addSubview:self.minLabel];
@@ -98,14 +88,13 @@
         [self addSubview:self.closeButton];
         [self addSubview:self.minMoneyLabel];
         [self addSubview:self.maxMoneyLabel];
-        [self addSubview:self.goldView];
         [self addSubview:self.addMoneyLabel];
         [self addSubview:self.autoAddMoneyBtn];
         [self.slide mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.mas_centerX);
-            make.centerY.equalTo(self.mas_centerY);
-            make.width.offset(269.5/568 *kSCREEN_Width);
-            make.height.offset(5/269.5 * self.slide.width);
+            make.centerY.equalTo(self.mas_centerY).offset(-20);
+            make.width.offset(269.5);
+            make.height.offset(8);
         }];
         [self.subtractButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.slide.mas_left).offset(-25);
@@ -119,8 +108,8 @@
         }];
         
         [self.goldView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.slide.mas_bottom).offset(15);
             make.centerX.equalTo(self.slide.mas_left).offset(15);
+            make.top.equalTo(self.slide.mas_bottom).offset(15);
             make.width.offset(56);
             make.height.offset(29);
         }];
@@ -151,7 +140,7 @@
             make.left.equalTo(self.maxLabel.mas_left).offset(0);
         }];
         [self.totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.slide.mas_bottom).offset(50);
+            make.top.equalTo(self.slide.mas_bottom).offset(60);
             make.centerX.equalTo(self.mas_centerX).offset(0);
         }];
         [self.buyButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -172,7 +161,7 @@
         }];
         [self.autoAddMoneyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.subtractButton.mas_left).offset(0);
-            make.top.equalTo(self.goldView.mas_bottom).offset(10);
+            make.centerY.equalTo(self.totalLabel.mas_centerY).offset(0);
         }];
         [self.addMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.autoAddMoneyBtn.mas_right).offset(2);
@@ -182,7 +171,26 @@
     }
     return self;
 }
+- (void)setMaxMoney:(int)maxMoney{
+    _maxMoney = maxMoney;
+    self.maxSlide = maxMoney;
+    self.maxMoneyLabel.text = [NSString stringWithFormat:@"$%d",maxMoney];
+    self.slide.maximumValue = maxMoney;
+   
+}
+-(void)setMinMoney:(int)minMoney{
+    _minMoney = minMoney;
+    self.minSlide = minMoney;
+    self.minMoneyLabel.text = [NSString stringWithFormat:@"$%d",minMoney];
+    self.showSliderResultLabel.text = [NSString stringWithFormat:@"$%d",minMoney];
+    self.slide.minimumValue = minMoney;
+}
 
+- (void)setTotalMoney:(int)totalMoney{
+
+    _totalMoney =totalMoney;
+    self.totalLabel.text = [NSString stringWithFormat:@"%@：%d",RDLocalizedString(@"youraccountbalance"),totalMoney];
+}
 - (void)hiddenView{
     
     [self removeFromSuperview];
@@ -199,19 +207,19 @@
 }
 
 - (void)addClickAction:(UIButton *)sender{
-    if(self.slide.value>90){
+    if(self.slide.value>(self.maxSlide - self.minSlide) * 0.9){
         self.slide.value = self.maxSlide;
     }else{
-        self.slide.value += 10;
+        self.slide.value += (self.maxSlide - self.minSlide)/10;
     }
     [self caculateSize];
 }
 - (void)substractClickAction:(UIButton *)sender{
     
-    if(self.slide.value<=10){
+    if(self.slide.value<=(self.maxSlide - self.minSlide) * 0.1){
         self.slide.value = self.minSlide;
     }else{
-        self.slide.value -= 10;
+        self.slide.value -= (self.maxSlide - self.minSlide)/10;
     }
     [self caculateSize];
 }
@@ -220,12 +228,13 @@
     self.showSliderResultLabel.text = [NSString stringWithFormat:@"$%d", (int)self.slide.value];
     //104 * 106
     
+    CGRect trackRect = [self.slide convertRect:self.slide.bounds toView:nil];
+    CGRect thumbRect = [self.slide thumbRectForBounds:self.slide.bounds trackRect:trackRect value:self.slide.value];
     CGRect rect = self.goldView.frame;
-    rect.origin.x = self.slide.frame.origin.x + (self.slide.frame.size.width - 3.53)/(self.maxSlide - self.minSlide)*self.slide.value - 34/(self.maxSlide - self.minSlide)*self.slide.value - rect.size.width/2 + 34/2 +2;
-    self.goldView.frame = rect;
     
-//    self.goldView.frame = CGRectMake(self.slide.frame.origin.x + self.slide.value/(self.maxSlide - self.minSlide) * self.slide.frame.size.width, self.goldView.frame.origin.y, self.goldView.frame.size.width, self.goldView.frame.size.height);
-//    self.goldView.centerX = self.slide.frame.origin.x + self.slide.value/(self.maxSlide - self.minSlide) * self.slide.frame.size.width;
+    rect.origin.x = thumbRect.origin.x - 10;
+//    rect.origin.x = self.slide.frame.origin.x + (self.slide.frame.size.width - 3.53)/(self.maxSlide - self.minSlide)*self.slide.value - 34/(self.maxSlide - self.minSlide)*self.slide.value - rect.size.width/2 + 34/2 +2;
+    self.goldView.frame = rect;
 }
 
 - (void)buyClickAction:(UIButton *)sender{
@@ -237,7 +246,7 @@
 - (void)autoAddMoneyBtnClickAction:(UIButton *)sender{
 
     sender.selected = !sender.selected;
-    [Common setData:sender.selected?@"T":@"F" key:@"autoAddMoney"];
+    [Common setData:sender.selected?@"true":@"false" key:@"autoAddMoney"];
 }
 
 #pragma  mark - 懒加载

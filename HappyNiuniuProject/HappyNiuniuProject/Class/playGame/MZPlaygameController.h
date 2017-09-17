@@ -13,6 +13,6 @@
 
 @interface MZPlaygameController : MZBaseController
 
-@property (nonatomic, strong)MZRoomListModel *roomListModel;
+//@property (nonatomic, strong)MZRoomListModel *roomListModel;
 
 @end

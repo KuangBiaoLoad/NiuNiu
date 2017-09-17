@@ -12,6 +12,8 @@
 @property (nonatomic, strong) NSArray *spreadArray;             //图片数组
 @property (nonatomic, strong)UIImageView *showNiuImageView;
 @property (nonatomic, assign) CGFloat updateImageWdith;
+@property (nonatomic, copy) NSString *cardNorImage;
+@property (nonatomic, copy) NSString *shapeStr;
 /*
     width:image的宽度 
     scaleWidth:image之间的间距

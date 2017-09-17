@@ -8,8 +8,11 @@
 
 #import "MZBaseController.h"
 #import "KDJSON.h"
-@interface MZBaseController ()
+#import "MBProgressHUD.h"
+#import "AppDelegate.h"
+@interface MZBaseController ()<MBProgressHUDDelegate>
 
+@property (strong, nonatomic) MBProgressHUD * hud;
 
 @end
 
@@ -31,7 +34,37 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - 失败提示框
+- (void)showFailureView:(NSString *)message
+{
+    if (!_hud) {
+        AppDelegate * delegat = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        _hud = [[MBProgressHUD alloc] initWithView:delegat.window];
+        [delegat.window addSubview:_hud];
+    }
+    _hud.cornerRadius = 4;
+    _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_no"]];
+    _hud.mode = MBProgressHUDModeCustomView;
+    _hud.labelFont = [UIFont systemFontOfSize:14.f];
+    if (message) {
+        if (message.length >15) {
+            _hud.detailsLabelText = message;
+        }else{
+            _hud.labelText = message;
+        }
+    }else{
+        _hud.labelText = @"请求失败，您的网络不稳定。Code.1004";
+    }
+    _hud.delegate = self;
+    [_hud show:YES];
+    [_hud hide:YES afterDelay:1.25f];
+}
 
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [_hud removeFromSuperview];
+    _hud = nil;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

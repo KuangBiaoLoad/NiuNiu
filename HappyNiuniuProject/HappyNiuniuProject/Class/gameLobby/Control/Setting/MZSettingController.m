@@ -46,10 +46,6 @@
 //    [UIApplication sharedApplication].keyWindow.rootViewController = gameVC;
 ////    [self dismissViewControllerAnimated:YES completion:nil];
     
-    MZBuyChips *forgetView = [[MZBuyChips alloc] initWithFrame:self.view.frame withMax:1070 withMin:0];
-    forgetView.delegate = self;
-    [self.view addSubview:forgetView];
-    
 }
 - (void)buyChipsWithMoney:(float)money{
 

@@ -21,4 +21,5 @@
 @property (nonatomic, copy) NSString *game_maxbetpctg;
 @property (nonatomic, copy) NSString *game_bankerbid;
 @property (nonatomic, copy) NSString *game_totalplayer;
+@property (nonatomic, copy) NSString *game_status;
 @end
