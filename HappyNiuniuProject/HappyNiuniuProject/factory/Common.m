@@ -11,6 +11,10 @@
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 #import <net/if.h>
+
+#import <sys/socket.h>
+#import <sys/sockio.h>
+#import <sys/ioctl.h>
 @implementation Common
 
 static NSString *SERVER_ADDR_STRING = @"https://api-qr.yfbpay.cn/qr/";
@@ -221,8 +225,6 @@ static NSMutableDictionary *allData;
     
     NSString *currentTimeString = [formatter stringFromDate:datenow];
     
-    NSLog(@"currentTimeString =  %@",currentTimeString);
-    
     return currentTimeString;
     
 }
@@ -297,7 +299,7 @@ static NSMutableDictionary *allData;
 }
 
 + (NSString *)deviceIPAdress {
-    NSString *address = @"an error occurred when obtaining ip address";
+    NSString *address = @"";
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
     int success = 0;
@@ -323,7 +325,82 @@ static NSMutableDictionary *allData;
     freeifaddrs(interfaces);
     return address;
 }
++ (NSString *)deviceWANIPAddress
+{
+    NSURL *ipURL = [NSURL URLWithString:@"https://world.taobao.com"];
+    NSData *data = [NSData dataWithContentsOfURL:ipURL];
+    NSDictionary *ipDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSString *ipStr = nil;
+    if (ipDic && [ipDic[@"code"] integerValue] == 0) { //获取成功
+        ipStr = ipDic[@"data"][@"ip"];
+    }
+    return (ipStr ? ipStr : @"");
+}
 
+//获取设备IP地址
++ (NSString *)getDeviceIPAddresses
+{
+    int sockfd = socket(AF_INET,SOCK_DGRAM, 0);
+    // if (sockfd <</span> 0) return nil; //这句报错，由于转载的，不太懂，注释掉无影响，懂的大神欢迎指导
+    NSMutableArray *ips = [NSMutableArray array];
+    
+    int BUFFERSIZE =4096;
+    
+    struct ifconf ifc;
+    
+    char buffer[BUFFERSIZE], *ptr, lastname[IFNAMSIZ], *cptr;
+    
+    struct ifreq *ifr, ifrcopy;
+    
+    ifc.ifc_len = BUFFERSIZE;
+    
+    ifc.ifc_buf = buffer;
+    
+    if (ioctl(sockfd,SIOCGIFCONF, &ifc) >= 0){
+        
+        for (ptr = buffer; ptr < buffer + ifc.ifc_len; ){
+            
+            ifr = (struct ifreq *)ptr;
+            
+            int len =sizeof(struct sockaddr);
+            
+            if (ifr->ifr_addr.sa_len > len) {
+                len = ifr->ifr_addr.sa_len;
+            }
+            
+            ptr += sizeof(ifr->ifr_name) + len;
+            
+            if (ifr->ifr_addr.sa_family !=AF_INET) continue;
+            
+            if ((cptr = (char *)strchr(ifr->ifr_name,':')) != NULL) *cptr =0;
+            
+            if (strncmp(lastname, ifr->ifr_name,IFNAMSIZ) == 0)continue;
+            
+            memcpy(lastname, ifr->ifr_name,IFNAMSIZ);
+            
+            ifrcopy = *ifr;
+            
+            ioctl(sockfd,SIOCGIFFLAGS, &ifrcopy);
+            
+            if ((ifrcopy.ifr_flags &IFF_UP) == 0)continue;
+            
+            NSString *ip = [NSString stringWithFormat:@"%s",inet_ntoa(((struct sockaddr_in *)&ifr->ifr_addr)->sin_addr)];
+            [ips addObject:ip];
+        }
+    }
+    close(sockfd);
+    
+    NSString *deviceIP =@"";
+    
+    for (int i=0; i < ips.count; i++){
+        if (ips.count >0){
+            deviceIP = [NSString stringWithFormat:@"%@",ips.lastObject];
+        }
+    }
+    
+    return deviceIP;
+}
 
 
 @end

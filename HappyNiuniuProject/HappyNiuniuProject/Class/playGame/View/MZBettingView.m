@@ -28,7 +28,7 @@
 @implementation MZBettingView
 
 - (instancetype)initWithFrame:(CGRect)frame{
-
+    
     if(self = [super initWithFrame:frame]){
         self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.bacImageView];
@@ -52,7 +52,7 @@
             make.top.offset(16);
             make.height.offset(5);
         }];
-
+        
         [self.minMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(10);
             make.centerY.equalTo(self.slide.mas_centerY).offset(0);
@@ -84,14 +84,14 @@
             make.centerY.equalTo(self.moneyBackIamge.mas_centerY).offset(0);
         }];
         [self.determineBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-           
+            
             make.top.equalTo(self.moneyBackIamge.mas_bottom).offset(7);
             make.centerX.equalTo(self.mas_centerX).offset(0);
             make.width.offset(72);
             make.height.offset(32);
         }];
-
-     
+        
+        
     }
     return self;
 }
@@ -105,7 +105,7 @@
     
 }
 -(void)setMinMoney:(int)minMoney{
-
+    
     _minMoney = minMoney;
     self.minSlide = minMoney;
     self.slide.minimumValue =minMoney;
@@ -114,7 +114,7 @@
 }
 
 - (void)hiddenView{
-
+    
     [self removeFromSuperview];
     if([_delegate respondsToSelector:@selector(bettingWithMoney:)]){
         [_delegate bettingWithMoney:self.slide.value];
@@ -129,7 +129,7 @@
 }
 
 - (UIImageView *)bacImageView{
-
+    
     if(!_bacImageView){
         _bacImageView = [[UIImageView alloc] init];
         _bacImageView.image = [UIImage imageNamed:@"boomBacImage"];
@@ -197,7 +197,7 @@
 }
 
 - (UIImageView *)goldBacImage{
-
+    
     if(!_goldBacImage){
         _goldBacImage = [[UIImageView alloc] init];
         _goldBacImage.image = [UIImage imageNamed:@"gold"];
@@ -215,7 +215,7 @@
 }
 
 - (UILabel *)moneyLabel{
-
+    
     if(!_moneyLabel){
         _moneyLabel = [[UILabel alloc] init];
         _moneyLabel.textColor = [UIColor whiteColor];
@@ -226,7 +226,7 @@
 }
 
 - (UIButton *)determineBtn{
-
+    
     if(!_determineBtn){
         _determineBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_determineBtn setBackgroundImage: [UIImage imageNamed:@"check_boomPourImage"] forState:UIControlStateNormal];

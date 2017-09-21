@@ -50,7 +50,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-
+    
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [MZGCDSocketManager shareInstance].delegate = self;
@@ -59,7 +59,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-
+    
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
     [self deleteMessage];
@@ -70,7 +70,7 @@
 }
 
 - (void)initView{
-//    self.title = @"游戏大厅";
+    //    self.title = @"游戏大厅";
     //计算scrollerView的位置
     MZLoginModel *loginModel = [Common getData:@"loginModel"];
     self.headImageBtn.adjustsImageWhenHighlighted = NO;
@@ -83,13 +83,14 @@
     [self.playruleBtn setBackgroundImage:[UIImage imageNamed:RDLocalizedString(@"playrule")] forState:UIControlStateNormal];
     [self.noticeBtn setBackgroundImage:[UIImage imageNamed:RDLocalizedString(@"notice")] forState:UIControlStateNormal];
     [self.setBtn setBackgroundImage:[UIImage imageNamed:RDLocalizedString(@"set")] forState:UIControlStateNormal];
-   
+    
     
 }
 
 - (void)lobbyViewDidSelectWithIndexTag:(NSInteger)indexTag{
     NSLog(@"----%ld---",(long)indexTag);
     MZEnterGameRoomController *roomVC = [[MZEnterGameRoomController alloc] initWithNibName:@"MZEnterGameRoomController" bundle:nil];
+    roomVC.gameTypeModel = self.gameTypeArray[indexTag - 10];
     [self.navigationController pushViewController:roomVC animated:YES];
 }
 #pragma mark - UIButtonClickAction
@@ -108,8 +109,8 @@
     
     MZSettingView *setView = [[MZSettingView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:setView];
-//    MZSettingController *setVC = [[MZSettingController alloc] initWithNibName:@"MZSettingController" bundle:nil];
-//    [self presentViewController:setVC animated:YES completion:nil];
+//        MZSettingController *setVC = [[MZSettingController alloc] initWithNibName:@"MZSettingController" bundle:nil];
+//        [self presentViewController:setVC animated:YES completion:nil];
 }
 
 #pragma mark - 网络请求
@@ -122,14 +123,14 @@
     //发送消息 @"hello world"只是举个列子，具体根据服务端的消息格式
     [[MZGCDSocketManager shareInstance] connect:^(BOOL connectBlock) {
         if(connectBlock == YES){
-        [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
+            [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
         }
     }];
 }
 
 #pragma mark  消息请求
 - (void)requestWithMessage{
-     MZLoginModel *loginModel = [Common getData:@"loginModel"];
+    MZLoginModel *loginModel = [Common getData:@"loginModel"];
     NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"5",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":loginModel.acc_name},@"data", nil];
     [tempDict addEntriesFromDictionary:MBSIDicHeader];
     NSString *sendMessage = [KDJSON JSONStringOfObject:tempDict];
@@ -141,7 +142,7 @@
 
 #pragma mark - 游戏规则
 - (void)requestWithGetGameRule{
-     MZLoginModel *loginModel = [Common getData:@"loginModel"];
+    MZLoginModel *loginModel = [Common getData:@"loginModel"];
     NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"41",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_id":loginModel.acc_id},@"data", nil];
     [tempDict addEntriesFromDictionary:MBSIDicHeader];
     NSString *sendMessage = [KDJSON JSONStringOfObject:tempDict];
@@ -185,11 +186,17 @@
             }
                 break;
             case 5:{
-            
+                
                 NSArray *messageData = [dictData objectForKey:@"data"];
                 for(int i=0; i<messageData.count; i++){
                     MZMessageModel *model = [MZMessageModel yy_modelWithDictionary:messageData[i]];
                     [self.messageArray addObject:model];
+                }
+                for(UIView *view in self.view.subviews){
+                    
+                    if([view isKindOfClass:[MZMessageView class]]){
+                        [view removeFromSuperview];
+                    }
                 }
                 MZMessageView *messageView = [[MZMessageView alloc] initWithFrame:self.view.frame];
                 messageView.messageArray = self.messageArray;
@@ -214,6 +221,13 @@
                 //距离top高度
                 CGFloat kdistopHeight = KSCREEN_HEIGHT * 35 /320.0;
                 
+                
+                for(UIView *view in self.view.subviews){
+                
+                    if([view isKindOfClass:[MZMessageView class]] || [view isKindOfClass:[MZSettingView class]] ||[view isKindOfClass:[MZGameRuleView class]]){
+                        [view removeFromSuperview];
+                    }
+                }
                 CGFloat lobbyHeight = KSCREEN_HEIGHT - topheight - kdistopHeight * 2 - boomHeight;
                 _lobbyScrollView = [[MZLobbySView alloc]initWithFrame:CGRectMake(kleftScale, kdistopHeight + topheight, kSCREEN_Width - kleftScale - 15, lobbyHeight) data:self.gameTypeArray];
                 _lobbyScrollView.delegate = self;
@@ -222,7 +236,13 @@
             }
                 break;
             case 41:{
-            
+                
+                for(UIView *view in self.view.subviews){
+                    
+                    if([view isKindOfClass:[MZGameRuleView class]]){
+                        [view removeFromSuperview];
+                    }
+                }
                 NSDictionary *dataDict = [dictData objectForKey:@"data"];
                 MZGameRuleView *ruleView = [[MZGameRuleView alloc] initWithFrame:self.view.frame];
                 ruleView.contentStr = [dataDict objectForKey:@"ruleen"];
@@ -236,7 +256,7 @@
 }
 
 - (NSMutableArray *)messageArray{
-
+    
     if(!_messageArray){
         _messageArray = [[NSMutableArray alloc] init];
     }
@@ -244,9 +264,9 @@
 }
 
 -(NSMutableArray *)gameTypeArray{
-
-    if(!_gameTypeArray){
     
+    if(!_gameTypeArray){
+        
         _gameTypeArray = [[NSMutableArray alloc] init];
     }
     return _gameTypeArray;

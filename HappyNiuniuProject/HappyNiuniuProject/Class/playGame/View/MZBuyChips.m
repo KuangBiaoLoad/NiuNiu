@@ -73,7 +73,7 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
-
+    
     if(self = [super initWithFrame:frame]){
         [self addSubview:self.bacImageView];
         [self addSubview:self.addButton];
@@ -93,7 +93,7 @@
         [self.slide mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.mas_centerX);
             make.centerY.equalTo(self.mas_centerY).offset(-20);
-            make.width.offset(269.5);
+            make.width.offset(269.5/568 * kSCREEN_Width);
             make.height.offset(8);
         }];
         [self.subtractButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -176,7 +176,7 @@
     self.maxSlide = maxMoney;
     self.maxMoneyLabel.text = [NSString stringWithFormat:@"$%d",maxMoney];
     self.slide.maximumValue = maxMoney;
-   
+    
 }
 -(void)setMinMoney:(int)minMoney{
     _minMoney = minMoney;
@@ -187,7 +187,7 @@
 }
 
 - (void)setTotalMoney:(int)totalMoney{
-
+    
     _totalMoney =totalMoney;
     self.totalLabel.text = [NSString stringWithFormat:@"%@：%d",RDLocalizedString(@"youraccountbalance"),totalMoney];
 }
@@ -233,7 +233,7 @@
     CGRect rect = self.goldView.frame;
     
     rect.origin.x = thumbRect.origin.x - 10;
-//    rect.origin.x = self.slide.frame.origin.x + (self.slide.frame.size.width - 3.53)/(self.maxSlide - self.minSlide)*self.slide.value - 34/(self.maxSlide - self.minSlide)*self.slide.value - rect.size.width/2 + 34/2 +2;
+    //    rect.origin.x = self.slide.frame.origin.x + (self.slide.frame.size.width - 3.53)/(self.maxSlide - self.minSlide)*self.slide.value - 34/(self.maxSlide - self.minSlide)*self.slide.value - rect.size.width/2 + 34/2 +2;
     self.goldView.frame = rect;
 }
 
@@ -244,7 +244,7 @@
 }
 
 - (void)autoAddMoneyBtnClickAction:(UIButton *)sender{
-
+    
     sender.selected = !sender.selected;
     [Common setData:sender.selected?@"true":@"false" key:@"autoAddMoney"];
 }
@@ -252,7 +252,7 @@
 #pragma  mark - 懒加载
 
 - (UIImageView *)bacImageView{
-
+    
     if(!_bacImageView){
         _bacImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         _bacImageView.image = [UIImage imageNamed:@"shadeBlackBac"];
@@ -261,9 +261,9 @@
 }
 
 - (UIButton *)addButton{
-
-    if(!_addButton){
     
+    if(!_addButton){
+        
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_addButton setBackgroundImage:[UIImage imageNamed:@"shadeAddBtn"] forState:UIControlStateNormal];
         [_addButton addTarget:self action:@selector(addClickAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -274,7 +274,7 @@
 }
 
 - (UIButton *)subtractButton{
-
+    
     if(!_subtractButton){
         _subtractButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_subtractButton setBackgroundImage:[UIImage imageNamed:@"shadeReduceBtn"] forState:UIControlStateNormal];
@@ -286,7 +286,7 @@
 }
 
 - (UISlider *)slide{
-
+    
     if(!_slide){
         _slide = [[UISlider alloc] init];
         _slide.value = 0;// 设置初始值
@@ -300,7 +300,7 @@
 }
 
 - (UILabel *)showSliderResultLabel{
-
+    
     if(!_showSliderResultLabel){
         _showSliderResultLabel = [[UILabel alloc] init];
         _showSliderResultLabel.textColor = [UIColor whiteColor];
@@ -311,7 +311,7 @@
 }
 
 - (UIButton *)buyButton{
-
+    
     if(!_buyButton){
         _buyButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_buyButton setTitle:RDLocalizedString(@"buythegame") forState:UIControlStateNormal];
@@ -324,7 +324,7 @@
 }
 
 - (UILabel *)minLabel{
-
+    
     if(!_minLabel){
         _minLabel = [[UILabel alloc] init];
         _minLabel.font = [UIFont systemFontOfSize:9];
@@ -337,7 +337,7 @@
 }
 
 -(UILabel *)maxLabel{
-
+    
     if(!_maxLabel){
         _maxLabel = [[UILabel alloc] init];
         _maxLabel.font = [UIFont systemFontOfSize:9];
@@ -350,7 +350,7 @@
 }
 
 - (UILabel *)totalLabel{
-
+    
     if(!_totalLabel){
         _totalLabel = [[UILabel alloc] init];
         _totalLabel.font = [UIFont systemFontOfSize:12];
@@ -361,7 +361,7 @@
 }
 
 - (UILabel *)suggestLabel{
-
+    
     if(!_suggestLabel){
         _suggestLabel = [[UILabel alloc] init];
         _suggestLabel.font = [UIFont systemFontOfSize:9];
@@ -372,7 +372,7 @@
 }
 
 - (UIButton *)closeButton{
-
+    
     if(!_closeButton){
         _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_closeButton setBackgroundImage: [UIImage imageNamed:@"shadeClose"] forState:UIControlStateNormal];
@@ -382,7 +382,7 @@
 }
 
 - (UILabel *)minMoneyLabel{
-
+    
     if(!_minMoneyLabel){
         _minMoneyLabel = [[UILabel alloc] init];
         _minMoneyLabel.font = [UIFont systemFontOfSize:12];
@@ -392,7 +392,7 @@
 }
 
 - (UILabel *)maxMoneyLabel{
-
+    
     if(!_maxMoneyLabel){
         _maxMoneyLabel = [[UILabel alloc] init];
         _maxMoneyLabel.font = [UIFont systemFontOfSize:12];
@@ -403,7 +403,7 @@
 }
 
 - (UIView *)goldView{
-
+    
     if(!_goldView){
         _goldView = [[UIView alloc] init];
         [_goldView addSubview:self.goldBacImageView];
@@ -413,7 +413,7 @@
 }
 
 - (UIImageView *)goldBacImageView{
-
+    
     if(!_goldBacImageView){
         _goldBacImageView = [[UIImageView alloc] init];
         _goldBacImageView.image = [UIImage imageNamed:@"shadeGoldSuggestGroove"];
@@ -422,7 +422,7 @@
 }
 
 - (UILabel *)addMoneyLabel{
-
+    
     if(!_addMoneyLabel){
         _addMoneyLabel = [[UILabel alloc] init];
         _addMoneyLabel.textColor = [UIColor whiteColor];
@@ -433,7 +433,7 @@
 }
 
 - (UIButton *)autoAddMoneyBtn{
-
+    
     if(!_autoAddMoneyBtn){
         _autoAddMoneyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_autoAddMoneyBtn setBackgroundImage:[UIImage imageNamed:@"autoFillNor"] forState:UIControlStateNormal];

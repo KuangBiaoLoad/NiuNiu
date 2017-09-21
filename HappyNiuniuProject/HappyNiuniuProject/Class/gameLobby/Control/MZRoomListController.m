@@ -73,30 +73,30 @@
 - (void)didDataArray:(NSArray *)dataArray clickIndexPathRow:(NSInteger)indexpathRow andStatusDict:(NSDictionary *)statusDict{
     
     [self.dataSource removeAllObjects];
-//    self.dataSource = dataArray.mutableCopy;//    OPEN = 没有玩家， Waiting = 只有一个玩家， RUNNING = 游戏进行但没做满，  FULL = 坐满
+    //    self.dataSource = dataArray.mutableCopy;//    OPEN = 没有玩家， Waiting = 只有一个玩家， RUNNING = 游戏进行但没做满，  FULL = 坐满
     
     if([[statusDict objectForKey:@"status1"] isEqualToString:@"false"] && [[statusDict objectForKey:@"status2"] isEqualToString:@"false"] && [[statusDict objectForKey:@"status3"] isEqualToString:@"false"] && [[statusDict objectForKey:@"status4"] isEqualToString:@"false"]){
         self.dataSource = dataArray.mutableCopy;
     }
-    for(MZRoomListModel *model in dataArray.reverseObjectEnumerator){
-    
+    for(MZRoomListModel *model in dataArray.objectEnumerator){
+        
         if([[statusDict objectForKey:@"status1"] isEqualToString:@"true"]){
-            if([model.game_totalplayer isEqualToString:@"0"]){
+            if([model.game_status isEqualToString:@"open"]){
                 [self.dataSource addObject:model];
             }
         }
         if([[statusDict objectForKey:@"status2"] isEqualToString:@"true"]){
-            if([model.game_totalplayer isEqualToString:@"1"]){
+            if([model.game_status isEqualToString:@"waiting"]){
                 [self.dataSource addObject:model];
             }
         }
         if([[statusDict objectForKey:@"status3"] isEqualToString:@"true"]){
-            if([model.game_totalplayer intValue] >1 && [model.game_totalplayer intValue] < 6){
+            if([model.game_status isEqualToString:@"running"]){
                 [self.dataSource addObject:model];
             }
         }
         if([[statusDict objectForKey:@"status4"] isEqualToString:@"true"]){
-            if([model.game_totalplayer isEqualToString:@"6"]){
+            if([model.game_status isEqualToString:@"full"]){
                 [self.dataSource addObject:model];
             }
         }
@@ -123,7 +123,7 @@
 
 
 - (NSMutableArray *)dataSource{
-
+    
     if(!_dataSource){
         _dataSource = [[NSMutableArray alloc] init];
     }

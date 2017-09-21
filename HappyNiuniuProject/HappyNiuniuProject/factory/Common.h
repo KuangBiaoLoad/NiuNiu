@@ -43,4 +43,8 @@
 
 + (NSString *)deviceIPAdress;
 
++ (NSString *)deviceWANIPAddress;
+
++ (NSString *)getDeviceIPAddresses;
+
 @end

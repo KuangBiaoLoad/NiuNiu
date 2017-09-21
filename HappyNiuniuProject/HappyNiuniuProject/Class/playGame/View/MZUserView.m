@@ -33,7 +33,7 @@
     
     self = [super init];
     if (self) {
-         [self initView];
+        [self initView];
     }
     return self;
     
@@ -43,7 +43,7 @@
     
     self = [super initWithCoder:aDecoder];
     if (self) {
-         [self initView];
+        [self initView];
     }
     return self;
     
@@ -108,7 +108,7 @@
                 make.right.equalTo(self.goldBacImageView.mas_right).offset(0);
                 make.height.offset(20);
             }];
-    }
+        }
             break;
         case verticalDirectionType:{
             
@@ -158,7 +158,6 @@
         make.top.equalTo(self.bacImageView.mas_top).offset(0);
         make.centerX.equalTo(self.imageView.mas_centerX).offset(0);
     }];
-    
 }
 
 - (void)headImageBtnClickAction:(UIButton *)sender{
@@ -169,23 +168,27 @@
 }
 
 - (void)setWhetherAnyone:(BOOL)whetherAnyone{
-
+    
     if(!whetherAnyone){
         _imageView.userInteractionEnabled = YES;
     }else{
-    
+        
         _imageView.userInteractionEnabled = NO;
     }
 }
 
 - (void)setIsbanker:(BOOL)isbanker{
-
+    
     _isbanker = isbanker;
     self.bankerLabel.hidden = !isbanker;
+    CGRect imageRect = self.imageView.frame;
+    self.imageView.layer.cornerRadius = imageRect.size.width/2.0;
+    self.imageView.clipsToBounds = YES;
+    self.imageView.layer.borderWidth = 1.0f;
     if(isbanker){
-        [_imageView setBackgroundImage:[UIImage imageNamed:@"check_bankerHeadImage"] forState:UIControlStateNormal];
+        self.imageView.layer.borderColor = [UIColor colorWithHexString:@"FEECA6"].CGColor;
     }else{
-        [_imageView setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        self.imageView.layer.borderColor = [UIColor clearColor].CGColor;
     }
 }
 - (void)setUserDict:(NSDictionary *)userDict{
@@ -196,7 +199,7 @@
 }
 
 - (void)createUserCoradius:(CGFloat)coradiusStr{
-      self.imageView.layer.cornerRadius = (coradiusStr - 10)/2.0;
+    self.imageView.layer.cornerRadius = (coradiusStr - 10)/2.0;
 }
 
 - (UILabel *)userLabel{
@@ -227,6 +230,7 @@
     if(!_imageView){
         _imageView = [UIButton buttonWithType:UIButtonTypeCustom];
         _imageView.adjustsImageWhenHighlighted = NO;
+        _imageView.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [_imageView setImage:[UIImage imageNamed:@"headImageNor"] forState:UIControlStateNormal];
         [_imageView addTarget:self action:@selector(headImageBtnClickAction:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -234,16 +238,16 @@
 }
 
 - (UIImageView *)bacImageView{
-
-    if(!_bacImageView){
     
+    if(!_bacImageView){
+        
         _bacImageView = [[UIImageView alloc] init];
     }
     return _bacImageView;
 }
 
 - (UIImageView *)userBacImageView{
-
+    
     if(!_userBacImageView){
         _userBacImageView = [[UIImageView alloc] init];
         _userBacImageView.image = [UIImage imageNamed:@"photoCell"];
@@ -260,7 +264,7 @@
 
 
 - (UIImageView *)goldImageView{
-
+    
     if(!_goldImageView){
         _goldImageView = [[UIImageView alloc] init];
         _goldImageView.image = [UIImage imageNamed:@"gold"];
@@ -269,9 +273,9 @@
 }
 
 - (UILabel *)bankerLabel{
-
-    if(!_bankerLabel){
     
+    if(!_bankerLabel){
+        
         _bankerLabel = [[UILabel alloc] init];
         _bankerLabel.textColor = [UIColor colorWithHexString:@"FF9711"];
         _bankerLabel.text = RDLocalizedString(@"banker");

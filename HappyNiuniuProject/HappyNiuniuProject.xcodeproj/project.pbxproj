@@ -33,6 +33,9 @@
 		E011D2341F546526007CD5AB /* MZSpreadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E011D2331F546526007CD5AB /* MZSpreadView.m */; };
 		E02F5CDE1F5BB86A009CA9FA /* MZRegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E02F5CE01F5BB86A009CA9FA /* MZRegisterController.xib */; };
 		E02F5D121F5C3F77009CA9FA /* MZLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E02F5D111F5C3F77009CA9FA /* MZLoginController.xib */; };
+		E030814F1F73501900CED712 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E030814E1F73501900CED712 /* Reachability.m */; };
+		E03081511F73515800CED712 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E03081501F73515800CED712 /* SystemConfiguration.framework */; };
+		E03081551F73943F00CED712 /* CBAutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E03081541F73943F00CED712 /* CBAutoScrollLabel.m */; };
 		E0473E1F1F6A7C760047BDB2 /* MZPlayerListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0473E1E1F6A7C760047BDB2 /* MZPlayerListModel.m */; };
 		E0473E221F6A8AA90047BDB2 /* MZCardListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0473E211F6A8AA90047BDB2 /* MZCardListModel.m */; };
 		E0473E251F6ACCD30047BDB2 /* MZBettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0473E241F6ACCD30047BDB2 /* MZBettingView.m */; };
@@ -41,12 +44,7 @@
 		E06996551F4E62DF00CE9019 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E06996541F4E62DF00CE9019 /* AppDelegate.m */; };
 		E069965D1F4E62DF00CE9019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E069965C1F4E62DF00CE9019 /* Assets.xcassets */; };
 		E06996601F4E62DF00CE9019 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E069965E1F4E62DF00CE9019 /* LaunchScreen.storyboard */; };
-		E069966C1F4E6A2B00CE9019 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = E06996691F4E6A2B00CE9019 /* AsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E069966D1F4E6A2B00CE9019 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = E069966B1F4E6A2B00CE9019 /* AsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E06996701F4E6A9D00CE9019 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E069966F1F4E6A9D00CE9019 /* CFNetwork.framework */; };
-		E06996741F4E6C7700CE9019 /* MZNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E06996731F4E6C7700CE9019 /* MZNetRequest.m */; };
-		E06996771F4E89DD00CE9019 /* MZNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E06996761F4E89DD00CE9019 /* MZNetworkRequest.m */; };
-		E076B1361F4ED79D001055FE /* LGSocketServe.m in Sources */ = {isa = PBXBuildFile; fileRef = E076B1351F4ED79D001055FE /* LGSocketServe.m */; };
 		E076B1391F4EEBD5001055FE /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E076B1381F4EEBD5001055FE /* Common.m */; };
 		E07E20481F55488C00C1E618 /* MZLobbySView.m in Sources */ = {isa = PBXBuildFile; fileRef = E07E20471F55488C00C1E618 /* MZLobbySView.m */; };
 		E07E20591F56A72900C1E618 /* MZEnterGameRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = E07E20511F56A72900C1E618 /* MZEnterGameRoomController.m */; };
@@ -70,7 +68,6 @@
 		E09720471F6180B3003A39FC /* MZGameRoomLeftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E09720461F6180B3003A39FC /* MZGameRoomLeftModel.m */; };
 		E09721A41F63F652003A39FC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09721A31F63F652003A39FC /* Security.framework */; };
 		E09721A71F63F6BB003A39FC /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E09721A61F63F6BB003A39FC /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E09721AB1F64D134003A39FC /* MZNetWorkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E09721AA1F64D134003A39FC /* MZNetWorkRequest.m */; };
 		E09721AF1F6510B6003A39FC /* MZBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E09721AE1F6510B6003A39FC /* MZBalanceModel.m */; };
 		E09721B51F655B6A003A39FC /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = E09721B21F655B6A003A39FC /* GCDAsyncSocket.m */; };
 		E09721B61F655B6A003A39FC /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = E09721B41F655B6A003A39FC /* GCDAsyncUdpSocket.m */; };
@@ -137,6 +134,11 @@
 		E02F5CCF1F5BAAAC009CA9FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E02F5CDF1F5BB86A009CA9FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MZRegisterController.xib; sourceTree = "<group>"; };
 		E02F5D111F5C3F77009CA9FA /* MZLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MZLoginController.xib; sourceTree = "<group>"; };
+		E030814D1F73501900CED712 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		E030814E1F73501900CED712 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		E03081501F73515800CED712 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E03081531F73943E00CED712 /* CBAutoScrollLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAutoScrollLabel.h; sourceTree = "<group>"; };
+		E03081541F73943F00CED712 /* CBAutoScrollLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAutoScrollLabel.m; sourceTree = "<group>"; };
 		E0473E1D1F6A7C760047BDB2 /* MZPlayerListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPlayerListModel.h; sourceTree = "<group>"; };
 		E0473E1E1F6A7C760047BDB2 /* MZPlayerListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPlayerListModel.m; sourceTree = "<group>"; };
 		E0473E201F6A8AA90047BDB2 /* MZCardListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZCardListModel.h; sourceTree = "<group>"; };
@@ -152,17 +154,7 @@
 		E069965C1F4E62DF00CE9019 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E069965F1F4E62DF00CE9019 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E06996611F4E62DF00CE9019 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E06996681F4E6A2B00CE9019 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
-		E06996691F4E6A2B00CE9019 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
-		E069966A1F4E6A2B00CE9019 /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
-		E069966B1F4E6A2B00CE9019 /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncUdpSocket.m; sourceTree = "<group>"; };
 		E069966F1F4E6A9D00CE9019 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		E06996721F4E6C7700CE9019 /* MZNetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZNetRequest.h; sourceTree = "<group>"; };
-		E06996731F4E6C7700CE9019 /* MZNetRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZNetRequest.m; sourceTree = "<group>"; };
-		E06996751F4E89DD00CE9019 /* MZNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZNetworkRequest.h; sourceTree = "<group>"; };
-		E06996761F4E89DD00CE9019 /* MZNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZNetworkRequest.m; sourceTree = "<group>"; };
-		E076B1341F4ED79D001055FE /* LGSocketServe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSocketServe.h; sourceTree = "<group>"; };
-		E076B1351F4ED79D001055FE /* LGSocketServe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSocketServe.m; sourceTree = "<group>"; };
 		E076B1371F4EEBD5001055FE /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		E076B1381F4EEBD5001055FE /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		E076B13A1F4EEBF2001055FE /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -206,8 +198,6 @@
 		E09721A31F63F652003A39FC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E09721A51F63F6BB003A39FC /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		E09721A61F63F6BB003A39FC /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
-		E09721A91F64D134003A39FC /* MZNetWorkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZNetWorkRequest.h; sourceTree = "<group>"; };
-		E09721AA1F64D134003A39FC /* MZNetWorkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZNetWorkRequest.m; sourceTree = "<group>"; };
 		E09721AD1F6510B6003A39FC /* MZBalanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZBalanceModel.h; sourceTree = "<group>"; };
 		E09721AE1F6510B6003A39FC /* MZBalanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZBalanceModel.m; sourceTree = "<group>"; };
 		E09721B11F655B6A003A39FC /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
@@ -242,6 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E03081511F73515800CED712 /* SystemConfiguration.framework in Frameworks */,
 				E09721A41F63F652003A39FC /* Security.framework in Frameworks */,
 				E06996701F4E6A9D00CE9019 /* CFNetwork.framework in Frameworks */,
 				0C87F392E1520756495CD280 /* libPods-HappyNiuniuProject.a in Frameworks */,
@@ -364,6 +355,8 @@
 				E09721C81F66CB00003A39FC /* MZGameRuleView.m */,
 				E09721CA1F66CB11003A39FC /* MZMessageView.h */,
 				E09721CB1F66CB11003A39FC /* MZMessageView.m */,
+				E03081531F73943E00CED712 /* CBAutoScrollLabel.h */,
+				E03081541F73943F00CED712 /* CBAutoScrollLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -447,7 +440,6 @@
 				E011D1F81F4FEF7D007CD5AB /* customUI */,
 				E06996711F4E6BAD00CE9019 /* factory */,
 				E09721B01F655B6A003A39FC /* GCD */,
-				E06996671F4E655800CE9019 /* Socket */,
 				E02F5CE51F5C2340009CA9FA /* Resource */,
 				E06996531F4E62DF00CE9019 /* AppDelegate.h */,
 				E06996541F4E62DF00CE9019 /* AppDelegate.m */,
@@ -471,20 +463,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E06996671F4E655800CE9019 /* Socket */ = {
-			isa = PBXGroup;
-			children = (
-				E06996681F4E6A2B00CE9019 /* AsyncSocket.h */,
-				E06996691F4E6A2B00CE9019 /* AsyncSocket.m */,
-				E069966A1F4E6A2B00CE9019 /* AsyncUdpSocket.h */,
-				E069966B1F4E6A2B00CE9019 /* AsyncUdpSocket.m */,
-			);
-			path = Socket;
-			sourceTree = "<group>";
-		};
 		E069966E1F4E6A9D00CE9019 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E03081501F73515800CED712 /* SystemConfiguration.framework */,
 				E09721A31F63F652003A39FC /* Security.framework */,
 				E069966F1F4E6A9D00CE9019 /* CFNetwork.framework */,
 				1AE7086D64514544567D54CB /* libPods-HappyNiuniuProject.a */,
@@ -504,12 +486,6 @@
 				E011D1F51F4FEF14007CD5AB /* KDCheckTxt.m */,
 				E011D20D1F500F9E007CD5AB /* UIImage+Color.h */,
 				E011D20E1F500F9E007CD5AB /* UIImage+Color.m */,
-				E076B1341F4ED79D001055FE /* LGSocketServe.h */,
-				E076B1351F4ED79D001055FE /* LGSocketServe.m */,
-				E06996721F4E6C7700CE9019 /* MZNetRequest.h */,
-				E06996731F4E6C7700CE9019 /* MZNetRequest.m */,
-				E06996751F4E89DD00CE9019 /* MZNetworkRequest.h */,
-				E06996761F4E89DD00CE9019 /* MZNetworkRequest.m */,
 				E09721B71F655F1D003A39FC /* MZGCDSocketManager.h */,
 				E09721B81F655F1D003A39FC /* MZGCDSocketManager.m */,
 			);
@@ -628,8 +604,8 @@
 		E09721A81F64D10F003A39FC /* KBNetWork */ = {
 			isa = PBXGroup;
 			children = (
-				E09721A91F64D134003A39FC /* MZNetWorkRequest.h */,
-				E09721AA1F64D134003A39FC /* MZNetWorkRequest.m */,
+				E030814D1F73501900CED712 /* Reachability.h */,
+				E030814E1F73501900CED712 /* Reachability.m */,
 			);
 			path = KBNetWork;
 			sourceTree = "<group>";
@@ -803,7 +779,6 @@
 			files = (
 				E0473E221F6A8AA90047BDB2 /* MZCardListModel.m in Sources */,
 				E011D1DA1F4F12CB007CD5AB /* MZNavgationController.m in Sources */,
-				E06996741F4E6C7700CE9019 /* MZNetRequest.m in Sources */,
 				E011D21B1F504797007CD5AB /* MZPlaygameController.m in Sources */,
 				E09721C91F66CB00003A39FC /* MZGameRuleView.m in Sources */,
 				E011D2311F545777007CD5AB /* MZOverlapView.m in Sources */,
@@ -824,21 +799,19 @@
 				E011D1DF1F4FAD1A007CD5AB /* MZRegisterController.m in Sources */,
 				E0971FB31F5ED232003A39FC /* MZSettingController.m in Sources */,
 				E09721CC1F66CB11003A39FC /* MZMessageView.m in Sources */,
-				E069966D1F4E6A2B00CE9019 /* AsyncUdpSocket.m in Sources */,
 				E06996551F4E62DF00CE9019 /* AppDelegate.m in Sources */,
 				E011D2271F52AB29007CD5AB /* MZPlayerModel.m in Sources */,
 				E07E20671F57FD6800C1E618 /* KBSMSBtn.m in Sources */,
+				E03081551F73943F00CED712 /* CBAutoScrollLabel.m in Sources */,
 				E06996521F4E62DF00CE9019 /* main.m in Sources */,
 				E011D1E41F4FCA7D007CD5AB /* MZForgetPasswordController.m in Sources */,
 				E011D2341F546526007CD5AB /* MZSpreadView.m in Sources */,
 				E09721AF1F6510B6003A39FC /* MZBalanceModel.m in Sources */,
 				E07E205B1F56A72900C1E618 /* MZGameLobbyController.m in Sources */,
 				E011D2121F50344C007CD5AB /* MZRoomListModel.m in Sources */,
-				E06996771F4E89DD00CE9019 /* MZNetworkRequest.m in Sources */,
 				E09721C61F66CAEC003A39FC /* MZSettingView.m in Sources */,
 				E011D1F71F4FEF14007CD5AB /* KDCheckTxt.m in Sources */,
 				E0473E1F1F6A7C760047BDB2 /* MZPlayerListModel.m in Sources */,
-				E09721AB1F64D134003A39FC /* MZNetWorkRequest.m in Sources */,
 				E0473E281F6C0A810047BDB2 /* MZBackView.m in Sources */,
 				E011D2211F506288007CD5AB /* MZCountdownView.m in Sources */,
 				E011D1D61F4F0D0D007CD5AB /* MZLoginController.m in Sources */,
@@ -853,12 +826,11 @@
 				E011D22B1F53CC29007CD5AB /* KDJSON.m in Sources */,
 				E07E206A1F58147200C1E618 /* MZcalculateNiuView.m in Sources */,
 				E09721B91F655F1D003A39FC /* MZGCDSocketManager.m in Sources */,
+				E030814F1F73501900CED712 /* Reachability.m in Sources */,
 				E0971F491F5D3E89003A39FC /* MZLabel.m in Sources */,
 				E011D22E1F544B60007CD5AB /* MZUserView.m in Sources */,
-				E069966C1F4E6A2B00CE9019 /* AsyncSocket.m in Sources */,
 				E011D1FF1F4FEF7D007CD5AB /* KDAlertView.m in Sources */,
 				E09721D41F6788EE003A39FC /* MZMessageModel.m in Sources */,
-				E076B1361F4ED79D001055FE /* LGSocketServe.m in Sources */,
 				E09721A71F63F6BB003A39FC /* KeychainItemWrapper.m in Sources */,
 				E09721C31F66A89F003A39FC /* MZLoginModel.m in Sources */,
 				E011D2241F507559007CD5AB /* MZMultipleHog.m in Sources */,
@@ -1006,13 +978,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = YD2NR56P4A;
 				GCC_PREFIX_HEADER = /Users/kuangbiao0125/kuangbiao/serectProject/NiuNiu/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch;
 				INFOPLIST_FILE = HappyNiuniuProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kuangbiao.cn.HappyNiuniuProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cards.cn.HappyNiuniuProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1023,13 +997,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = YD2NR56P4A;
 				GCC_PREFIX_HEADER = /Users/kuangbiao0125/kuangbiao/serectProject/NiuNiu/HappyNiuniuProject/HappyNiuniuProject/PrefixHeader.pch;
 				INFOPLIST_FILE = HappyNiuniuProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kuangbiao.cn.HappyNiuniuProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cards.cn.HappyNiuniuProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

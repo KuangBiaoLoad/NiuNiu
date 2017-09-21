@@ -19,7 +19,7 @@
 @implementation MZBackView
 
 - (instancetype)initWithFrame:(CGRect)frame{
-
+    
     if(self = [super initWithFrame:frame]){
         [self initView];
     }
@@ -50,20 +50,20 @@
 
 - (void)btnClickAction:(UIButton *)sender{
     if([_deleagte respondsToSelector:@selector(clickButtonWithTag:)]){
-
+        
         [_deleagte clickButtonWithTag:(int)sender.tag];
     }
 }
 
 - (void)hiddenView{
-
+    
     [self removeFromSuperview];
 }
 
 #pragma mark - 懒加载
 
 - (UIImageView *)bacImageView{
-
+    
     if(!_bacImageView){
         _bacImageView = [[UIImageView alloc] init];
         _bacImageView.image = [UIImage imageNamed:@"check_boomVertical"];
@@ -72,7 +72,7 @@
 }
 
 - (UIButton *)gotUpbtn{
-
+    
     if(!_gotUpbtn){
         _gotUpbtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _gotUpbtn.tag = 211;
@@ -86,9 +86,9 @@
 }
 
 - (UIButton *)leaveRoomBtn{
-
-    if(!_leaveRoomBtn){
     
+    if(!_leaveRoomBtn){
+        
         _leaveRoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _leaveRoomBtn.tag = 212;
         _leaveRoomBtn.titleLabel.font = [UIFont systemFontOfSize:12];

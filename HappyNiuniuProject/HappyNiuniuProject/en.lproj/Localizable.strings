@@ -9,6 +9,7 @@
 "NewUserSignUp"         = "New user ?  sign up here";
 "UserName"              = "Username：";
 "UserNamePlaceholder"   = "Enter username";
+"enterCorrectEmailFormat" = "请输入正确的邮箱格式";
 "login"                 = "login";
 "Password"              = "Password：";
 "PasswordPlaceholder"   = "Enter Password";
@@ -46,7 +47,7 @@
 
 "maximum"                 = "maximum";
 "minimum"                 = "minimum";
-"automaticallyAddMoney"   = "Auto Add Money";
+"automaticallyAddMoney"   = "AutoAddMoney";
 "youraccountbalance"      = "Your account balance";
 "buyMoneyNotice"          = "Note: Once you sit, you will be charged";
 "buythegame"              = "Buy the game";

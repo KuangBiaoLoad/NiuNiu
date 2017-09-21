@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MZSettingController">
             <connections>
+                <outlet property="loginBtn" destination="akL-sx-oYR" id="How-59-qui"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,7 +24,7 @@
                     <rect key="frame" x="288" y="157" width="88" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="English">
-                        <color key="titleColor" red="0.15294117647058825" green="0.76470588235294112" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="titleColor" red="0.99607843137254903" green="0.92549019607843142" blue="0.65098039215686276" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </state>
                     <connections>
                         <action selector="changeEnglishLanguageClick:" destination="-1" eventType="touchUpInside" id="GQX-8x-kW2"/>
@@ -39,23 +40,25 @@
                         <action selector="changeChinaLanguageClick:" destination="-1" eventType="touchUpInside" id="OZC-aZ-fZa"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akL-sx-oYR">
+                    <rect key="frame" x="409" y="179" width="70" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="UserHeadImage-1" backgroundImage="1check_bankerHeadImage"/>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvT-QA-fCa">
-                    <rect key="frame" x="387" y="279" width="35" height="21"/>
+                    <rect key="frame" x="281" y="301" width="35" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" red="1" green="0.59215686274509804" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="FS8-gn-tF9">
-                    <rect key="frame" x="30" y="150" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
     <resources>
-        <image name="logo" width="223" height="123"/>
+        <image name="1check_bankerHeadImage" width="50" height="51"/>
+        <image name="UserHeadImage-1" width="55" height="56"/>
     </resources>
 </document>

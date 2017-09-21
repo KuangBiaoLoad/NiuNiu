@@ -29,6 +29,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) BOOL whetherAnyone;        //位置是否有人
 @property (nonatomic, strong) NSDictionary *userDict;   //user字典
-@property (nonatomic, assign) BOOL isbanker;     //是否是庄家
+@property (nonatomic, assign) BOOL isbanker;            //是否是庄家
 @property (nonatomic, assign)id<MZUserViewDelegate>delegate;
 @end

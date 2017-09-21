@@ -9,8 +9,9 @@
 #import "MZSettingController.h"
 #import "NSBundle+MZLanguage.h"
 #import "MZGameLobbyController.h"
-#import "MZBuyChips.h"
-@interface MZSettingController ()<MZBuyChipsDelegate>
+@interface MZSettingController ()
+
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 @end
 
@@ -19,6 +20,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.loginBtn setImage:[self resizeImageWithIOS6Method:@"UserHeadImage-1"] forState:UIControlStateNormal];
+}
+
+- (UIImage *)resizedImage:(NSString *)name
+{
+    UIImage *image = [UIImage imageNamed:name];
+    return [image stretchableImageWithLeftCapWidth:image.size.width * 0.5 topCapHeight:image.size.height * 0.5];
+}
+
+-(UIImage*)resizeImageWithIOS6Method:(NSString*)name{
+    UIImage *image = [UIImage imageNamed:name];
+    //顶端盖的高度
+    CGFloat top = 10;
+    CGFloat bottom = 10;//低端盖的高度
+    CGFloat left = 10;//左端盖的高度
+    CGFloat right = 10;//右端盖的高度
+    UIEdgeInsets insets = UIEdgeInsetsMake(top, left, bottom, right);
+    //指定为拉伸模式，伸缩后重新赋值
+    return [image resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeStretch];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,11 +67,6 @@
 ////    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
-- (void)buyChipsWithMoney:(float)money{
-
-    NSLog(@"money-------------%f",money);
-}
-
 
 - (IBAction)changeEnglishLanguageClick:(id)sender {
     // 设置英文

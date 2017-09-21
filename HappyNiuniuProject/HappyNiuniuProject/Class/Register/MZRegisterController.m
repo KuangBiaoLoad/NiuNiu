@@ -32,7 +32,7 @@
 }
 
 - (void)initView{
-
+    
     self.emailLabel.text = RDLocalizedString(@"email");
     self.passwordLabel.text = RDLocalizedString(@"Password");
     self.confirmPwdLabel.text = RDLocalizedString(@"confirmPassword");
@@ -73,9 +73,14 @@
 }
 
 - (IBAction)signUpClickAction:(id)sender {
+//    ^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i
     if([self.emailTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
         
         [self showFailureView:RDLocalizedString(@"UserNamePlaceholder")];
+        return;
+    }
+    if(![self isEmailAddress]){
+        [self showFailureView:RDLocalizedString(@"enterCorrectEmailFormat")];
         return;
     }
     if([self.pwdTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
@@ -90,7 +95,7 @@
     }
     
     if(![self.pwdTxtField.text  isEqualToString:self.confirmPwdTxtField.text]){
-    
+        
         [self showFailureView:RDLocalizedString(@"pwdAndConfirmPwd")];
         return;
     }
@@ -117,5 +122,17 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     NSLog(@"%@",dictData);
+}
+
+#pragma mark - 正则相关
+- (BOOL)isValidateByRegex:(NSString *)regex{
+   NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+   return [pre evaluateWithObject:self.emailTxtField.text];
+}
+
+//邮箱验证
+- (BOOL)isEmailAddress{
+    NSString *emailRegex = @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    return [self isValidateByRegex:emailRegex];
 }
 @end

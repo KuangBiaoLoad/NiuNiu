@@ -25,6 +25,7 @@
 #define iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
 #define kiOS7       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? YES : NO)
 #define kiOS8       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 ? YES : NO)
+#define kiOS11      ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0 ? YES : NO)
 // App Name
 #define AppDisplayName      [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
 #define currentVersion      [[[UIDevice currentDevice] systemVersion] floatValue]
@@ -44,5 +45,5 @@
 #define identifierForVendor  [[UIDevice currentDevice].identifierForVendor UUIDString]
 
 
-#define MBSIDicHeader [NSDictionary dictionaryWithObjectsAndKeys:[Common getCurrentTimes],@"timeStamp",identifierForVendor,@"machineId",[Common deviceIPAdress],@"ip",@"ios",@"deviceType",nil]
+#define MBSIDicHeader [NSDictionary dictionaryWithObjectsAndKeys:[Common getCurrentTimes],@"timeStamp",identifierForVendor,@"machineId",[Common getDeviceIPAddresses],@"ip",@"ios",@"deviceType",nil]
 #endif /* Header_h */

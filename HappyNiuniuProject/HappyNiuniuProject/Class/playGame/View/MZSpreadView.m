@@ -9,7 +9,7 @@
 #import "MZSpreadView.h"
 #import "MZCardListModel.h"
 @implementation MZSpreadView{
-
+    
     NSMutableArray *mutableArray;
 }
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -46,9 +46,9 @@
 }
 
 - (void)spreadWidth:(CGFloat)width withScaleWidth:(CGFloat)scaleWidth{
-
-    for(int i =0; i<5; i++){
     
+    for(int i =0; i<5; i++){
+        
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag = 100+i;
         btn.adjustsImageWhenHighlighted = NO;
@@ -73,7 +73,7 @@
 
 
 - (void)setSpreadArray:(NSArray *)spreadArray{
-
+    
     _spreadArray = spreadArray;
     for(int i=0; i<spreadArray.count; i++){
         MZCardListModel *model = _spreadArray[i];
@@ -81,24 +81,31 @@
         NSString *color = model.color;
         switch ([color intValue]) {
             case 1:
-               cardStr = [cardStr stringByAppendingString:@"D"];
+                cardStr = [cardStr stringByAppendingString:@"D"];
                 break;
             case 2:
-               cardStr = [cardStr stringByAppendingString:@"C"];
+                cardStr = [cardStr stringByAppendingString:@"C"];
                 break;
             case 3:
-               cardStr = [cardStr stringByAppendingString:@"H"];
+                cardStr = [cardStr stringByAppendingString:@"H"];
                 break;
             case 4:
-              cardStr =  [cardStr stringByAppendingString:@"S"];
+                cardStr =  [cardStr stringByAppendingString:@"S"];
                 break;
                 
             default:
                 break;
         }
-      cardStr = [cardStr stringByAppendingString:model.cardNumber];
+        cardStr = [cardStr stringByAppendingString:model.cardNumber];
         UIButton *btnImage = (UIButton *)[self viewWithTag:100+i];
         [btnImage setBackgroundImage:[UIImage imageNamed:cardStr] forState:UIControlStateNormal];
+    }
+    if(spreadArray.count == 0){
+    
+        for(int i=0; i<5; i++){
+            UIButton *btnImage = (UIButton *)[self viewWithTag:100+i];
+            [btnImage setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -114,7 +121,7 @@
 - (void)setUpdateImageWdith:(CGFloat)updateImageWdith{
     _updateImageWdith = updateImageWdith;
     for(int i=0;i<5;i++){
-    
+        
         UIButton *btn = (UIButton *)[self viewWithTag:100+i];
         [btn mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.offset(updateImageWdith);

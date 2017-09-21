@@ -31,7 +31,7 @@
 }
 
 - (void)initView{
-
+    
     self.emailLabel.text = RDLocalizedString(@"email");
     self.oldpwdLabel.text = RDLocalizedString(@"oldpwd");
     self.newpwdLabel.text = RDLocalizedString(@"newpwd");
@@ -63,7 +63,7 @@
 }
 
 - (void)backBtnClickAction:(UIButton *)sender{
-
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -74,7 +74,7 @@
         return;
     }
     if([self.oldpwdTxtfield.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
-    
+        
         [self showFailureView:RDLocalizedString(@"oldpwdPlaceholder")];
         return;
     }
@@ -98,15 +98,15 @@
             [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
         }
     }];
-
-   
+    
+    
 }
 
 - (void)requestDataWithDict:(id)dict{
-
+    
     NSDictionary *dictData = [KDJSON objectParseJSONString:dict];
     if([[dictData objectForKey:@"status"] isEqualToString:@"1"]){
-    
+        
         [self.navigationController popViewControllerAnimated:YES];
     }
     

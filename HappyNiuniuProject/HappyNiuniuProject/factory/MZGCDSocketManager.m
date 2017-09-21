@@ -61,7 +61,6 @@
 - (void)initSocket
 {
     gcdSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    
 }
 
 - (void)connect:(connectBlock)connectblock{
@@ -116,7 +115,7 @@ static bool firstConnect = true;
     firstConnect = false;
     self.ConnectedBlock(YES);
     //通过定时器不断发送消息，来检测长连接
-    self.heartTimer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(checkLongConnectByServe) userInfo:nil repeats:YES];
+    self.heartTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(checkLongConnectByServe) userInfo:nil repeats:YES];
     [self.heartTimer fire];
     
     //心跳写在这...
@@ -124,9 +123,8 @@ static bool firstConnect = true;
 
 // 心跳连接
 -(void)checkLongConnectByServe{
-    
     // 向服务器发送固定可是的消息，来检测长连接
-    NSString *longConnect = @"HeartBeat<EOF>";
+    NSString *longConnect = @"HeartBeat_IOS<EOF>";
     NSData   *data  = [longConnect dataUsingEncoding:NSUTF8StringEncoding];
     [gcdSocket writeData:data withTimeout:1 tag:0];
 }
@@ -135,10 +133,6 @@ static bool firstConnect = true;
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err
 {
     NSLog(@"断开连接,host:%@,port:%d",sock.localHost,sock.localPort);
-    
-//    [self connect:^(BOOL connectBlock) {
-//        
-//    }];
     //断线重连写在这...
     if(_reconnection_time>=0 && _reconnection_time <= kMaxReconnection_time) {
                         [_timer invalidate];
@@ -149,17 +143,33 @@ static bool firstConnect = true;
         NSLog(@"socket did reconnection,after %ds try again",time);
         }else{
             _reconnection_time=0;
+            [Common setData:@"false" key:@"loginStatus"];
         NSLog(@"socketDidDisconnect:%p withError: %@", sock, err);
     }
-
 }
 
 - (void)reconnection{
     [self connect:^(BOOL connectBlock) {
-        
+        if(connectBlock == YES){
+            NSString *userNameStr = [Common getData:@"userName"];
+            NSString *passwordStr = [Common getData:@"password"];
+            if(userNameStr.length <= 0 || passwordStr.length <= 0){
+                NSLog(@"还没登录，不需要执行");
+            }else{
+                 [self requestWithLoginUserName:userNameStr andPassword:passwordStr];
+            }
+        }
     }];
 }
 
+//登录请求
+- (void)requestWithLoginUserName:(NSString *)userName andPassword:(NSString *)password{
+    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"1",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":userName,@"pwd":password},@"data", nil];
+    [tempDict addEntriesFromDictionary:MBSIDicHeader];
+    NSString *sendMessage = [KDJSON JSONStringOfObject:tempDict];
+    [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
+    
+}
 //写的回调
 - (void)socket:(GCDAsyncSocket*)sock didWriteDataWithTag:(long)tag
 {
@@ -170,30 +180,24 @@ static bool firstConnect = true;
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
     [self.completeData appendData:data];
-    NSString *msg = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *msg = [[NSString alloc] initWithData:self.completeData encoding:NSUTF8StringEncoding];
     NSArray *array = [msg componentsSeparatedByString:@"<EOF>"];
     for(int i=0; i<array.count; i++){
+        NSString *dataMessage = array[i];
+        NSDictionary *dictData =  [KDJSON objectParseJSONString:dataMessage];
+        if(([[dictData objectForKey:@"command"] longValue] == 1)){
+            if([[dictData objectForKey:@"status"] isEqualToString:@"1"]){
+                [Common setData:@"true" key:@"loginStatus"];
+            }
+        }
         if([_delegate respondsToSelector:@selector(requestDataWithDict:)]){
-            NSString *dataMessage = [array[i] stringByReplacingOccurrencesOfString:@"<EOF>" withString:@""];
             [_delegate requestDataWithDict:dataMessage];
         }
+        if([msg hasSuffix:@"<EOF>"]){
+            self.completeData = 0;
+        }
+
     }
-    NSLog(@"msg----msg%@",msg);
-//    self.lenght = [self unpackingLenght:msg];
-//    //这里因为有时候会粘包，所以等长度一致，拼接完整之后再发送数据出去
-//        NSLog(@"self.completeData.length-%ld  self.lenght-%ld",self.completeData.length ,self.lenght);
-//    if (self.completeData.length >= self.lenght) {
-////        NSString *type = [self unpackingDicWith:msg];
-//        if([msg hasSuffix:@"<EOF>"]){
-//            if([_delegate respondsToSelector:@selector(requestDataWithDict:)]){
-//                msg = [msg stringByReplacingOccurrencesOfString:@"<EOF>" withString:@""];
-//                [_delegate requestDataWithDict:msg];
-//            }
-//        }
-//        self.completeData = 0;
-//        self.lenght = 0;
-//    }
-//    [gcdSocket readDataWithTimeout:READ_TIME_OUT buffer:nil bufferOffset:0 maxLength:MAX_BUFFER tag:0];
     [gcdSocket readDataWithTimeout:READ_TIME_OUT tag:0];
     
 }

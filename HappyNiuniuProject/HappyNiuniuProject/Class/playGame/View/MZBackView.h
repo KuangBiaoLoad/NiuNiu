@@ -17,7 +17,7 @@
 @interface MZBackView : UIView
 
 @property (nonatomic, assign)id<MZBackViewDelegate>deleagte;
-@property (nonatomic, strong) UIButton *gotUpbtn;           //起身
+@property (nonatomic, strong) UIButton *gotUpbtn;               //起身
 - (void)hiddenView;
 
 @end

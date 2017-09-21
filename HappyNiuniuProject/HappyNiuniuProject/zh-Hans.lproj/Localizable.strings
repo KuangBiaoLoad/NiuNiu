@@ -9,6 +9,7 @@
 "NewUserSignUp"         = "新用户 ? 这里注册";
 "UserName"              = "用户名：";
 "UserNamePlaceholder"   = "请输入用户名";
+"enterCorrectEmailFormat" = "Please enter the correct email format";
 "login"                 = "登录";
 "Password"              = "密码：";
 "PasswordPlaceholder"   = "请输入密码";

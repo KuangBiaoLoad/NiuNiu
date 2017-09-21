@@ -94,11 +94,18 @@
         UIImageView *imageView = (UIImageView *)[self viewWithTag:10+i];
         imageView.image = [UIImage imageNamed:cardStr];
     }
+    if(overlapImageArray.count == 0){
+        
+        for(int i=0; i<5; i++){
+            UIImageView *imageView = (UIImageView *)[self viewWithTag:10+i];
+            imageView.image = [UIImage imageNamed:@""];
+        }
+    }
     
 }
 
 -(void)setCardNorImage:(NSString *)cardNorImage{
-
+    
     _cardNorImage = cardNorImage;
     for(int i=0; i< 5; i++){
         UIImageView *imageView = (UIImageView *)[self viewWithTag:10+i];
@@ -107,7 +114,7 @@
 }
 
 - (void)setShapeStr:(NSString *)shapeStr{
-
+    
     _shapeStr = shapeStr;
     if([[MZlocalizableContoller userLanguage] isEqualToString:RDCHINESE]){
         self.showNiuImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"checkcn_niu%@",shapeStr]];

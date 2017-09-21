@@ -11,6 +11,9 @@
 #import "MZNavgationController.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import "MZlocalizableContoller.h"
+#import "Reachability.h"
+#import "KDJSON.h"
+#import "MZGCDSocketManager.h"
 @interface AppDelegate ()
 
 @end
@@ -26,7 +29,15 @@
     [MZlocalizableContoller initUserLanguage];
     // 监控语言切换
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChange:) name:RDNotificationLanguageChanged object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+     
+                                             selector:@selector(reachabilityChanged:)
+     
+                                                 name:kReachabilityChangedNotification
+     
+                                               object:nil];
+    Reachability *reach = [Reachability reachabilityWithHostName:@"www.apple.com"];
+    [reach startNotifier];
     MZLoginController *loginVC =[[MZLoginController alloc] initWithNibName:@"MZLoginController" bundle:nil];
     MZNavgationController *loginNav = [[MZNavgationController alloc] initWithRootViewController:loginVC];
     self.window.rootViewController = loginNav;
@@ -73,6 +84,35 @@
     // 在该方法里实现重新初始化 rootViewController 的行为，并且所有带有文字的页面都要重新渲染
     // 比如：[UIApplication sharedApplication].keyWindow.rootViewController = ...;
 }
-
-
+- (void)reachabilityChanged:(NSNotification *)notification{
+    
+    Reachability *reach = [notification object];
+    
+    if([reach isKindOfClass:[Reachability class]]){
+        
+        NetworkStatus status = [reach currentReachabilityStatus];
+        if(status == ReachableViaWiFi || status == ReachableViaWWAN){
+            if([[Common getData:@"loginStatus"] isEqualToString:@"true"]){
+                
+            }else{
+                NSString *userNameStr = [Common getData:@"userName"];
+                NSString *passwordStr = [Common getData:@"password"];
+                if(userNameStr.length <= 0 || passwordStr.length <= 0){
+                    NSLog(@"还没登录，不需要执行");
+                }else{
+                    [self requestWithLoginUserName:userNameStr andPassword:passwordStr];
+                }
+            }
+        }
+    }
+}
+//登录请求
+- (void)requestWithLoginUserName:(NSString *)userName andPassword:(NSString *)password{
+    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"1",@"command",[NSString stringWithFormat:@"%@%03d",[Common getCurrentTimes],arc4random()%1000],@"messageId",@{@"acc_name":userName,@"pwd":password},@"data", nil];
+    [tempDict addEntriesFromDictionary:MBSIDicHeader];
+    NSString *sendMessage = [KDJSON JSONStringOfObject:tempDict];
+    [[MZGCDSocketManager shareInstance] connect:^(BOOL connectBlock) {
+        [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
+    }];
+}
 @end

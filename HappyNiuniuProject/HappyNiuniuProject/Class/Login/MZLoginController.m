@@ -73,15 +73,15 @@
 }
 
 - (IBAction)loginButtonClickAction:(id)sender {
-
-    if([self.meberTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
     
+    if([self.meberTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
+        
         [self showFailureView:RDLocalizedString(@"UserNamePlaceholder")];
         return;
     }
     if([self.passwordTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length < 1){
         
-         [self showFailureView:RDLocalizedString(@"PasswordPlaceholder")];
+        [self showFailureView:RDLocalizedString(@"PasswordPlaceholder")];
         return;
     }
     
@@ -99,19 +99,20 @@
     NSString *sendMessage = [KDJSON JSONStringOfObject:tempDict];
     [[MZGCDSocketManager shareInstance] connect:^(BOOL connectBlock) {
         if(connectBlock == YES){
-        [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
+            [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
         }
     }];
-   
+    
 }
 -(void)requestDataWithDict:(id)dict{
-
+    
     NSDictionary *dictData =  [KDJSON objectParseJSONString:dict];
     if([[dictData objectForKey:@"status"] isEqualToString:@"1"]){
         
         MZLoginModel *model = [MZLoginModel yy_modelWithDictionary:[dictData objectForKey:@"data"]];
         [Common setData:model key:@"loginModel"];
-
+        [Common setData:[self.meberTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""] key:@"userName"];
+        [Common setData:[self.passwordTxtField.text stringByReplacingOccurrencesOfString:@" " withString:@""] key:@"password"];
         if([model.nextchgpwdtime isEqualToString:@"NOW"]){
             MZForgetPasswordController *forgetVC = [[MZForgetPasswordController alloc] initWithNibName:@"MZForgetPasswordController" bundle:nil];
             [self.navigationController pushViewController:forgetVC animated:YES];
@@ -119,7 +120,7 @@
             MZGameLobbyController *lobbyVC = [[MZGameLobbyController alloc] initWithNibName:@"MZGameLobbyController" bundle:nil];
             UINavigationController *lobbyNav = [[UINavigationController alloc] initWithRootViewController:lobbyVC];
             [self presentViewController:lobbyNav animated:YES completion:nil];
-
+            
         }
     }
     NSLog(@"%@",dictData);

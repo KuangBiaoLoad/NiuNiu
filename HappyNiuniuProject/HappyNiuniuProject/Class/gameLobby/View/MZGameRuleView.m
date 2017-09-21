@@ -20,7 +20,7 @@
 @implementation MZGameRuleView
 
 - (instancetype)initWithFrame:(CGRect)frame{
-
+    
     if(self = [super initWithFrame:frame]){
         [self initView];
     }
@@ -101,19 +101,19 @@
 }
 
 - (void)hiddenView{
-
+    
     [self removeFromSuperview];
 }
 
 - (void)setContentStr:(NSString *)contentStr{
     _contentStr = contentStr;
     self.contentLabel.text = contentStr;
-  CGSize contentSize =  [contentStr boundingRectWithSize:CGSizeMake(self.frame.size.width * 0.6 - 100, MAXFLOAT)  options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9]} context:nil].size;
+    CGSize contentSize =  [contentStr boundingRectWithSize:CGSizeMake(self.frame.size.width * 0.6 - 100, MAXFLOAT)  options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9]} context:nil].size;
     self.ruleScrollView.contentSize = CGSizeMake(0, contentSize.height + 15);
 }
 
 - (void)setModel:(MZGameRuleModel *)model{
-
+    
     _model = model;
     if([[MZlocalizableContoller userLanguage] isEqualToString:RDCHINESE]){
         self.contentLabel.text = _model.rulecn;
@@ -128,7 +128,7 @@
 
 #pragma  mark - 懒加载
 - (UIImageView *)bacImageView{
-
+    
     if(!_bacImageView){
         _bacImageView = [[UIImageView alloc] init];
         _bacImageView.image = [UIImage imageNamed:@"loggyAlertBacImage"];
@@ -137,9 +137,9 @@
 }
 
 - (UILabel *)titleLabel{
-
-    if(!_titleLabel){
     
+    if(!_titleLabel){
+        
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont systemFontOfSize:14];
         _titleLabel.textColor = [UIColor whiteColor];
@@ -149,7 +149,7 @@
 }
 
 - (UILabel *)contentLabel{
-
+    
     if(!_contentLabel){
         _contentLabel = [[UILabel alloc] init];
         _contentLabel.textColor = [UIColor colorWithHexString:@"7C5828"];
@@ -160,7 +160,7 @@
 }
 
 - (UIButton *)closeButton{
-
+    
     if(!_closeButton){
         _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_closeButton setBackgroundImage:[UIImage imageNamed:@"shadeClose"] forState:UIControlStateNormal];
@@ -170,12 +170,12 @@
 }
 
 - (UIScrollView *)ruleScrollView{
-
+    
     if(!_ruleScrollView){
         _ruleScrollView = [[UIScrollView alloc] init];
         _ruleScrollView.delegate = self;
         _ruleScrollView.backgroundColor = [UIColor clearColor];
-         _ruleScrollView.showsHorizontalScrollIndicator = NO;
+        _ruleScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _ruleScrollView;
 }

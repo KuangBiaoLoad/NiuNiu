@@ -47,7 +47,7 @@
 }
 
 - (void)initView{
-
+    
     self.backgroundColor = [UIColor clearColor];
     [self addSubview:self.bacImageView];
     [self addSubview:self.titleLabel];
@@ -238,7 +238,7 @@
 }
 
 - (UIImageView *)musicBacImageView{
-
+    
     if(!_musicBacImageView){
         _musicBacImageView = [[UIImageView alloc] init];
         _musicBacImageView.image = [UIImage imageNamed:@"loggyAlertBaseboard"];
@@ -274,7 +274,7 @@
 }
 
 - (UILabel *)musicLabel{
-
+    
     if(!_musicLabel){
         _musicLabel = [[UILabel alloc] init];
         _musicLabel.textColor = [UIColor colorWithHexString:@"775E3A"];
@@ -315,7 +315,7 @@
 }
 
 - (ZJSwitch *)musicSwitch{
-
+    
     if(!_musicSwitch){
         _musicSwitch = [[ZJSwitch alloc] init];
         _musicSwitch.backgroundColor = [UIColor clearColor];
@@ -326,7 +326,7 @@
         _musicSwitch.onText = RDLocalizedString(@"on");
         _musicSwitch.offText = RDLocalizedString(@"off");
         [_musicSwitch addTarget:self action:@selector(handleSwitchEvent:) forControlEvents:UIControlEventValueChanged];
-
+        
     }
     return _musicSwitch;
 }
@@ -335,7 +335,7 @@
     if(!_soundEffectSwitch){
         _soundEffectSwitch = [[ZJSwitch alloc] init];
         _soundEffectSwitch.backgroundColor = [UIColor clearColor];
-         _soundEffectSwitch.tintColor = [UIColor colorWithHexString:@"5e3e2c"];
+        _soundEffectSwitch.tintColor = [UIColor colorWithHexString:@"5e3e2c"];
         _soundEffectSwitch.thumbImage = @"loggyAlertSwitchBtn";
         _soundEffectSwitch.tag = 101;
         _soundEffectSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"soundEffect"];
@@ -351,7 +351,7 @@
     if(!_vibrateSwitch){
         _vibrateSwitch = [[ZJSwitch alloc] init];
         _vibrateSwitch.backgroundColor = [UIColor clearColor];
-         _vibrateSwitch.tintColor = [UIColor colorWithHexString:@"5e3e2c"];
+        _vibrateSwitch.tintColor = [UIColor colorWithHexString:@"5e3e2c"];
         _vibrateSwitch.thumbImage = @"loggyAlertSwitchBtn";
         _vibrateSwitch.tag = 102;
         _vibrateSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"vibrate"];
@@ -368,7 +368,7 @@
         _languageSwitch = [[ZJSwitch alloc] init];
         _languageSwitch.backgroundColor = [UIColor clearColor];
         _languageSwitch.tintColor = [UIColor colorWithHexString:@"5e3e2c"];
-//        _languageSwitch.thumbTintColor = [UIColor colorWithHexString:@"e19a39"];
+        //        _languageSwitch.thumbTintColor = [UIColor colorWithHexString:@"e19a39"];
         _languageSwitch.thumbImage = @"loggyAlertSwitchBtn";
         _languageSwitch.tag = 103;
         _languageSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"language"];
@@ -392,9 +392,9 @@
 }
 
 - (UIButton *)logoutBtn{
-
-    if(!_logoutBtn){
     
+    if(!_logoutBtn){
+        
         _logoutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_logoutBtn setTitle:RDLocalizedString(@"logout") forState:UIControlStateNormal];
         [_logoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -410,7 +410,7 @@
     
     switch (sender.tag) {
         case 100:{
-        
+            
             if (sender.on) {
                 //开启音乐
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"music"];
@@ -453,7 +453,7 @@
                 //中文
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"language"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-//                [self hiddenView];
+                //                [self hiddenView];
                 [MZlocalizableContoller setUserlanguage:RDCHINESE];
                 MZGameLobbyController *gameVC = [[MZGameLobbyController alloc] initWithNibName:@"MZGameLobbyController" bundle:nil];
                 UINavigationController *gameNav = [[UINavigationController alloc] initWithRootViewController:gameVC];
@@ -462,12 +462,12 @@
                 //英文
                 [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"language"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-//                [self hiddenView];
+                //                [self hiddenView];
                 [MZlocalizableContoller setUserlanguage:RDENGLISH];
                 MZGameLobbyController *gameVC = [[MZGameLobbyController alloc] initWithNibName:@"MZGameLobbyController" bundle:nil];
                 UINavigationController *gameNav = [[UINavigationController alloc] initWithRootViewController:gameVC];
                 [UIApplication sharedApplication].keyWindow.rootViewController = gameNav;
-
+                
             }
         }
             break;

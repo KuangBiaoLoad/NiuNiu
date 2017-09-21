@@ -21,6 +21,7 @@
 @property (nonatomic, assign)id<MZBettingViewDelegate>delegate;
 @property(nonatomic, assign) int maxMoney;
 @property (nonatomic, assign) int minMoney;
+
 - (instancetype)initWithFrame:(CGRect)frame;
 
 - (void)hiddenView;

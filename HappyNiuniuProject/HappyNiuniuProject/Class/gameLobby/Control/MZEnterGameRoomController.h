@@ -7,7 +7,7 @@
 //
 
 #import "MZBaseController.h"
-
+#import "MZGameTypeModel.h"
 @protocol MZEnterGameRoomControllerDelagate <NSObject>
 
 @optional
@@ -19,5 +19,7 @@
 @interface MZEnterGameRoomController : MZBaseController<MZEnterGameRoomControllerDelagate>
 
 @property (nonatomic,weak) id<MZEnterGameRoomControllerDelagate>delegate;
+
+@property (nonatomic, strong)MZGameTypeModel *gameTypeModel;
 
 @end

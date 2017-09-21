@@ -1,5 +1,6 @@
 
 
+
 //
 //  MZPlaygameController.m
 //  HappyNiuniuProject
@@ -53,6 +54,8 @@
 @property (nonatomic, strong) NSArray *newsListArray;           //信用新的数据
 @property (nonatomic, assign) BOOL  isUpdateStatus;             //根据状态是否应该刷新
 @property (nonatomic, assign) BOOL  addMuiltiView ;  //判断是不是第一次加载
+@property (nonatomic, assign) BOOL  gameInitiatesecond;    //下一句倒计时是否结束
+@property (nonatomic, assign) int   LastStatus;
 
 @end
 
@@ -62,6 +65,7 @@
     [super viewDidLoad];
     [self createLeftAndRightView];
     [self createView];
+    self.betAmount = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -73,56 +77,56 @@
 - (void)viewDidLayoutSubviews{
     
     [super viewDidLayoutSubviews];
-    if(!self.spreadIsFirstLoad && !self.isFirstLoad){
-        if(oneselfRow ==10){//表示没有本人
-            CGPoint startPoint = CGPointMake(kSCREEN_Width/2.0, KSCREEN_HEIGHT/2.0);
-            for(int i=0; i< self.playerlistArray.count; i++){
-                if(i== 5){
-                    MZSpreadView *spreadView = (MZSpreadView *)[self.view viewWithTag:10000];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self animateWithView:spreadView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(spreadView.frame.origin.x + spreadView.frame.size.width/2.0,spreadView.frame.origin.y + spreadView.frame.size.height/2.0)];
-                    });
-                }else{
-                    
-                    MZOverlapView *overlapView = (MZOverlapView *)[self.view viewWithTag:1000+i];
-                    CGFloat pointx = overlapView.frame.origin.x + overlapView.frame.size.width/2.0 ;
-                    CGFloat pointy =overlapView.frame.origin.y + overlapView.frame.size.height/2.0;
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC * (i+1))), dispatch_get_main_queue(), ^{
-                        [self animateWithView:overlapView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(pointx,pointy)];
-                    });
-                }
-            }
-        }else{
-            for(int i=0; i< self.playerlistArray.count; i++){//有本人的情况
-                CGPoint startPoint = CGPointMake(kSCREEN_Width/2.0, KSCREEN_HEIGHT/2.0);
-                if(i==oneselfRow){
-                    MZSpreadView *spreadView = (MZSpreadView *)[self.view viewWithTag:10000];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self animateWithView:spreadView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(spreadView.frame.origin.x + spreadView.frame.size.width/2.0,spreadView.frame.origin.y + spreadView.frame.size.height/2.0)];
-                    });
-                }else{
-                    int row = i;
-                    if(i>oneselfRow){
-                        row = i - 1;
-                    }
-                    MZOverlapView *overlapView = (MZOverlapView *)[self.view viewWithTag:1000+row];
-                    CGFloat pointx = overlapView.frame.origin.x + overlapView.frame.size.width/2.0 ;
-                    CGFloat pointy =overlapView.frame.origin.y + overlapView.frame.size.height/2.0;
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC * (row+1))), dispatch_get_main_queue(), ^{
-                        [self animateWithView:overlapView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(pointx,pointy)];
-                    });
-                    
-                }
-            }
-        }
-    }
-    if(!self.spreadIsFirstLoad){
-        CGPoint startPoint = CGPointMake(kSCREEN_Width/2.0, KSCREEN_HEIGHT/2.0);
-        MZSpreadView *spreadView = (MZSpreadView *)[self.view viewWithTag:10000];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self animateWithView:spreadView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(spreadView.frame.origin.x + spreadView.frame.size.width/2.0,spreadView.frame.origin.y + spreadView.frame.size.height/2.0)];
-        });
-    }
+//    if(!self.spreadIsFirstLoad && !self.isFirstLoad){
+//        if(oneselfRow ==10){//表示没有本人
+//            CGPoint startPoint = CGPointMake(kSCREEN_Width/2.0, KSCREEN_HEIGHT/2.0);
+//            for(int i=0; i< self.playerlistArray.count; i++){
+//                if(i== 5){
+//                    MZSpreadView *spreadView = (MZSpreadView *)[self.view viewWithTag:10000];
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                        [self animateWithView:spreadView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(spreadView.frame.origin.x + spreadView.frame.size.width/2.0,spreadView.frame.origin.y + spreadView.frame.size.height/2.0)];
+//                    });
+//                }else{
+//                    
+//                    MZOverlapView *overlapView = (MZOverlapView *)[self.view viewWithTag:1000+i];
+//                    CGFloat pointx = overlapView.frame.origin.x + overlapView.frame.size.width/2.0 ;
+//                    CGFloat pointy =overlapView.frame.origin.y + overlapView.frame.size.height/2.0;
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC * (i+1))), dispatch_get_main_queue(), ^{
+//                        [self animateWithView:overlapView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(pointx,pointy)];
+//                    });
+//                }
+//            }
+//        }else{
+//            for(int i=0; i< self.playerlistArray.count; i++){//有本人的情况
+//                CGPoint startPoint = CGPointMake(kSCREEN_Width/2.0, KSCREEN_HEIGHT/2.0);
+//                if(i==oneselfRow){
+//                    MZSpreadView *spreadView = (MZSpreadView *)[self.view viewWithTag:10000];
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                        [self animateWithView:spreadView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(spreadView.frame.origin.x + spreadView.frame.size.width/2.0,spreadView.frame.origin.y + spreadView.frame.size.height/2.0)];
+//                    });
+//                }else{
+//                    int row = i;
+//                    if(i>oneselfRow){
+//                        row = i - 1;
+//                    }
+//                    MZOverlapView *overlapView = (MZOverlapView *)[self.view viewWithTag:1000+row];
+//                    CGFloat pointx = overlapView.frame.origin.x + overlapView.frame.size.width/2.0 ;
+//                    CGFloat pointy =overlapView.frame.origin.y + overlapView.frame.size.height/2.0;
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC * (row+1))), dispatch_get_main_queue(), ^{
+//                        [self animateWithView:overlapView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(pointx,pointy)];
+//                    });
+//                    
+//                }
+//            }
+//        }
+//    }
+//    if(!self.spreadIsFirstLoad){
+//        CGPoint startPoint = CGPointMake(kSCREEN_Width/2.0, KSCREEN_HEIGHT/2.0);
+//        MZSpreadView *spreadView = (MZSpreadView *)[self.view viewWithTag:10000];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self animateWithView:spreadView withStartPoint:startPoint withControlPoint:CGPointMake(kSCREEN_Width/2.0 - 80, KSCREEN_HEIGHT/2.0 - 50) withEndPoint:CGPointMake(spreadView.frame.origin.x + spreadView.frame.size.width/2.0,spreadView.frame.origin.y + spreadView.frame.size.height/2.0)];
+//        });
+//    }
     
     self.isFirstLoad = YES;
     self.spreadIsFirstLoad = YES;
@@ -204,6 +208,7 @@
     [[MZGCDSocketManager shareInstance] connect:^(BOOL connectBlock) {
         [[MZGCDSocketManager shareInstance] sendMessage:sendMessage];
     }];
+
 }
 
 #pragma mark  用户起身
@@ -282,10 +287,8 @@
             if([self.roomStatus isEqualToString:@"0"] || [self.roomStatus isEqualToString:@"2"] || [self.roomStatus isEqualToString:@"4"]){
                 [self requestWithUserGetUp];
             }else{
-                
                 //不可以起身
             }
-            
         }
             break;
         case 212:{//离开
@@ -350,13 +353,15 @@
 
 #pragma mark - 根据message消息显示界面
 - (void)refreshPageWithMessageData:(NSDictionary *)messageDict{
-    
     self.waitLabel.hidden = YES;
     MZLoginModel *loginModel = [Common getData:@"loginModel"];
     MZPlayerModel *model = [MZPlayerModel yy_modelWithDictionary:messageDict];
     self.roomStatus = model.room_status;
+    if([self.roomStatus intValue] != self.LastStatus && self.LastStatus == 4){//如果之前的状态是4，现在不是4了 之后刷新spreadView
+        [self recoverOriginalSpreadViewFrame];
+    }
     if(([model.room_status isEqualToString:@"0"] || [model.room_status isEqualToString:@"2"] || [model.room_status isEqualToString:@"4"])){//如果有下发玩家信息
-        self.newsListArray = model.playerList;
+        self.newsListArray = [messageDict objectForKey:@"playerList"];
         if(![self.newsListArray isEqualToArray:self.oldListArray]){
             [self updateUserInfo:model.playerList];//更新用户信息
         }
@@ -373,6 +378,7 @@
     }
     switch ([model.room_status intValue]) {
         case 0:{//准备中<刷新页面>
+            self.betAmount = 0;
             self.colokBtn.hidden = YES;
             for(int i=0; i<self.view.subviews.count; i++){
                 
@@ -386,7 +392,11 @@
             self.isUpdateStatus = true;
             self.titleArray = @[@"下注"];
             self.multiHogView.imageStr = @"check_boomPourImage";
-            
+            for(int i=0; i<self.view.subviews.count; i++){
+                if([self.view.subviews[i] isKindOfClass:[MZBuyChips class]]){
+                    [self.buyChips removeFromSuperview];
+                }
+            }
             for(MZPlayerListModel *listModel in self.playerModel.playerList){
                 if([listModel.isbanker isEqualToString:@"true"] && [listModel.acc_id isEqualToString:loginModel.acc_id]){
                     self.addMuiltiView = true;
@@ -395,11 +405,12 @@
             if(self.addMuiltiView == false && [model.game_betsecond intValue] > 0){
                 [self.view addSubview:self.multiHogView];
             }
-            
-            self.addMuiltiView = true;
-            self.colokBtn.hidden = NO;
-            [self.colokBtn setTitle:model.game_betsecond forState:UIControlStateNormal];
-            if([model.game_betsecond isEqualToString:@"0"]){//倒计时结束 隐藏倒计时按钮 + 更变添加multi状态
+            if([model.game_betsecond intValue] > 0){
+                self.addMuiltiView = true;
+                self.colokBtn.hidden = NO;
+                [self.colokBtn setTitle:model.game_betsecond forState:UIControlStateNormal];
+            }
+            if([model.game_betsecond intValue] <= 0){//倒计时结束 隐藏倒计时按钮 + 更变添加multi状态
                 self.addMuiltiView = false;
                 self.isUpdateStatus = false;
                 self.colokBtn.hidden = YES;
@@ -408,6 +419,7 @@
                     [self.bettingView removeFromSuperview];
                     [self.multiHogView removeFromSuperview];
                     [self requestWithBetting];//用户下注请求
+                    self.betAmount = 0;
                 }
             }
         }
@@ -415,24 +427,34 @@
         case 2:{//下注倒计时截止,下注未满,进入等待状态
             //            [self.view addSubview:self.waitLabel];
             self.waitLabel.hidden = NO;
+            self.betAmount = 0;
         }
             break;
         case 3:{//:下注倒计时截止，下注已满，发牌，开牌倒计时
-            self.isUpdateStatus = true;
-            self.colokBtn.hidden = NO;
-            [self.colokBtn setTitle:model.game_opencardsecond forState:UIControlStateNormal];
-            if([model.game_opencardsecond isEqualToString:@"0"]){
+            self.betAmount = 0;
+            if([model.game_opencardsecond intValue] > 0){
+                self.isUpdateStatus = true;
+                self.colokBtn.hidden = NO;
+                [self.colokBtn setTitle:model.game_opencardsecond forState:UIControlStateNormal];
+            }
+            if([model.game_opencardsecond intValue]<= 0 ){
                 self.colokBtn.hidden = YES;
                 self.isUpdateStatus = false;
             }
         }
             break;
         case 4:{//下一盘游戏倒计时
-            self.colokBtn.hidden = NO;
-            [self.colokBtn setTitle:model.game_initiatesecond forState:UIControlStateNormal];
-            if([model.game_initiatesecond isEqualToString:@"0"]){
+//            if(!self.gameInitiatesecond){
+//                 [self recoverOriginalSpreadViewFrame];//更新spreadview
+//            }
+            self.gameInitiatesecond = true;
+            if([model.game_initiatesecond intValue] > 0){
+                self.colokBtn.hidden = NO;
+                [self.colokBtn setTitle:model.game_initiatesecond forState:UIControlStateNormal];
+            }
+            if([model.game_initiatesecond intValue] <= 0){
                 self.colokBtn.hidden = YES;
-                [self recoverOriginalSpreadViewFrame];//更新spreadview
+                self.gameInitiatesecond = false;
             }
         }
             break;
@@ -440,7 +462,8 @@
         default:
             break;
     }
-    self.oldListArray = model.playerList;
+    self.oldListArray = [messageDict objectForKey:@"playerList"];
+    self.LastStatus = [self.roomStatus intValue];
 }
 
 static int oneselfRow = 10;   //记录有没有游戏本人
@@ -528,7 +551,7 @@ static int oneselfRow = 10;   //记录有没有游戏本人
             userView.isbanker = YES;
             userView.userDict = @{@"image":@"UserHeadImage",@"user":playlistModel.acc_name,@"gold":playlistModel.banker_amount};
         }else{
-            userView.userDict = @{@"image":@"UserHeadImage",@"user":playlistModel.acc_name,@"gold":playlistModel.bet_amount};
+            userView.userDict = @{@"image":@"UserHeadImage",@"user":playlistModel.acc_name,@"gold":playlistModel.game_amount};
         }
     }
     //如果本人已经坐下 不能再点击坐下按钮
@@ -752,7 +775,7 @@ static int oneselfRow = 10;   //记录有没有游戏本人
     if(!_boomPourLabel){
         _boomPourLabel = [[UILabel alloc] init];
         _boomPourLabel.textColor = [UIColor yellowColor];
-        _boomPourLabel.text = @"3";
+        _boomPourLabel.text = @"";
         _boomPourLabel.font = [UIFont systemFontOfSize:18];
     }
     return _boomPourLabel;
@@ -837,6 +860,7 @@ static int oneselfRow = 10;   //记录有没有游戏本人
     
     if(!_bettingView){
         _bettingView = [[MZBettingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0 - 125 , self.view.frame.size.height - 104 -30, 250, 104)];
+        _bettingView.delegate = self;
     }
     return _bettingView;
 }
